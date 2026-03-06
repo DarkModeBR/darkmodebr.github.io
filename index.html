@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Discord Auto Quest - Bot de Missões Automáticas</title>
 
-<meta name="description" content="Discord Auto Quest é um sistema automático de quests/missões para servidores Discord. Automatize tarefas, recompensas e progressão dos membros.">
+<meta name="description" content="Discord Auto Quest é um sistema automático de quests/missões para Discord. Automatize as missões, recompensas e progressão dos membros.">
 <meta name="keywords" content="discord bot quests, discord quest bot, discord missions, auto quest discord, discord automation bot, discord rewards system">
 <meta name="author" content="DarkMode">
 
@@ -20,8 +20,6 @@
 <meta name="twitter:description" content="Bot de quests automáticas para Discord.">
 <meta name="twitter:image" content="https://i.imgur.com/l0CPot7.gif">
 <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/plyr@3.7.8/dist/plyr.css">
-<script src="https://cdn.jsdelivr.net/npm/plyr@3.7.8/dist/plyr.min.js"></script>
 <style>
 *{
   box-sizing:border-box;
@@ -65,8 +63,6 @@ h1 b{
   font-weight:600
 }
 
-/* BOTÕES */
-
 .btns{
   display:flex;
   gap:8px;
@@ -96,8 +92,6 @@ h1 b{
   min-width:160px
 }
 
-/* DRAG */
-
 .btn-drag{
   border:1px solid rgba(255,255,255,0.2);
   color:rgba(255,255,255,0.65);
@@ -109,8 +103,6 @@ h1 b{
   color:#60a5fa
 }
 
-/* COPY */
-
 .btn-copy{
   border:1px solid rgba(255,255,255,0.2);
   color:rgba(255,255,255,0.65);
@@ -121,8 +113,6 @@ h1 b{
   border-color:rgba(59,130,246,0.45);
   color:#60a5fa
 }
-
-/* TUTORIAL */
 
 .btn-tutorial{
   border:1px solid rgba(59,130,246,0.6);
@@ -161,8 +151,6 @@ h1 b{
   height:28px;
   background:rgba(255,255,255,0.1)
 }
-
-/* MODAL */
 
 .modal{
   display:none;
@@ -231,8 +219,6 @@ h1 b{
   text-align:center
 }
 
-/* VIDEOS */
-
 .video-section{
   margin-bottom:28px
 }
@@ -271,8 +257,6 @@ h1 b{
   border:none
 }
 
-/* FOOTER */
-
 .foot{
   display:flex;
   align-items:center;
@@ -293,41 +277,6 @@ h1 b{
 textarea{
   position:absolute;
   left:-9999px
-}
-
-/* PLAYER */
-
-.plyr{
-  border-radius:6px
-}
-
-.plyr--video{
-  background:#000
-}
-
-.plyr__control--overlaid{
-  background:rgba(59,130,246,0.9)
-}
-
-.plyr__control--overlaid:hover{
-  background:rgba(59,130,246,1)
-}
-
-.plyr__control.plyr__tab-focus{
-  box-shadow:0 0 0 3px rgba(59,130,246,0.5)
-}
-
-.plyr--full-ui input[type=range]{
-  color:#60a5fa
-}
-
-.plyr__control:hover{
-  background:rgba(59,130,246,0.9)
-}
-
-.plyr__menu__container{
-  background:rgba(15,15,15,0.95);
-  border:1px solid rgba(59,130,246,0.2)
 }
 
 @media (max-width:768px){
@@ -549,8 +498,8 @@ function copyCodeDrag() {
 
 window.addEventListener('DOMContentLoaded', function () {
 
-  var videoCelular = '';
-  var videoPC = '';
+  var videoCelular = 'https://cdn.discordapp.com/attachments/1080183819572887613/1479459365533647041/Celular.mp4?ex=69ac1d67&is=69aacbe7&hm=83125f55225d1bac1159e207a3c43d9e6569a9c87756066c192dce269cedbafe&';
+  var videoPC = 'https://cdn.discordapp.com/attachments/1080183819572887613/1479445586947211367/PC.mp4?ex=69ac1092&is=69aabf12&hm=edd0200fc235e0386f0ee914bd6b0bc84ffd713dab70ef74a454e8740477b138&';
 
 
   function loadVideo(url, containerId) {
@@ -595,4 +544,5 @@ window.addEventListener('DOMContentLoaded', function () {
 </script>
 
 </body>
+
 </html>
