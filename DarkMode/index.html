@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title><\DarkMode></title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --surface: #111111;
+    --border: #1e1e1e;
+    --text: #f0f0f0;
+    --muted: #666666;
+    --accent: #ffffff;
+    --card: #141414;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    overflow-x: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar {
+    display: none;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+    cursor: default;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  img {
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
+    pointer-events: none;
+  }
+
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    background: linear-gradient(to bottom, rgba(10,10,10,0.98) 0%, transparent 100%);
+  }
+
+  .nav-tabs {
+    display: flex;
+    gap: 2px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 4px;
+    border-radius: 100px;
+  }
+
+  .nav-tab {
+    padding: 10px 28px;
+    border-radius: 100px;
+    border: none;
+    background: transparent;
+    color: var(--muted);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    letter-spacing: 0.04em;
+    transition: all 0.25s ease;
+    white-space: nowrap;
+  }
+
+  .nav-tab.active {
+    background: var(--accent);
+    color: #000;
+  }
+
+  .nav-tab:hover:not(.active) {
+    color: var(--text);
+  }
+
+  .page {
+    display: none;
+    min-height: 100vh;
+    padding-top: 90px;
+  }
+
+  .page.active {
+    display: block;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .hero {
+    text-align: center;
+    padding: 60px 0 80px;
+  }
+
+  .avatar-wrap {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 28px;
+  }
+
+  .avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--border);
+    display: block;
+    pointer-events: none;
+  }
+
+  .avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+  .avatar-placeholder {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: var(--surface);
+    border: 2px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    color: var(--muted);
+  }
+
+  .status-dot {
+    position: absolute;
+    bottom: 6px;
+    right: 6px;
+    width: 20px;
+    height: 20px;
+    background: #4ade80;
+    border-radius: 50%;
+    border: 2px solid var(--bg);
+  }
+
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(42px, 7vw, 72px);
+    letter-spacing: 0.06em;
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+
+  .hero-role {
+    font-size: 14px;
+    color: var(--muted);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .hero-bio {
+    max-width: 480px;
+    margin: 0 auto 32px;
+    font-size: 15px;
+    color: #aaaaaa;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  .hero-links {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .hero-link {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 10px 20px;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    color: var(--muted);
+    font-size: 13px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    cursor: pointer;
+  }
+
+  .hero-link:hover {
+    border-color: #444;
+    color: var(--text);
+  }
+
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 0 0 60px;
+  }
+
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 10px;
+    margin-bottom: 60px;
+  }
+
+  .skill-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+    transition: border-color 0.2s ease;
+  }
+
+  .skill-card:hover {
+    border-color: #333;
+  }
+
+  .skill-card i {
+    font-size: 22px;
+    margin-bottom: 8px;
+    display: block;
+    color: var(--text);
+  }
+
+  .skill-card span {
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+
+  .timeline {
+    position: relative;
+    padding-left: 28px;
+    margin-bottom: 60px;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    bottom: 8px;
+    width: 1px;
+    background: var(--border);
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 40px;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -32px;
+    top: 8px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--bg);
+    outline: 1px solid var(--border);
+  }
+
+  .timeline-date {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .timeline-title {
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: var(--text);
+  }
+
+  .timeline-company {
+    font-size: 13px;
+    color: #888;
+    margin-bottom: 10px;
+  }
+
+  .timeline-desc {
+    font-size: 14px;
+    color: #777;
+    line-height: 1.65;
+    font-weight: 300;
+  }
+
+  .timeline-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 12px;
+  }
+
+  .tag {
+    font-size: 11px;
+    padding: 4px 10px;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 60px;
+  }
+
+  .stat-item {
+    background: var(--card);
+    padding: 28px 20px;
+    text-align: center;
+  }
+
+  .stat-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 40px;
+    letter-spacing: 0.04em;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .rec-page {
+    padding-bottom: 80px;
+  }
+
+  .rec-header {
+    text-align: center;
+    padding: 60px 0 50px;
+  }
+
+  .rec-header h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 6vw, 60px);
+    letter-spacing: 0.06em;
+    margin-bottom: 12px;
+  }
+
+  .rec-header p {
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: 300;
+  }
+
+  .rec-category {
+    margin-bottom: 52px;
+  }
+
+  .rec-category-title {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .rec-category-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .rec-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 14px;
+  }
+
+  .rec-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: border-color 0.2s ease;
+  }
+
+  .rec-card:hover {
+    border-color: #333;
+  }
+
+  .rec-card-img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    display: block;
+    background: var(--surface);
+    pointer-events: none;
+  }
+
+  .rec-card-img-placeholder {
+    width: 100%;
+    height: 140px;
+    background: var(--surface);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted);
+    font-size: 32px;
+  }
+
+  .rec-card-body {
+    padding: 16px;
+  }
+
+  .rec-card-title {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: var(--text);
+  }
+
+  .rec-card-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.55;
+    margin-bottom: 14px;
+    font-weight: 300;
+  }
+
+  .rec-card-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    color: var(--text);
+    font-size: 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    text-decoration: none;
+    background: transparent;
+    cursor: pointer;
+    letter-spacing: 0.04em;
+    transition: all 0.2s ease;
+    pointer-events: all;
+  }
+
+  .rec-card-btn:hover {
+    background: var(--accent);
+    color: #000;
+    border-color: var(--accent);
+  }
+
+  .media-page {
+    padding-bottom: 80px;
+  }
+
+  .media-header {
+    text-align: center;
+    padding: 60px 0 50px;
+  }
+
+  .media-header h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 6vw, 60px);
+    letter-spacing: 0.06em;
+    margin-bottom: 12px;
+  }
+
+  .media-header p {
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: 300;
+  }
+
+  .media-grid {
+    columns: 3;
+    column-gap: 10px;
+    margin-bottom: 80px;
+  }
+
+  .media-item {
+    break-inside: avoid;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    cursor: zoom-in;
+    position: relative;
+  }
+
+  .media-item img {
+    width: 100%;
+    display: block;
+    transition: transform 0.3s ease;
+    pointer-events: all;
+  }
+
+  .media-item:hover img {
+    transform: scale(1.02);
+  }
+
+  .media-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease;
+  }
+
+  .media-item:hover .media-overlay {
+    background: rgba(0,0,0,0.3);
+  }
+
+  .media-overlay i {
+    font-size: 24px;
+    color: white;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .media-item:hover .media-overlay i {
+    opacity: 1;
+  }
+
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0,0,0,0.96);
+    display: none;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .lightbox.open {
+    display: flex;
+  }
+
+  .lightbox-inner {
+    position: relative;
+    max-width: 92vw;
+    max-height: 90vh;
+    overflow: hidden;
+    border-radius: 8px;
+    cursor: zoom-in;
+  }
+
+  .lightbox-inner.zoomed {
+    cursor: zoom-out;
+  }
+
+  .lightbox-img {
+    max-width: 92vw;
+    max-height: 90vh;
+    display: block;
+    transition: transform 0.3s ease;
+    transform-origin: center center;
+    pointer-events: all;
+  }
+
+  .lightbox-close {
+    position: fixed;
+    top: 20px;
+    right: 24px;
+    width: 40px;
+    height: 40px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--text);
+    font-size: 18px;
+    z-index: 10000;
+    pointer-events: all;
+  }
+
+  .lightbox-close:hover {
+    background: #222;
+  }
+
+  @media (max-width: 640px) {
+    .media-grid {
+      columns: 2;
+    }
+    .skills-grid {
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    }
+    .stats-row {
+      grid-template-columns: 1fr;
+    }
+    .nav-tab {
+      padding: 10px 16px;
+      font-size: 12px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="switchPage('portfolio')">
+      <i class="bi bi-person"></i> Portfólio
+    </button>
+    <button class="nav-tab" onclick="switchPage('recomendacoes')">
+      <i class="bi bi-bookmark"></i> Recomendações
+    </button>
+    <button class="nav-tab" onclick="switchPage('midias')">
+      <i class="bi bi-images"></i> Mídias
+    </button>
+  </div>
+</nav>
+
+<div id="page-portfolio" class="page active">
+  <div class="container">
+
+    <div class="hero" data-aos="fade-up" data-aos-duration="600">
+      <div class="avatar-wrap">
+        <div class="avatar-placeholder">
+          <img src="https://i.imgur.com/Prs7XEn.jpeg" alt="Avatar" class="avatar-img">
+        </div>
+        <div class="status-dot"></div>
+      </div>
+      <h1>DarkMode</h1>
+      <p class="hero-role">Desenvolvedor Full Stack</p>
+      <p class="hero-bio">
+        Viciado em cibersegurança e pentest. Hoje me vejo como desenvolvedor full stack (ainda aprendendo sempre). Gosto de fazer engenharia reversa em trojans/stealers e criar automações e bots de Discord.
+      </p>
+      <div class="hero-links">
+        <a class="hero-link" href="https://github.com/DarkModeBR"><i class="bi bi-github"></i> GitHub</a>
+        <a class="hero-link" href="https://darkmodde.xyz/"><i class="bi bi-mortarboard-fill"></i> CMSP Hacks</a>
+        <a class="hero-link" href="https://steamcommunity.com/id/Dark-Mode"><i class="bi bi-steam"></i> Steam</a>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div data-aos="fade-up" data-aos-duration="600">
+      <div class="section-label">Estatísticas</div>
+      <div class="stats-row">
+        <div class="stat-item">
+          <div class="stat-number">7</div>
+          <div class="stat-label">Projetos</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">8</div>
+          <div class="stat-label">Anos de exp.</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">5</div>
+          <div class="stat-label">Tecnologias</div>
+        </div>
+      </div>
+    </div>
+
+    <div data-aos="fade-up" data-aos-duration="600">
+      <div class="section-label">Habilidades Técnicas</div>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <i class="bi bi-filetype-html"></i>
+          <span>HTML / CSS</span>
+        </div>
+        <div class="skill-card">
+          <i class="bi bi-filetype-js"></i>
+          <span>JavaScript</span>
+        </div>
+        <div class="skill-card">
+          <i class="bi bi-filetype-py"></i>
+          <span>Python</span>
+        </div>
+        <div class="skill-card">
+          <i class="bi bi-git"></i>
+          <span>Git</span>
+        </div>
+        <div class="skill-card">
+          <i class="bi bi-cloud"></i>
+          <span>Node.js</span>
+        </div>
+      </div>
+    </div>
+
+    <div data-aos="fade-up" data-aos-duration="600">
+      <div class="section-label">Linha do Tempo</div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-date">2026 — Presente</div>
+          <div class="timeline-title">Suporte a Sistemas de Saúde</div>
+          <div class="timeline-company">Empresa Atual · Tempo Integral</div>
+          <div class="timeline-desc">Atuação em equipe responsável pelo suporte e manutenção de sistema na área da saúde, auxiliando usuários, identificando problemas e garantindo o funcionamento adequado da plataforma.</div>
+          <div class="timeline-tags">
+            <span class="tag">Suporte Técnico</span>
+            <span class="tag">Atendimento</span>
+            <span class="tag">Resolução de Problemas</span>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">2025 — 2026</div>
+          <div class="timeline-title">Graduação em Análise e Desenvolvimento de Sistemas</div>
+          <div class="timeline-company">Universidade · Bacharelado</div>
+          <div class="timeline-desc">Formação em Análise e Desenvolvimento de Sistemas, com foco em programação, banco de dados e desenvolvimento de aplicações. Experiência em projetos práticos de desenvolvimento de software.</div>
+          <div class="timeline-tags">
+            <span class="tag">Sistema</span>
+            <span class="tag">Hardware</span>
+            <span class="tag">Linguagens</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="page-recomendacoes" class="page rec-page">
+  <div class="container">
+
+    <div class="rec-header" data-aos="fade-up" data-aos-duration="600">
+      <h2>Recomendações</h2>
+      <p>Sites e recursos que uso e recomendo</p>
+    </div>
+
+    <div class="rec-category" data-aos="fade-up" data-aos-duration="600">
+      <div class="rec-category-title">Ferramentas de Design</div>
+      <div class="rec-grid">
+        <div class="rec-card">
+          <div class="rec-card-img-placeholder"><i class="bi bi-magnet"></i></div>
+          <div class="rec-card-body">
+            <div class="rec-card-title">Pirataria Megathread</div>
+            <div class="rec-card-desc">O melhor website brasileiro com guias, links e informações sobre pirataria e cracks.</div>
+            <a href="https://pirataria.link/" target="_blank" class="rec-card-btn"><i class="bi bi-box-arrow-up-right"></i> Acessar</a>
+          </div>
+        </div>
+        <div class="rec-card">
+          <div class="rec-card-img-placeholder"><i class="bi bi-download"></i></div>
+          <div class="rec-card-body">
+            <div class="rec-card-title">Free Media Heck Yeah</div>
+            <div class="rec-card-desc">O melhor website americano com guias, links e informações sobre pirataria e cracks.</div>
+            <a href="https://fmhy.net/" target="_blank" class="rec-card-btn"><i class="bi bi-box-arrow-up-right"></i> Acessar</a>
+          </div>
+        </div>
+        <div class="rec-card">
+          <div class="rec-card-img-placeholder"><i class="bi bi-shield"></i></div>
+          <div class="rec-card-body">
+            <div class="rec-card-title">Privacy Tools</div>
+            <div class="rec-card-desc">As melhoras ferramentas, websites e aplicativos para sua privacidade!</div>
+            <a href="https://www.privacytools.io/" target="_blank" class="rec-card-btn"><i class="bi bi-box-arrow-up-right"></i> Acessar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rec-category" data-aos="fade-up" data-aos-duration="600">
+      <div class="rec-category-title">Projetos Meus!</div>
+      <div class="rec-grid">
+        <div class="rec-card">
+          <div class="rec-card-img-placeholder"><i class="bi bi-discord"></i></div>
+          <div class="rec-card-body">
+            <div class="rec-card-title">Discord Auto-Quest</div>
+            <div class="rec-card-desc">Servidor do Discord com sistema que faz automaticamente as missões (quests) do Discord para ganhar orbs e recompensas.</div>
+            <a href="https://darkmodebr.github.io/" target="_blank" class="rec-card-btn"><i class="bi bi-box-arrow-up-right"></i> Acessar</a>
+          </div>
+        </div>
+        <div class="rec-card">
+          <div class="rec-card-img-placeholder"><i class="bi bi-mortarboard"></i></div>
+          <div class="rec-card-body">
+            <div class="rec-card-title">CMSP hacks ( Sala do Futuro )</div>
+            <div class="rec-card-desc">Website onde reúne, em um só lugar, todos os scripts, websites e hacks atualizados para as tarefas da Sala do Futuro de SP.</div>
+            <a href="https://darkmodde.xyz/" target="_blank" class="rec-card-btn"><i class="bi bi-box-arrow-up-right"></i> Acessar</a>
+          </div>
+        </div>
+        <div class="rec-card">
+          <div class="rec-card-img-placeholder"><i class="bi bi-box"></i></div>
+          <div class="rec-card-body">
+            <div class="rec-card-title">WPlace AutoBOT</div>
+            <div class="rec-card-desc">Extensão para navegador que automatiza a criação de imagens e pinturas no jogo/website wplace.live, podendo usar bots e outras funções.</div>
+            <a href="https://github.com/Wplace-AutoBot/WPlace-AutoBOT" target="_blank" class="rec-card-btn"><i class="bi bi-box-arrow-up-right"></i> Acessar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rec-category" data-aos="fade-up" data-aos-duration="600">
+      <div class="rec-category-title">Aprendizado</div>
+      <div class="rec-grid">
+        <div class="rec-card">
+          <div class="rec-card-img-placeholder"><i class="bi bi-play-circle"></i></div>
+          <div class="rec-card-body">
+            <div class="rec-card-title">Curso em Vídeo</div>
+            <div class="rec-card-desc">Tutoriais gratuitos sobre programação, tecnologia e informática.</div>
+            <a href="https://www.cursoemvideo.com/" target="_blank" class="rec-card-btn"><i class="bi bi-box-arrow-up-right"></i> Acessar</a>
+          </div>
+        </div>
+        <div class="rec-card">
+          <div class="rec-card-img-placeholder"><i class="bi bi-bank"></i></div>
+          <div class="rec-card-body">
+            <div class="rec-card-title">Fundação Bradesco</div>
+            <div class="rec-card-desc">Cursos online gratuitos sobre tecnologia, negócios e desenvolvimento profissional.</div>
+            <a href="https://www.ev.org.br/" target="_blank" class="rec-card-btn"><i class="bi bi-box-arrow-up-right"></i> Acessar</a>
+          </div>
+        </div>
+        <div class="rec-card">
+          <div class="rec-card-img-placeholder"><i class="bi bi-book"></i></div>
+          <div class="rec-card-body">
+            <div class="rec-card-title">Udemy</div>
+            <div class="rec-card-desc">Cursos pagos de alta qualidade com certificações reconhecidas.</div>
+            <a href="https://udemy.com" target="_blank" class="rec-card-btn"><i class="bi bi-box-arrow-up-right"></i> Acessar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="page-midias" class="page media-page">
+  <div class="container">
+
+    <div class="media-header" data-aos="fade-up" data-aos-duration="600">
+      <h2>Galeria de Mídias</h2>
+      <p>Clique em uma imagem para ampliar · Use o scroll para dar zoom</p>
+    </div>
+
+    <div class="media-grid" data-aos="fade-up" data-aos-duration="600">
+      <div class="media-item" onclick="openLightbox(this)">
+        <img src="https://i.imgur.com/x170gsh.png" alt="">
+        <div class="media-overlay"><i class="bi bi-arrows-fullscreen"></i></div>
+      </div>
+      <div class="media-item" onclick="openLightbox(this)">
+        <img src="https://i.imgur.com/1wycQin.png" alt="">
+        <div class="media-overlay"><i class="bi bi-arrows-fullscreen"></i></div>
+      </div>
+      <div class="media-item" onclick="openLightbox(this)">
+        <img src="https://i.imgur.com/gVIeAC0.png" alt="">
+        <div class="media-overlay"><i class="bi bi-arrows-fullscreen"></i></div>
+      </div>
+      <div class="media-item" onclick="openLightbox(this)">
+        <img src="https://i.imgur.com/DuHegm8.png" alt="">
+        <div class="media-overlay"><i class="bi bi-arrows-fullscreen"></i></div>
+      </div>
+      <div class="media-item" onclick="openLightbox(this)">
+        <img src="https://i.imgur.com/4MdMYMd.png" alt="">
+        <div class="media-overlay"><i class="bi bi-arrows-fullscreen"></i></div>
+      </div>
+      <div class="media-item" onclick="openLightbox(this)">
+        <img src="https://i.imgur.com/Gui2GjE.png" alt="">
+        <div class="media-overlay"><i class="bi bi-arrows-fullscreen"></i></div>
+      </div>
+      <div class="media-item" onclick="openLightbox(this)">
+        <img src="https://i.imgur.com/42LU1Sl.jpeg" alt="">
+        <div class="media-overlay"><i class="bi bi-arrows-fullscreen"></i></div>
+      </div>
+      <div class="media-item" onclick="openLightbox(this)">
+        <img src="https://i.imgur.com/sxndml0.png" alt="">
+        <div class="media-overlay"><i class="bi bi-arrows-fullscreen"></i></div>
+      </div>
+      <div class="media-item" onclick="openLightbox(this)">
+        <img src="https://i.imgur.com/BMwB5Jo.png" alt="">
+        <div class="media-overlay"><i class="bi bi-arrows-fullscreen"></i></div>
+      </div>
+      <div class="media-item" onclick="openLightbox(this)">
+        <img src="https://i.imgur.com/5a5jxRJ.png" alt="">
+        <div class="media-overlay"><i class="bi bi-arrows-fullscreen"></i></div>
+      </div>
+      <div class="media-item" onclick="openLightbox(this)">
+        <img src="https://i.imgur.com/gyuMaH2.png" alt="">
+        <div class="media-overlay"><i class="bi bi-arrows-fullscreen"></i></div>
+      </div>
+      <div class="media-item" onclick="openLightbox(this)">
+        <img src="https://i.imgur.com/KzHEMB9.png" alt="">
+        <div class="media-overlay"><i class="bi bi-arrows-fullscreen"></i></div>
+      </div>
+      <div class="media-item" onclick="openLightbox(this)">
+        <img src="https://i.imgur.com/Vzb1QiY.png" alt="">
+        <div class="media-overlay"><i class="bi bi-arrows-fullscreen"></i></div>
+      </div>
+      <div class="media-item" onclick="openLightbox(this)">
+        <img src="https://i.imgur.com/bxKidB9.png" alt="">
+        <div class="media-overlay"><i class="bi bi-arrows-fullscreen"></i></div>
+      </div>
+      <div class="media-item" onclick="openLightbox(this)">
+        <img src="https://i.imgur.com/6SHwXG7.png" alt="">
+        <div class="media-overlay"><i class="bi bi-arrows-fullscreen"></i></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="lightbox" id="lightbox" onclick="handleLightboxClick(event)">
+  <div class="lightbox-close" onclick="closeLightbox(event)"><i class="bi bi-x"></i></div>
+  <div class="lightbox-inner" id="lightbox-inner">
+    <img class="lightbox-img" id="lightbox-img" src="" alt="">
+  </div>
+</div>
+
+<script>
+  AOS.init({ once: true, offset: 40 });
+
+  function switchPage(id) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('page-' + id).classList.add('active');
+    event.currentTarget.classList.add('active');
+    window.scrollTo(0, 0);
+    AOS.refresh();
+  }
+
+  let zoomed = false;
+
+  function openLightbox(item) {
+    const src = item.querySelector('img').src;
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox').classList.add('open');
+    zoomed = false;
+    document.getElementById('lightbox-img').style.transform = 'scale(1)';
+    document.getElementById('lightbox-inner').classList.remove('zoomed');
+  }
+
+  function closeLightbox(e) {
+    e.stopPropagation();
+    document.getElementById('lightbox').classList.remove('open');
+  }
+
+  function handleLightboxClick(e) {
+    if (e.target === document.getElementById('lightbox')) {
+      document.getElementById('lightbox').classList.remove('open');
+      return;
+    }
+    if (e.target === document.getElementById('lightbox-img') || e.target === document.getElementById('lightbox-inner')) {
+      zoomed = !zoomed;
+      const img = document.getElementById('lightbox-img');
+      const inner = document.getElementById('lightbox-inner');
+      img.style.transform = zoomed ? 'scale(2)' : 'scale(1)';
+      inner.classList.toggle('zoomed', zoomed);
+    }
+  }
+
+  document.getElementById('lightbox-img').addEventListener('wheel', function(e) {
+    e.preventDefault();
+    const img = document.getElementById('lightbox-img');
+    const current = parseFloat(img.style.transform.replace('scale(', '').replace(')', '')) || 1;
+    const delta = e.deltaY > 0 ? -0.15 : 0.15;
+    const next = Math.min(Math.max(current + delta, 1), 4);
+    img.style.transform = 'scale(' + next + ')';
+    zoomed = next > 1;
+    document.getElementById('lightbox-inner').classList.toggle('zoomed', zoomed);
+  }, { passive: false });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      document.getElementById('lightbox').classList.remove('open');
+    }
+    const blocked = ['F12','F11','F10','F9','F8','F7','F6','F5'];
+    if (blocked.includes(e.key)) { e.preventDefault(); return false; }
+    if ((e.ctrlKey || e.metaKey) && ['u','U','s','S','a','A','c','C','p','P','i','I','j','J','k','K'].includes(e.key)) {
+      e.preventDefault(); return false;
+    }
+    if (e.ctrlKey && e.shiftKey && ['i','I','j','J','c','C','k','K'].includes(e.key)) {
+      e.preventDefault(); return false;
+    }
+  });
+
+  document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+  document.addEventListener('dragstart', function(e) { e.preventDefault(); });
+</script>
+</body>
+</html>
