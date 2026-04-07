@@ -2,13 +2,14 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DarkMode — Portfolio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Perfil do DarkMode</title>
+<link rel="icon" href="https://raw.githubusercontent.com/DarkModeBR/darkmodebr.github.io/refs/heads/main/Snow.png" type="image/x-icon">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+
 <style>
   *, *::before, *::after {
     margin: 0;
@@ -58,9 +59,7 @@
     animation: fadeInText 1.4s ease forwards 0.5s;
   }
 
-  .splash-text span {
-    color: #7c6aff;
-  }
+  .splash-text span { color: #7c6aff; }
 
   @keyframes fadeInText {
     0% { opacity: 0; transform: translateY(8px); }
@@ -77,21 +76,22 @@
   }
 
   #site::-webkit-scrollbar { display: none; }
-
   #site.visible { opacity: 1; }
 
   .bg-layer {
     position: fixed;
     inset: 0;
-    background: url('https://i.pinimg.com/originals/6b/4a/f9/6b4af9a7e6dd84cb06a93218b2578c6e.gif') center/cover no-repeat;
+    background: url('https://raw.githubusercontent.com/DarkModeBR/darkmodebr.github.io/refs/heads/main/Red.gif') center no-repeat;
+    background-size: cover;
+    background-position: center;
     z-index: 0;
   }
 
   .bg-blur {
     position: fixed;
     inset: 0;
-    backdrop-filter: blur(12px) brightness(0.35);
-    -webkit-backdrop-filter: blur(12px) brightness(0.35);
+    backdrop-filter: blur(8px) brightness(0.5);
+    -webkit-backdrop-filter: blur(8px) brightness(0.35);
     z-index: 1;
   }
 
@@ -103,19 +103,19 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 40px 16px;
+    padding: 30px 20px 60px;
     gap: 20px;
   }
 
   .card {
     background: rgba(10, 10, 15, 0.72);
     border: 1px solid rgba(255, 255, 255, 0.07);
-    border-radius: 20px;
+    border-radius: 28px;
     backdrop-filter: blur(24px) saturate(1.4);
     -webkit-backdrop-filter: blur(24px) saturate(1.4);
     width: 100%;
-    max-width: 420px;
-    padding: 36px 32px 32px;
+    max-width: 580px;
+    padding: 32px 28px 28px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -123,8 +123,8 @@
   }
 
   .avatar-wrap {
-    width: 96px;
-    height: 96px;
+    width: 110px;
+    height: 110px;
     border-radius: 50%;
     border: 2px solid rgba(124, 106, 255, 0.5);
     overflow: hidden;
@@ -142,16 +142,16 @@
   .nick {
     margin-top: 14px;
     color: #fff;
-    font-size: 1.15rem;
+    font-size: 1.2rem;
     font-weight: 600;
     letter-spacing: 0.04em;
     text-align: center;
   }
 
   .desc {
-    margin-top: 7px;
+    margin-top: 6px;
     color: rgba(200, 200, 220, 0.65);
-    font-size: 0.78rem;
+    font-size: 0.75rem;
     font-weight: 300;
     line-height: 1.6;
     text-align: center;
@@ -162,14 +162,14 @@
     width: 100%;
     height: 1px;
     background: rgba(255, 255, 255, 0.08);
-    margin: 24px 0;
+    margin: 22px 0;
   }
 
   .social-row {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 12px;
     flex-wrap: wrap;
   }
 
@@ -177,149 +177,369 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 42px;
-    height: 42px;
-    border-radius: 10px;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.08);
     color: rgba(210, 210, 230, 0.75);
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     text-decoration: none;
-    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.18s ease;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
   }
 
   .social-btn:hover {
     background: rgba(124, 106, 255, 0.18);
     border-color: rgba(124, 106, 255, 0.4);
     color: #fff;
-    transform: translateY(-2px);
   }
 
   .discord-card {
-    background: rgba(10, 10, 15, 0.72);
+    background: rgba(255, 255, 255, 0.04);
     border: 1px solid rgba(255, 255, 255, 0.07);
     border-radius: 20px;
-    backdrop-filter: blur(24px) saturate(1.4);
-    -webkit-backdrop-filter: blur(24px) saturate(1.4);
     width: 100%;
-    max-width: 420px;
     overflow: hidden;
-  }
-
-  .dc-banner {
-    width: 100%;
-    height: 110px;
-    object-fit: cover;
-    display: block;
-    pointer-events: none;
-    background: #1a1a2e;
-  }
-
-  .dc-body {
-    padding: 0 24px 26px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    text-align: center;
-    gap: 0;
+    justify-content: space-between;
+    min-height: 95px;
+    padding: 12px 18px 12px 14px;
+    gap: 12px;
   }
 
-  .dc-icon-wrap {
-    margin-top: -32px;
-    width: 64px;
-    height: 64px;
-    border-radius: 14px;
-    border: 3px solid rgba(10, 10, 15, 0.9);
-    overflow: hidden;
+  .discord-card + .discord-card { margin-top: 12px; }
+
+  .discord-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
     flex-shrink: 0;
   }
 
-  .dc-icon-wrap img {
-    width: 100%;
-    height: 100%;
+  .discord-icon-wrap img {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
     object-fit: cover;
     display: block;
     pointer-events: none;
+    border: 2px solid rgba(255,255,255,0.12);
   }
 
-  .dc-name {
-    margin-top: 12px;
-    color: #fff;
-    font-size: 1rem;
-    font-weight: 600;
-    letter-spacing: 0.03em;
-  }
-
-  .dc-desc {
-    margin-top: 6px;
-    color: rgba(190, 190, 210, 0.6);
-    font-size: 0.73rem;
-    font-weight: 300;
-    line-height: 1.6;
-    letter-spacing: 0.01em;
-  }
-
-  .dc-stats {
-    margin-top: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 18px;
-  }
-
-  .dc-stat {
+  .discord-info {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 2px;
+    gap: 4px;
+    min-width: 0;
   }
 
-  .dc-stat-val {
+  .discord-name {
     color: #fff;
-    font-size: 0.88rem;
+    font-size: 0.9rem;
     font-weight: 600;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
-  .dc-stat-label {
-    color: rgba(180, 180, 200, 0.5);
-    font-size: 0.65rem;
+  .discord-desc {
+    color: rgba(190, 190, 210, 0.55);
+    font-size: 0.68rem;
     font-weight: 300;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    line-height: 1.4;
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
-  .dc-stat-dot {
+  .discord-stats {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 2px;
+  }
+
+  .discord-stat {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .discord-stat-val {
+    color: rgba(200,200,220,0.8);
+    font-size: 0.72rem;
+    font-weight: 500;
+  }
+
+  .discord-stat-label {
+    color: rgba(180, 180, 200, 0.45);
+    font-size: 0.62rem;
+    font-weight: 300;
+  }
+
+  .discord-stat-dot {
     display: inline-block;
     width: 7px;
     height: 7px;
     border-radius: 50%;
     background: #3ba55d;
-    margin-right: 4px;
-    vertical-align: middle;
   }
 
-  .dc-join-btn {
-    margin-top: 20px;
+  .discord-join-btn {
     display: inline-flex;
     align-items: center;
-    gap: 7px;
-    padding: 10px 28px;
+    justify-content: center;
+    padding: 8px 18px;
     background: #5865f2;
     color: #fff;
-    font-size: 0.8rem;
+    font-size: 0.72rem;
     font-weight: 600;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.05em;
     text-transform: uppercase;
-    border-radius: 10px;
+    border-radius: 12px;
     text-decoration: none;
     border: none;
     cursor: pointer;
-    transition: background 0.2s ease, transform 0.18s ease;
+    white-space: nowrap;
+    transition: background 0.2s ease;
+    flex-shrink: 0;
   }
 
-  .dc-join-btn:hover {
-    background: #4752c4;
-    transform: translateY(-2px);
+  .discord-join-btn:hover { background: #4752c4; }
+
+  .category-nav {
+    width: 100%;
+    margin-top: 16px;
+    margin-bottom: 8px;
+    background: rgba(20, 20, 28, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 16px;
+    backdrop-filter: blur(24px) saturate(1.4);
+    -webkit-backdrop-filter: blur(24px) saturate(1.4);
+    padding: 6px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  .cat-btn {
+    flex: 1;
+    background: none;
+    border: 1px solid transparent;
+    cursor: pointer;
+    color: rgba(190, 190, 210, 0.55);
+    font-family: 'Fira Code', monospace;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    padding: 8px 6px;
+    border-radius: 12px;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    white-space: nowrap;
+    text-align: center;
+  }
+
+  .cat-btn:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(220, 220, 240, 0.85);
+  }
+
+  .cat-btn.active {
+    background: rgba(124, 106, 255, 0.18);
+    color: #a78bfa;
+    border-color: rgba(124, 106, 255, 0.3);
+  }
+
+  .content-panel {
+    width: 100%;
+    margin-top: 8px;
+    background: rgba(15, 15, 20, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 20px;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    padding: 22px 24px 24px;
+    display: none;
+  }
+
+  .content-panel.active { display: block; }
+
+  .panel-title {
+    color: rgba(255,255,255,0.9);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .panel-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(255,255,255,0.07);
+  }
+
+  .sobre-text {
+    color: rgba(200, 200, 220, 0.75);
+    font-size: 0.78rem;
+    font-weight: 300;
+    line-height: 1.8;
+    letter-spacing: 0.02em;
+  }
+
+  .sobre-text .highlight {
+    color: #a78bfa;
+    font-weight: 500;
+  }
+
+  .sobre-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 18px;
+  }
+
+  .sobre-tag {
+    background: rgba(124, 106, 255, 0.12);
+    border: 1px solid rgba(124, 106, 255, 0.25);
+    border-radius: 8px;
+    color: rgba(167, 139, 250, 0.9);
+    font-size: 0.65rem;
+    font-weight: 500;
+    padding: 5px 12px;
+    letter-spacing: 0.04em;
+  }
+
+  .exp-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .exp-item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+
+  .exp-dot-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 4px;
+    flex-shrink: 0;
+  }
+
+  .exp-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #7c6aff;
+    border: 2px solid rgba(124,106,255,0.3);
+  }
+
+  .exp-line {
+    width: 1px;
+    height: 100%;
+    min-height: 28px;
+    background: rgba(124, 106, 255, 0.18);
+    margin-top: 4px;
+    margin-bottom: 4px;
+  }
+
+  .exp-item:last-child .exp-line { display: none; }
+
+  .exp-body {
+    flex: 1;
+    padding-bottom: 20px;
+  }
+
+  .exp-item:last-child .exp-body { padding-bottom: 0; }
+
+  .exp-company {
+    color: #fff;
+    font-size: 0.82rem;
+    font-weight: 600;
+  }
+
+  .exp-role {
+    color: #a78bfa;
+    font-size: 0.7rem;
+    font-weight: 400;
+    margin-top: 2px;
+  }
+
+  .exp-period {
+    color: rgba(180, 180, 200, 0.45);
+    font-size: 0.62rem;
+    font-weight: 300;
+    margin-top: 2px;
+  }
+
+  .exp-desc {
+    color: rgba(190, 190, 210, 0.6);
+    font-size: 0.7rem;
+    font-weight: 300;
+    line-height: 1.6;
+    margin-top: 6px;
+  }
+
+  .midias-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+
+  .midia-item {
+    aspect-ratio: 1;
+    border-radius: 14px;
+    overflow: hidden;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+  }
+
+  .midia-item:hover { border-color: rgba(124,106,255,0.4); }
+
+  .midia-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .midia-item:hover img { transform: scale(1.03); }
+
+  .midia-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    color: rgba(180,180,200,0.3);
+    font-size: 1.5rem;
+    width: 100%;
+    height: 100%;
+  }
+
+  .midia-placeholder span {
+    font-size: 0.55rem;
+    letter-spacing: 0.05em;
+    color: rgba(180,180,200,0.25);
   }
 
   #music-player {
@@ -328,90 +548,253 @@
     left: 16px;
     z-index: 100;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 9px;
-    background: rgba(10, 10, 15, 0.78);
-    border: 1px solid rgba(255, 255, 255, 0.07);
-    border-radius: 12px;
+    justify-content: center;
+    gap: 6px;
+    background: rgba(10, 10, 15, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 20px;
     backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    padding: 8px 13px 8px 10px;
+    padding: 12px 14px;
+    width: 150px;
     opacity: 0;
     transition: opacity 0.6s ease;
   }
 
   #music-player.visible { opacity: 1; }
 
-  .mp-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: rgba(210, 210, 230, 0.8);
-    font-size: 0.95rem;
+  .mp-disc-wrap {
+    width: 80px;
+    height: 80px;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: color 0.2s ease;
-    padding: 0;
   }
 
-  .mp-btn:hover { color: #fff; }
-
-  .mp-info {
+  .mp-disc {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: conic-gradient(from 0deg, #7c6aff, #a78bfa, #4f46e5, #7c6aff);
     display: flex;
-    flex-direction: column;
-    gap: 1px;
-    max-width: 130px;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 0 2px rgba(124,106,255,0.3);
+  }
+
+  .mp-disc.spinning { animation: discSpin 4s linear infinite; }
+
+  .mp-cover-art {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    display: none;
+    z-index: 1;
+  }
+
+  .mp-cover-art.visible { display: block; }
+
+  .mp-disc::after {
+    content: '';
+    width: 16px;
+    height: 16px;
+    background: rgba(10,10,15,0.92);
+    border-radius: 50%;
+    position: absolute;
+    z-index: 3;
+    border: 1.5px solid rgba(255,255,255,0.18);
+  }
+
+  @keyframes discSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
   }
 
   .mp-title {
     color: rgba(230, 230, 250, 0.9);
-    font-size: 0.65rem;
+    font-size: 0.58rem;
     font-weight: 500;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    letter-spacing: 0.02em;
+    max-width: 120px;
+    text-align: center;
   }
 
-  .mp-bars {
+  .mp-controls {
     display: flex;
-    align-items: flex-end;
-    gap: 2px;
-    height: 10px;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
   }
 
-  .mp-bar {
-    width: 2px;
-    background: #7c6aff;
-    border-radius: 1px;
-    height: 3px;
-    transition: height 0.1s ease;
+  .mp-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: rgba(210, 210, 230, 0.75);
+    font-size: 1rem;
+    transition: color 0.2s ease;
   }
 
-  .mp-bars.playing .mp-bar:nth-child(1) { animation: bar1 0.8s ease-in-out infinite; }
-  .mp-bars.playing .mp-bar:nth-child(2) { animation: bar2 0.9s ease-in-out infinite 0.15s; }
-  .mp-bars.playing .mp-bar:nth-child(3) { animation: bar3 0.7s ease-in-out infinite 0.05s; }
-  .mp-bars.playing .mp-bar:nth-child(4) { animation: bar1 0.85s ease-in-out infinite 0.2s; }
+  .mp-btn:hover { color: #fff; }
+  .mp-btn-play { font-size: 1.25rem; }
 
-  @keyframes bar1 { 0%,100%{height:3px} 50%{height:10px} }
-  @keyframes bar2 { 0%,100%{height:6px} 50%{height:3px} }
-  @keyframes bar3 { 0%,100%{height:9px} 50%{height:4px} }
-
-  .skeleton {
-    background: rgba(255,255,255,0.06);
-    border-radius: 6px;
-    animation: skPulse 1.5s ease-in-out infinite;
+  @media (max-width: 600px) {
+    .page-content { padding: 20px 16px 50px; }
+    .card { padding: 24px 18px 20px; border-radius: 24px; }
+    .avatar-wrap { width: 90px; height: 90px; }
+    .nick { font-size: 1rem; }
+    .desc { font-size: 0.68rem; }
+    .social-btn { width: 38px; height: 38px; font-size: 1rem; }
+    .discord-card { flex-wrap: wrap; justify-content: center; text-align: center; gap: 12px; padding: 14px; }
+    .discord-left { width: 100%; justify-content: center; flex-wrap: wrap; }
+    .discord-info { align-items: center; }
+    .discord-stats { justify-content: center; }
+    .discord-join-btn { width: auto; margin-top: 4px; }
+    .category-nav { margin-top: 12px; gap: 4px; }
+    .cat-btn { font-size: 0.6rem; padding: 6px 4px; }
+    .content-panel { padding: 18px 16px; }
+    .midias-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+    #music-player { top: 12px; left: 12px; width: 130px; padding: 10px; }
+    .mp-disc-wrap { width: 70px; height: 70px; }
+    .mp-disc { width: 70px; height: 70px; }
   }
 
-  @keyframes skPulse { 0%,100%{opacity:0.6} 50%{opacity:1} }
+  @media (max-width: 420px) {
+    .discord-desc { max-width: 160px; }
+    .cat-btn { font-size: 0.55rem; padding: 5px 2px; }
+  }
 
-  .sk-text { height: 12px; width: 80%; margin: 4px auto; }
-  .sk-text-sm { height: 10px; width: 60%; margin: 3px auto; }
+  #lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 9000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    cursor: zoom-in;
+  }
 
-  @media (max-width: 480px) {
-    .card, .discord-card { max-width: 100%; border-radius: 16px; }
-    .card { padding: 28px 20px 24px; }
+  #lightbox.open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  #lightbox.zoomed {
+    cursor: none;
+  }
+
+  .lb-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.88);
+    backdrop-filter: blur(20px) brightness(0.4);
+    -webkit-backdrop-filter: blur(20px) brightness(0.4);
+  }
+
+  .lb-img-wrap {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    transition: transform 0.15s ease;
+    transform-origin: center center;
+  }
+
+  #lightbox.open:not(.zoomed) .lb-img-wrap {
+    pointer-events: auto;
+  }
+
+  #lb-img {
+    max-width: 88vw;
+    max-height: 82vh;
+    min-width: 280px;
+    min-height: 280px;
+    width: auto;
+    height: auto;
+    border-radius: 18px;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.8);
+    display: block;
+    object-fit: contain;
+    pointer-events: none;
+    -webkit-user-drag: none;
+  }
+
+  .lb-close {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9001;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: #fff;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+    backdrop-filter: blur(10px);
+  }
+
+  .lb-close:hover {
+    background: rgba(255,255,255,0.2);
+    transform: scale(1.1);
+  }
+
+  .lb-zoom-cursor {
+    position: fixed;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(124,106,255,0.25);
+    border: 1.5px solid rgba(124,106,255,0.6);
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 9002;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.85);
+    font-size: 0.9rem;
+    transition: width 0.15s, height 0.15s, background 0.15s;
+  }
+
+  #lightbox.zoomed .lb-zoom-cursor { display: flex; }
+
+  .lb-hint {
+    position: fixed;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9001;
+    color: rgba(255,255,255,0.35);
+    font-size: 0.62rem;
+    letter-spacing: 0.06em;
+    font-family: 'Fira Code', monospace;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+    white-space: nowrap;
+  }
+
+  .midia-item.has-image {
+    cursor: pointer;
   }
 </style>
 </head>
@@ -426,78 +809,179 @@
   <div class="bg-blur"></div>
 
   <div id="music-player">
-    <button class="mp-btn" id="mp-toggle"><i class="bi bi-pause-fill" id="mp-icon"></i></button>
-    <div class="mp-info">
-      <span class="mp-title" id="mp-title">Carregando...</span>
-      <div class="mp-bars playing" id="mp-bars">
-        <div class="mp-bar"></div>
-        <div class="mp-bar"></div>
-        <div class="mp-bar"></div>
-        <div class="mp-bar"></div>
+    <div class="mp-disc-wrap">
+      <div class="mp-disc" id="mp-disc">
+        <img class="mp-cover-art" id="mp-cover-art" src="" alt="Capa">
       </div>
+    </div>
+    <span class="mp-title" id="mp-title">Carregando...</span>
+    <div class="mp-controls">
+      <button class="mp-btn" id="mp-prev" title="Anterior"><i class="bi bi-skip-start-fill"></i></button>
+      <button class="mp-btn mp-btn-play" id="mp-toggle" title="Play/Pause"><i class="bi bi-pause-fill" id="mp-icon"></i></button>
+      <button class="mp-btn" id="mp-next" title="Próximo"><i class="bi bi-skip-end-fill"></i></button>
     </div>
   </div>
 
-  <audio id="audio" loop>
-    <source src="https://ia800905.us.archive.org/19/items/FREE_background_music_dhalius/backsound.mp3" type="audio/mpeg">
-  </audio>
+  <audio id="audio" preload="auto"></audio>
 
   <div class="page-content">
-
-    <div class="card" data-aos="fade-up" data-aos-duration="700">
+    <div class="card">
       <div class="avatar-wrap">
         <img id="user-avatar" src="" alt="Avatar">
       </div>
       <p class="nick" id="user-nick"><span class="skeleton sk-text" style="display:inline-block;width:100px;height:16px;"></span></p>
-      <p class="desc">desenvolvedor • entusiasta de segurança • criador de conteúdo</p>
+      <p class="desc">E como sempre eu to aqui devolta KKK</p>
 
       <div class="divider"></div>
 
       <div class="social-row">
-        <a class="social-btn" href="https://discord.com/users/1080175803024814142" target="_blank" rel="noopener" title="Discord"><i class="bi bi-discord"></i></a>
-        <a class="social-btn" href="https://github.com/" target="_blank" rel="noopener" title="GitHub"><i class="bi bi-github"></i></a>
-        <a class="social-btn" href="https://store.steampowered.com/" target="_blank" rel="noopener" title="Steam"><i class="bi bi-steam"></i></a>
-        <a class="social-btn" href="https://twitter.com/" target="_blank" rel="noopener" title="Twitter / X"><i class="bi bi-twitter-x"></i></a>
-        <a class="social-btn" href="https://youtube.com/" target="_blank" rel="noopener" title="YouTube"><i class="bi bi-youtube"></i></a>
-        <a class="social-btn" href="mailto:dark@email.com" title="Email"><i class="bi bi-envelope"></i></a>
+        <a class="social-btn" href="https://github.com/DarkModeBR" target="_blank" rel="noopener" title="GitHub"><i class="bi bi-github"></i></a>
+        <a class="social-btn" href="https://darkmodde.xyz/" target="_blank" rel="noopener" title="CMSP Hacks"><i class="bi bi-mortarboard"></i></a>
+        <a class="social-btn" href="https://steamcommunity.com/id/Dark-Mode" target="_blank" rel="noopener" title="Steam"><i class="bi bi-steam"></i></a>
+        <a class="social-btn" href="https://www.instagram.com/neymarjr/?hl=pt-br" target="_blank" rel="noopener" title="Instagram"><i class="bi bi-instagram"></i></a>
       </div>
 
       <div class="divider"></div>
 
-      <div class="discord-card" id="dc-card" style="width:100%;max-width:100%;border:none;border-radius:14px;">
-        <div style="width:100%;height:110px;background:rgba(255,255,255,0.04);border-radius:14px 14px 0 0;" id="dc-banner-wrap">
-          <img id="dc-banner" class="dc-banner" style="border-radius:14px 14px 0 0;" src="" alt="" onerror="this.style.display='none'">
-        </div>
-        <div class="dc-body">
-          <div class="dc-icon-wrap">
+      <div class="discord-card" id="dc-card">
+        <div class="discord-left">
+          <div class="discord-icon-wrap">
             <img id="dc-icon" src="" alt="Server Icon">
           </div>
-          <p class="dc-name" id="dc-name"><span class="skeleton sk-text" style="display:inline-block;width:120px;height:14px;"></span></p>
-          <p class="dc-desc" id="dc-desc"><span class="skeleton sk-text-sm" style="display:inline-block;width:90%;height:10px;"></span></p>
-          <div class="dc-stats">
-            <div class="dc-stat">
-              <span class="dc-stat-val" id="dc-members">—</span>
-              <span class="dc-stat-label">membros</span>
-            </div>
-            <div class="dc-stat">
-              <span class="dc-stat-val" id="dc-online"><span class="dc-stat-dot"></span><span id="dc-online-val">—</span></span>
-              <span class="dc-stat-label">online</span>
+          <div class="discord-info">
+            <p class="discord-name" id="dc-name">Platform Destroyer</p>
+            <p class="discord-desc" id="dc-desc"></p>
+            <div class="discord-stats">
+              <div class="discord-stat">
+                <span class="discord-stat-val" id="dc-members">—</span>
+                <span class="discord-stat-label">membros</span>
+              </div>
+              <div class="discord-stat">
+                <span class="discord-stat-dot"></span>
+                <span class="discord-stat-val" id="dc-online-val">—</span>
+                <span class="discord-stat-label">online</span>
+              </div>
             </div>
           </div>
-          <a class="dc-join-btn" id="dc-join" href="https://discord.gg/platformdestroyer" target="_blank" rel="noopener">
-            <i class="bi bi-discord"></i> Entrar no Servidor
-          </a>
+        </div>
+        <a class="discord-join-btn" href="https://discord.gg/platformdestroyer" target="_blank" rel="noopener">Entrar</a>
+      </div>
+
+      <div class="discord-card" id="dc-card-2">
+        <div class="discord-left">
+          <div class="discord-icon-wrap">
+            <img id="dc-icon-2" src="" alt="Server Icon 2">
+          </div>
+          <div class="discord-info">
+            <p class="discord-name" id="dc-name-2">Servidor 2</p>
+            <p class="discord-desc" id="dc-desc-2">Outro servidor incrível</p>
+            <div class="discord-stats">
+              <div class="discord-stat">
+                <span class="discord-stat-val" id="dc-members-2">—</span>
+                <span class="discord-stat-label">membros</span>
+              </div>
+              <div class="discord-stat">
+                <span class="discord-stat-dot"></span>
+                <span class="discord-stat-val" id="dc-online-val-2">—</span>
+                <span class="discord-stat-label">online</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a class="discord-join-btn" href="https://discord.gg/HgYRUTE9aF" target="_blank" rel="noopener">Entrar</a>
+      </div>
+
+      <nav class="category-nav">
+        <button class="cat-btn active" data-tab="sobre">Sobre mim</button>
+        <button class="cat-btn" data-tab="exp">Experiências</button>
+        <button class="cat-btn" data-tab="midias">Mídias</button>
+      </nav>
+
+      <div class="content-panel active" id="panel-sobre">
+        <p class="panel-title">Sobre mim</p>
+        <p class="sobre-text">
+          Fala! Me chamo <span class="highlight">Vinicius</span>, mais conhecido como <span class="highlight">DarkMode</span>, um dev apaixonado por tecnologia, segurança digital e comunidades online.<br><br>
+          Sou desenvolvedor de vários projetos malucos, mas os principais são APIs, bots e websites. Sou vibe coder (por preguiça mesmo), mas meus projetos não são qualquer coisa igual aos de outros usuários! Amo a área de segurança e privacidade virtual.<br><br>
+          Atualmente estou focado na área de segurança e privacidade digital, mas também estou aprendendo bastante sobre hardware hacking e gostando muito dessa área. Um dos meus primeiros projetos com hardware foi um bloqueador de sinal Wi-Fi e Bluetooth usando ESP32.
+        </p>
+      </div>
+
+      <div class="content-panel" id="panel-exp">
+        <p class="panel-title">Experiências</p>
+        <div class="exp-list">
+          <div class="exp-item">
+            <div class="exp-dot-col">
+              <div class="exp-dot"></div>
+              <div class="exp-line"></div>
+            </div>
+            <div class="exp-body">
+              <p class="exp-company">Suporte a Sistemas de Saúde</p>
+              <p class="exp-role">Empresa Atual · Tempo Integral</p>
+              <p class="exp-period">2026 — Presente</p>
+              <p class="exp-desc">Atuação em equipe responsável pelo suporte e manutenção de sistema na área da saúde, auxiliando usuários, identificando problemas e garantindo o funcionamento adequado da plataforma.</p>
+            </div>
+          </div>
+          <div class="exp-item">
+            <div class="exp-dot-col">
+              <div class="exp-dot"></div>
+              <div class="exp-line"></div>
+            </div>
+            <div class="exp-body">
+              <p class="exp-company">Platform Destroyer</p>
+              <p class="exp-role">Desenvolvedor</p>
+              <p class="exp-period">2022 — presente</p>
+              <p class="exp-desc">Desenvolvimento e manutenção de bots, websites, APIs e aplicações internas, além da gestão da comunidade e criação de ferramentas para automação de processos e suporte às operações da plataforma.</p>
+            </div>
+          </div>
+          <div class="exp-item">
+            <div class="exp-dot-col">
+              <div class="exp-dot"></div>
+            </div>
+            <div class="exp-body">
+              <p class="exp-company">Graduação em Análise e Desenvolvimento de Sistemas</p>
+              <p class="exp-role">Universidade · Graduação</p>
+              <p class="exp-period">2025 — 2026</p>
+              <p class="exp-desc">Formação em Análise e Desenvolvimento de Sistemas, com foco em programação, banco de dados e desenvolvimento de aplicações. Experiência em projetos práticos de desenvolvimento de software.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-panel" id="panel-midias">
+        <p class="panel-title">Mídias</p>
+        <div class="midias-grid">
+          <div class="midia-item has-image"><img src="https://i.imgur.com/1wycQin.png" alt=""></div>
+          <div class="midia-item has-image"><img src="https://i.imgur.com/4MdMYMd.png" alt=""></div>
+          <div class="midia-item has-image"><img src="https://i.imgur.com/5a5jxRJ.png" alt=""></div>
+          <div class="midia-item has-image"><img src="https://i.imgur.com/6SHwXG7.png" alt=""></div>
+          <div class="midia-item has-image"><img src="https://i.imgur.com/42LU1Sl.jpeg" alt=""></div>
+          <div class="midia-item has-image"><img src="https://i.imgur.com/BMwB5Jo.png" alt=""></div>
+          <div class="midia-item has-image"><img src="https://i.imgur.com/DuHegm8.png" alt=""></div>
+          <div class="midia-item has-image"><img src="https://i.imgur.com/Gui2GjE.png" alt=""></div>
+          <div class="midia-item has-image"><img src="https://i.imgur.com/KzHEMB9.png" alt=""></div>
+          <div class="midia-item has-image"><img src="https://i.imgur.com/Vzb1QiY.png" alt=""></div>
+          <div class="midia-item has-image"><img src="https://i.imgur.com/bxKidB9.png" alt=""></div>
+          <div class="midia-item has-image"><img src="https://i.imgur.com/gVIeAC0.png" alt=""></div>
+          <div class="midia-item has-image"><img src="https://i.imgur.com/gyuMaH2.png" alt=""></div>
+          <div class="midia-item has-image"><img src="https://i.imgur.com/sxndml0.png" alt=""></div>
+          <div class="midia-item has-image"><img src="https://i.imgur.com/x170gsh.png" alt=""></div>
         </div>
       </div>
     </div>
-
   </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-<script>
-  AOS.init({ once: true, offset: 20 });
+<div id="lightbox">
+  <div class="lb-backdrop" id="lb-backdrop"></div>
+  <div class="lb-img-wrap" id="lb-img-wrap">
+    <img id="lb-img" src="" alt="">
+  </div>
+  <button class="lb-close" id="lb-close" title="Fechar"><i class="bi bi-x-lg"></i></button>
+  <div class="lb-hint" id="lb-hint">clique na imagem para dar zoom · scroll para ajustar · clique novamente para sair do zoom</div>
+  <div class="lb-zoom-cursor" id="lb-zoom-cursor"><i class="bi bi-zoom-in"></i></div>
+</div>
 
+<script>
   document.addEventListener('contextmenu', e => e.preventDefault());
   document.addEventListener('dragstart', e => e.preventDefault());
   document.addEventListener('keydown', e => {
@@ -509,90 +993,261 @@
     if (blocked) e.preventDefault();
   });
 
-  const splash = document.getElementById('splash');
-  const site = document.getElementById('site');
-  const audio = document.getElementById('audio');
-  const mpToggle = document.getElementById('mp-toggle');
-  const mpIcon = document.getElementById('mp-icon');
-  const mpBars = document.getElementById('mp-bars');
-  const mpPlayer = document.getElementById('music-player');
+  const catBtns = document.querySelectorAll('.cat-btn');
+  const panels  = document.querySelectorAll('.content-panel');
+  
+  catBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      catBtns.forEach(b => b.classList.remove('active'));
+      panels.forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      const target = document.getElementById('panel-' + btn.dataset.tab);
+      if (target) target.classList.add('active');
+    });
+  });
+
+  const splash     = document.getElementById('splash');
+  const site       = document.getElementById('site');
+  const audio      = document.getElementById('audio');
+  const mpToggle   = document.getElementById('mp-toggle');
+  const mpIcon     = document.getElementById('mp-icon');
+  const mpDisc     = document.getElementById('mp-disc');
+  const mpPlayer   = document.getElementById('music-player');
+  const mpTitleEl  = document.getElementById('mp-title');
+  const mpCoverArt = document.getElementById('mp-cover-art');
+
+  const playlist = [
+    { src: 'https://github.com/DarkModeBR/darkmodebr.github.io/raw/refs/heads/main/Foi%20assim.mp3', title: 'Foi assim', cover: 'https://i.imgur.com/A5xzC7B.png' },
+    { src: 'https://github.com/DarkModeBR/darkmodebr.github.io/raw/refs/heads/main/A%20Dan%C3%A7a.mp3', title: 'A Dança', cover: 'https://i.imgur.com/Lw3wqLb.png' },
+    { src: 'https://github.com/DarkModeBR/darkmodebr.github.io/raw/refs/heads/main/Bolha%20Envolvente.mp3', title: 'Bolha Envolvente', cover: 'https://i.imgur.com/6EsJxuG.png' },
+    { src: 'https://github.com/DarkModeBR/darkmodebr.github.io/raw/refs/heads/main/Sweater%20Weather.mp3', title: 'Sweater Weather', cover: 'https://i.imgur.com/owGzfnO.png' },
+  ];
+
+  let currentTrack = 0;
+  let userPausedManually = false;
+
+  function loadTrack(index) {
+    const track = playlist[index];
+    audio.src = track.src;
+    audio.load();
+    mpTitleEl.textContent = track.title || 'Música';
+    if (track.cover) {
+      mpCoverArt.src = track.cover;
+      mpCoverArt.classList.add('visible');
+    } else {
+      mpCoverArt.classList.remove('visible');
+      mpCoverArt.src = '';
+    }
+  }
+
+  function playTrack() { audio.play().catch(()=>{}); mpIcon.className = 'bi bi-pause-fill'; mpDisc.classList.add('spinning'); }
+  function pauseTrack() { audio.pause(); mpIcon.className = 'bi bi-play-fill'; mpDisc.classList.remove('spinning'); }
+  function formatCount(n) { if (n>=1e6) return (n/1e6).toFixed(1).replace('.0','')+'M'; if (n>=1e3) return (n/1e3).toFixed(1).replace('.0','')+'K'; return n.toLocaleString('pt-BR'); }
+
+  (function preloadData() {
+    audio.volume = 0.08;
+    loadTrack(currentTrack);
+
+    fetch('https://darkscrapper.squareweb.app/discord/user/1080175803024814142')
+      .then(res => res.json())
+      .then(user => {
+        const avatarUrl = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.webp?size=256`;
+        document.getElementById('user-avatar').src = avatarUrl;
+        document.getElementById('user-nick').innerHTML = '';
+        document.getElementById('user-nick').textContent = user.global_name || user.username;
+      }).catch(() => { document.getElementById('user-nick').innerHTML = '<\\DarkMode>'; });
+
+    fetch('https://discord.com/api/v9/invites/platformdestroyer?with_counts=true')
+      .then(res => res.json())
+      .then(data => {
+        const g = data.guild || {};
+        const guildId = data.guild_id || g.id;
+        if (g.icon && guildId) document.getElementById('dc-icon').src = `https://cdn.discordapp.com/icons/${guildId}/${g.icon}.webp?size=128`;
+        document.getElementById('dc-name').textContent = g.name || 'Platform Destroyer';
+        document.getElementById('dc-desc').textContent = g.description || '';
+        document.getElementById('dc-members').textContent = formatCount(data.approximate_member_count || 0);
+        document.getElementById('dc-online-val').textContent = formatCount(data.approximate_presence_count || 0);
+      }).catch(() => {});
+
+    fetch('https://discord.com/api/v9/invites/HgYRUTE9aF?with_counts=true')
+      .then(res => res.json())
+      .then(data => {
+        const g = data.guild || {};
+        const guildId = data.guild_id || g.id;
+        if (g.icon && guildId) document.getElementById('dc-icon-2').src = `https://cdn.discordapp.com/icons/${guildId}/${g.icon}.webp?size=128`;
+        document.getElementById('dc-name-2').textContent = g.name || 'DarkUtilities';
+        document.getElementById('dc-desc-2').textContent = g.description || '';
+        document.getElementById('dc-members-2').textContent = formatCount(data.approximate_member_count || 0);
+        document.getElementById('dc-online-val-2').textContent = formatCount(data.approximate_presence_count || 0);
+      }).catch(() => { document.getElementById('dc-name-2').textContent = 'DarkUtilities'; });
+  })();
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) { if (!audio.paused) pauseTrack(); }
+    else { if (!userPausedManually && audio.paused) playTrack(); }
+  });
+  window.addEventListener('blur', () => { if (!audio.paused) pauseTrack(); });
+  window.addEventListener('focus', () => { if (!userPausedManually && audio.paused) playTrack(); });
 
   splash.addEventListener('click', () => {
     splash.classList.add('hidden');
     site.classList.add('visible');
-    audio.volume = 0.35;
-    audio.play().catch(() => {});
-    setTimeout(() => mpPlayer.classList.add('visible'), 900);
-    loadData();
+    audio.volume = 0.08;
+    userPausedManually = false;
+    playTrack();
+    setTimeout(() => mpPlayer.classList.add('visible'), 800);
   });
 
   mpToggle.addEventListener('click', () => {
-    if (audio.paused) {
-      audio.play();
-      mpIcon.className = 'bi bi-pause-fill';
-      mpBars.classList.add('playing');
-    } else {
-      audio.pause();
-      mpIcon.className = 'bi bi-play-fill';
-      mpBars.classList.remove('playing');
+    if (audio.paused) { playTrack(); userPausedManually = false; }
+    else { pauseTrack(); userPausedManually = true; }
+  });
+  
+  document.getElementById('mp-prev').addEventListener('click', () => {
+    currentTrack = (currentTrack - 1 + playlist.length) % playlist.length;
+    loadTrack(currentTrack);
+    if (!userPausedManually) {
+      const playHandler = () => { audio.removeEventListener('canplay', playHandler); playTrack(); };
+      audio.addEventListener('canplay', playHandler);
+    }
+  });
+  
+  document.getElementById('mp-next').addEventListener('click', () => {
+    currentTrack = (currentTrack + 1) % playlist.length;
+    loadTrack(currentTrack);
+    if (!userPausedManually) {
+      const playHandler = () => { audio.removeEventListener('canplay', playHandler); playTrack(); };
+      audio.addEventListener('canplay', playHandler);
+    }
+  });
+  
+  audio.addEventListener('ended', () => {
+    currentTrack = (currentTrack + 1) % playlist.length;
+    loadTrack(currentTrack);
+    const playHandler = () => { audio.removeEventListener('canplay', playHandler); playTrack(); };
+    audio.addEventListener('canplay', playHandler);
+  });
+
+  const lightbox    = document.getElementById('lightbox');
+  const lbImg       = document.getElementById('lb-img');
+  const lbImgWrap   = document.getElementById('lb-img-wrap');
+  const lbBackdrop  = document.getElementById('lb-backdrop');
+  const lbClose     = document.getElementById('lb-close');
+  const lbHint      = document.getElementById('lb-hint');
+  const lbCursor    = document.getElementById('lb-zoom-cursor');
+
+  let lbZoomed   = false;
+  let lbScale    = 2.5;
+  let lbMouseX   = 0;
+  let lbMouseY   = 0;
+  let lbOriginX  = 50;
+  let lbOriginY  = 50;
+
+  const MIN_SCALE = 1.2;
+  const MAX_SCALE = 6;
+
+  function openLightbox(src) {
+    lbImg.src = src;
+    lbZoomed = false;
+    lbScale = 2.5;
+    lightbox.classList.remove('zoomed');
+    lbImgWrap.style.transform = '';
+    lbImgWrap.style.transformOrigin = '';
+    lightbox.classList.add('open');
+    lbHint.style.opacity = '1';
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('open', 'zoomed');
+    lbZoomed = false;
+    lbImgWrap.style.transform = '';
+    lbImgWrap.style.transformOrigin = '';
+    lbImg.src = '';
+    document.body.style.overflow = '';
+  }
+
+  function enterZoom() {
+    lbZoomed = true;
+    lightbox.classList.add('zoomed');
+    lbHint.style.opacity = '0';
+    applyZoom();
+  }
+
+  function exitZoom() {
+    lbZoomed = false;
+    lightbox.classList.remove('zoomed');
+    lbImgWrap.style.transform = '';
+    lbImgWrap.style.transformOrigin = '';
+    lbHint.style.opacity = '1';
+    setTimeout(() => { lbHint.style.opacity = '0'; }, 2200);
+  }
+
+  function applyZoom() {
+    if (!lbZoomed) return;
+    lbImgWrap.style.transformOrigin = `${lbOriginX}% ${lbOriginY}%`;
+    lbImgWrap.style.transform = `scale(${lbScale})`;
+  }
+
+  lightbox.addEventListener('mousemove', e => {
+    lbMouseX = e.clientX;
+    lbMouseY = e.clientY;
+
+    lbCursor.style.left = lbMouseX + 'px';
+    lbCursor.style.top  = lbMouseY + 'px';
+
+    if (lbZoomed) {
+      const rect = lbImg.getBoundingClientRect();
+      lbOriginX = ((e.clientX - rect.left) / rect.width)  * 100;
+      lbOriginY = ((e.clientY - rect.top)  / rect.height) * 100;
+      lbOriginX = Math.max(0, Math.min(100, lbOriginX));
+      lbOriginY = Math.max(0, Math.min(100, lbOriginY));
+      applyZoom();
     }
   });
 
-  document.getElementById('mp-title').textContent = 'Lo-fi Chill';
+  lightbox.addEventListener('wheel', e => {
+    if (!lbZoomed) return;
+    e.preventDefault();
+    const delta = e.deltaY > 0 ? -0.25 : 0.25;
+    lbScale = Math.max(MIN_SCALE, Math.min(MAX_SCALE, lbScale + delta));
+    lbCursor.querySelector('i').className = delta > 0 ? 'bi bi-zoom-in' : 'bi bi-zoom-out';
+    applyZoom();
+  }, { passive: false });
 
-  function formatCount(n) {
-    if (n >= 1000000) return (n / 1000000).toFixed(1).replace('.0', '') + 'M';
-    if (n >= 1000) return (n / 1000).toFixed(1).replace('.0', '') + 'K';
-    return n.toLocaleString('pt-BR');
-  }
+  lightbox.addEventListener('click', e => {
+    if (e.target === lbClose || lbClose.contains(e.target)) return;
+    if (e.target === lbBackdrop) { closeLightbox(); return; }
 
-  async function loadData() {
-    try {
-      const [userRes, guildRes] = await Promise.all([
-        fetch('https://darkscrapper.squareweb.app/discord/user/1080175803024814142'),
-        fetch('https://discord.com/api/v9/invites/platformdestroyer?with_counts=true')
-      ]);
-      const user = await userRes.json();
-      const guild = await guildRes.json();
-
-      const avatarEl = document.getElementById('user-avatar');
-      avatarEl.src = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.webp?size=256`;
-
-      const nickEl = document.getElementById('user-nick');
-      nickEl.innerHTML = '';
-      nickEl.textContent = user.global_name || user.username;
-
-      const guildData = guild.guild || {};
-      const profile = guild.profile || {};
-
-      const iconHash = guildData.icon || profile.icon_hash;
-      const guildId = guildData.id || guild.guild_id;
-      const bannerHash = guildData.banner;
-
-      if (iconHash && guildId) {
-        document.getElementById('dc-icon').src = `https://cdn.discordapp.com/icons/${guildId}/${iconHash}.webp?size=128`;
-      }
-
-      if (bannerHash && guildId) {
-        const bannerEl = document.getElementById('dc-banner');
-        bannerEl.src = `https://cdn.discordapp.com/banners/${guildId}/${bannerHash}.webp?size=600`;
-        bannerEl.style.display = 'block';
-      }
-
-      const nameEl = document.getElementById('dc-name');
-      nameEl.innerHTML = '';
-      nameEl.textContent = guildData.name || profile.name || 'Platform Destroyer';
-
-      const descEl = document.getElementById('dc-desc');
-      descEl.innerHTML = '';
-      descEl.textContent = guildData.description || profile.description || '';
-
-      document.getElementById('dc-members').textContent = formatCount(guild.approximate_member_count || profile.member_count || 0);
-      document.getElementById('dc-online-val').textContent = formatCount(guild.approximate_presence_count || profile.online_count || 0);
-    } catch (err) {
-      console.warn('Failed to load data', err);
+    if (!lbZoomed) {
+      enterZoom();
+    } else {
+      exitZoom();
     }
+  });
+
+  lbClose.addEventListener('click', e => {
+    e.stopPropagation();
+    closeLightbox();
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && lightbox.classList.contains('open')) closeLightbox();
+  });
+
+  function bindMidiaItems() {
+    document.querySelectorAll('.midia-item img').forEach(img => {
+      const item = img.closest('.midia-item');
+      if (item) item.classList.add('has-image');
+      item.addEventListener('click', () => openLightbox(img.src));
+    });
   }
+
+  const midiaObserver = new MutationObserver(bindMidiaItems);
+  const midiaGrid = document.querySelector('.midias-grid');
+  if (midiaGrid) midiaObserver.observe(midiaGrid, { childList: true, subtree: true });
+  bindMidiaItems();
+
 </script>
 </body>
 </html>
