@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FEMBOY RENT — Experiências Exclusivas</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #000000;
+    --deep: #080808;
+    --card: #0d0d0d;
+    --border: #1a1a1a;
+    --border-light: #252525;
+    --gold: #c9a96e;
+    --gold-dim: #8a6f42;
+    --white: #f0ebe3;
+    --muted: #5a5a5a;
+    --soft: #9a9a9a;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    cursor: default;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+  }
+
+  html::-webkit-scrollbar, body::-webkit-scrollbar { display: none; }
+
+  img { -webkit-user-drag: none; user-drag: none; pointer-events: none; }
+
+  ::selection { background: transparent; }
+
+  .grain {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+    background-size: 180px 180px;
+  }
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 28px 60px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.35rem;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--soft);
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 400;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--white); }
+
+  .nav-cta {
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid var(--gold-dim);
+    padding: 10px 24px;
+    cursor: pointer;
+    background: transparent;
+    transition: background 0.3s, color 0.3s;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 400;
+  }
+
+  .nav-cta:hover { background: var(--gold); color: var(--black); }
+
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 120px 40px 80px;
+    position: relative;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.65rem;
+    letter-spacing: 0.45em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 32px;
+    font-weight: 400;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.5rem, 9vw, 8rem);
+    font-weight: 300;
+    line-height: 1.0;
+    letter-spacing: -0.01em;
+    color: var(--white);
+    margin-bottom: 16px;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-sub {
+    font-size: 0.82rem;
+    color: var(--muted);
+    letter-spacing: 0.12em;
+    margin-top: 28px;
+    max-width: 440px;
+    line-height: 1.8;
+  }
+
+  .hero-divider {
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, var(--gold-dim), transparent);
+    margin: 48px auto 0;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 60px;
+    margin-top: 64px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .stat {
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem;
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.62rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 8px;
+  }
+
+  section {
+    position: relative;
+    z-index: 1;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 72px;
+  }
+
+  .section-tag {
+    font-size: 0.62rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 20px;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1.15;
+  }
+
+  .section-title em { font-style: italic; color: var(--gold); }
+
+  .catalog {
+    padding: 120px 60px;
+    background: var(--deep);
+  }
+
+  .catalog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .profile-card {
+    background: var(--card);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .profile-card:hover .card-overlay { opacity: 1; }
+  .profile-card:hover .card-image { transform: scale(1.04); }
+
+  .card-image-wrap {
+    aspect-ratio: 3/4;
+    overflow: hidden;
+    position: relative;
+    background: #111;
+  }
+
+  .card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(160deg, #111 0%, #0a0a0a 100%);
+    font-size: 4rem;
+    color: var(--border-light);
+    transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .profile-card:hover .card-placeholder { transform: scale(1.04); }
+
+  .card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.1) 60%);
+    opacity: 0;
+    transition: opacity 0.5s;
+    display: flex;
+    align-items: flex-end;
+    padding: 28px;
+  }
+
+  .card-rent-btn {
+    width: 100%;
+    background: var(--gold);
+    color: var(--black);
+    border: none;
+    padding: 12px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+
+  .card-rent-btn:hover { opacity: 0.85; }
+
+  .badge-available {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(0,0,0,0.7);
+    border: 1px solid var(--gold-dim);
+    color: var(--gold);
+    font-size: 0.58rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    backdrop-filter: blur(8px);
+  }
+
+  .badge-busy {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(0,0,0,0.7);
+    border: 1px solid #333;
+    color: var(--muted);
+    font-size: 0.58rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    backdrop-filter: blur(8px);
+  }
+
+  .card-info {
+    padding: 20px 24px 24px;
+  }
+
+  .card-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: var(--white);
+    letter-spacing: 0.02em;
+    margin-bottom: 6px;
+  }
+
+  .card-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .card-tag {
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .card-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    color: var(--gold);
+    margin-left: auto;
+  }
+
+  .card-stars {
+    color: var(--gold-dim);
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+  }
+
+  .services {
+    padding: 120px 60px;
+    background: var(--black);
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .service-item {
+    background: var(--black);
+    padding: 48px 36px;
+    text-align: center;
+  }
+
+  .service-icon {
+    font-size: 1.6rem;
+    color: var(--gold);
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .service-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: var(--white);
+    margin-bottom: 12px;
+  }
+
+  .service-desc {
+    font-size: 0.75rem;
+    color: var(--muted);
+    line-height: 1.85;
+    letter-spacing: 0.04em;
+  }
+
+  .pricing {
+    padding: 120px 60px;
+    background: var(--deep);
+  }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .pricing-card {
+    background: var(--card);
+    padding: 52px 40px;
+    text-align: center;
+    position: relative;
+  }
+
+  .pricing-card.featured {
+    background: #0f0e0c;
+    border-top: 2px solid var(--gold);
+  }
+
+  .pricing-featured-tag {
+    position: absolute;
+    top: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--gold);
+    color: var(--black);
+    font-size: 0.58rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    font-weight: 500;
+  }
+
+  .pricing-plan {
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 24px;
+  }
+
+  .pricing-amount {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.5rem;
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1;
+  }
+
+  .pricing-amount sup {
+    font-size: 1.2rem;
+    vertical-align: top;
+    margin-top: 10px;
+    color: var(--gold);
+  }
+
+  .pricing-period {
+    font-size: 0.68rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    margin-top: 8px;
+    margin-bottom: 36px;
+  }
+
+  .pricing-features {
+    list-style: none;
+    margin-bottom: 40px;
+    text-align: left;
+  }
+
+  .pricing-features li {
+    font-size: 0.75rem;
+    color: var(--soft);
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    letter-spacing: 0.04em;
+  }
+
+  .pricing-features li i { color: var(--gold); font-size: 0.7rem; }
+
+  .btn-primary {
+    width: 100%;
+    background: var(--gold);
+    color: var(--black);
+    border: none;
+    padding: 14px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+
+  .btn-primary:hover { opacity: 0.85; }
+
+  .btn-outline {
+    width: 100%;
+    background: transparent;
+    color: var(--gold);
+    border: 1px solid var(--gold-dim);
+    padding: 14px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s;
+  }
+
+  .btn-outline:hover { background: var(--gold); color: var(--black); }
+
+  .testimonials {
+    padding: 120px 60px;
+    background: var(--black);
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .testimonial-card {
+    background: var(--black);
+    padding: 40px;
+  }
+
+  .testimonial-stars {
+    color: var(--gold);
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+  }
+
+  .testimonial-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    font-style: italic;
+    color: var(--soft);
+    line-height: 1.75;
+    margin-bottom: 24px;
+    font-weight: 300;
+  }
+
+  .testimonial-author {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .cta-section {
+    padding: 140px 60px;
+    background: var(--deep);
+    text-align: center;
+    border-top: 1px solid var(--border);
+  }
+
+  .cta-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 24px;
+  }
+
+  .cta-title em { font-style: italic; color: var(--gold); }
+
+  .cta-sub {
+    font-size: 0.78rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    max-width: 380px;
+    margin: 0 auto 48px;
+    line-height: 1.9;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .cta-btn-main {
+    background: var(--gold);
+    color: var(--black);
+    border: none;
+    padding: 16px 48px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+
+  .cta-btn-main:hover { opacity: 0.85; }
+
+  .cta-btn-sec {
+    background: transparent;
+    color: var(--soft);
+    border: 1px solid var(--border-light);
+    padding: 16px 48px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: border-color 0.3s, color 0.3s;
+  }
+
+  .cta-btn-sec:hover { border-color: var(--soft); color: var(--white); }
+
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.92);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    backdrop-filter: blur(12px);
+  }
+
+  .modal-overlay.active { display: flex; }
+
+  .modal {
+    background: var(--card);
+    border: 1px solid var(--border-light);
+    max-width: 480px;
+    width: 100%;
+    padding: 52px 48px;
+    position: relative;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+
+  .modal-close:hover { color: var(--white); }
+
+  .modal-tag {
+    font-size: 0.6rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .modal-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+
+  .modal-sub {
+    font-size: 0.72rem;
+    color: var(--muted);
+    margin-bottom: 36px;
+    line-height: 1.7;
+    letter-spacing: 0.04em;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .form-label {
+    display: block;
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+
+  .form-input {
+    width: 100%;
+    background: var(--black);
+    border: 1px solid var(--border-light);
+    color: var(--white);
+    padding: 12px 16px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.82rem;
+    outline: none;
+    transition: border-color 0.3s;
+    -webkit-appearance: none;
+  }
+
+  .form-input:focus { border-color: var(--gold-dim); }
+
+  select.form-input option { background: var(--black); }
+
+  .form-submit {
+    width: 100%;
+    background: var(--gold);
+    color: var(--black);
+    border: none;
+    padding: 14px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: opacity 0.2s;
+  }
+
+  .form-submit:hover { opacity: 0.85; }
+
+  @media (max-width: 768px) {
+    nav { padding: 20px 24px; }
+    .nav-links { display: none; }
+    .catalog, .services, .pricing, .testimonials, .cta-section { padding: 80px 24px; }
+    .hero { padding: 100px 24px 60px; }
+    .hero-stats { gap: 36px; }
+    .modal { padding: 40px 28px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="grain"></div>
+
+<nav>
+  <div class="nav-logo">Femboy Rent</div>
+  <ul class="nav-links">
+    <li><a href="#catalogo">Catálogo</a></li>
+    <li><a href="#servicos">Serviços</a></li>
+    <li><a href="#planos">Planos</a></li>
+    <li><a href="#depoimentos">Depoimentos</a></li>
+  </ul>
+  <button class="nav-cta" onclick="openModal()">Reservar agora</button>
+</nav>
+
+<section class="hero">
+  <p class="hero-eyebrow" data-aos="fade-down" data-aos-duration="800">Experiências exclusivas · Premium</p>
+  <h1 class="hero-title" data-aos="fade-up" data-aos-duration="900" data-aos-delay="100">
+    Companhia<br><em>refinada</em><br>sob medida
+  </h1>
+  <p class="hero-sub" data-aos="fade-up" data-aos-duration="800" data-aos-delay="250">
+    Selecione seu acompanhante ideal para qualquer ocasião. Discrição, elegância e profissionalismo acima de tudo.
+  </p>
+  <div class="hero-divider" data-aos="fade-in" data-aos-delay="400"></div>
+  <div class="hero-stats" data-aos="fade-up" data-aos-delay="500">
+    <div class="stat">
+      <div class="stat-num">48+</div>
+      <div class="stat-label">Perfis ativos</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">99%</div>
+      <div class="stat-label">Satisfação</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">5★</div>
+      <div class="stat-label">Avaliação média</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">24h</div>
+      <div class="stat-label">Disponibilidade</div>
+    </div>
+  </div>
+</section>
+
+<section class="catalog" id="catalogo">
+  <div class="section-header" data-aos="fade-up">
+    <span class="section-tag">Catálogo</span>
+    <h2 class="section-title">Nossos <em>perfis</em></h2>
+  </div>
+
+  <div class="catalog-grid">
+
+    <div class="profile-card" data-aos="fade-up" data-aos-delay="0">
+      <div class="card-image-wrap">
+        <div class="card-placeholder"><i class="bi bi-person-fill"></i></div>
+        <span class="badge-available">Disponível</span>
+        <div class="card-overlay">
+          <button class="card-rent-btn" onclick="openModal()">Reservar</button>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">Aoi</div>
+        <div class="card-meta">
+          <span class="card-tag">Kawaii · 22a</span>
+          <span class="card-stars">★★★★★</span>
+          <span class="card-price">R$ 320/h</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="profile-card" data-aos="fade-up" data-aos-delay="60">
+      <div class="card-image-wrap">
+        <div class="card-placeholder"><i class="bi bi-person-fill"></i></div>
+        <span class="badge-available">Disponível</span>
+        <div class="card-overlay">
+          <button class="card-rent-btn" onclick="openModal()">Reservar</button>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">Rin</div>
+        <div class="card-meta">
+          <span class="card-tag">Elegante · 24a</span>
+          <span class="card-stars">★★★★★</span>
+          <span class="card-price">R$ 380/h</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="profile-card" data-aos="fade-up" data-aos-delay="120">
+      <div class="card-image-wrap">
+        <div class="card-placeholder"><i class="bi bi-person-fill"></i></div>
+        <span class="badge-busy">Ocupado</span>
+        <div class="card-overlay">
+          <button class="card-rent-btn" onclick="openModal()">Lista de espera</button>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">Kei</div>
+        <div class="card-meta">
+          <span class="card-tag">Artístico · 21a</span>
+          <span class="card-stars">★★★★★</span>
+          <span class="card-price">R$ 290/h</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="profile-card" data-aos="fade-up" data-aos-delay="0">
+      <div class="card-image-wrap">
+        <div class="card-placeholder"><i class="bi bi-person-fill"></i></div>
+        <span class="badge-available">Disponível</span>
+        <div class="card-overlay">
+          <button class="card-rent-btn" onclick="openModal()">Reservar</button>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">Haru</div>
+        <div class="card-meta">
+          <span class="card-tag">Lúdico · 23a</span>
+          <span class="card-stars">★★★★☆</span>
+          <span class="card-price">R$ 260/h</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="profile-card" data-aos="fade-up" data-aos-delay="60">
+      <div class="card-image-wrap">
+        <div class="card-placeholder"><i class="bi bi-person-fill"></i></div>
+        <span class="badge-available">Disponível</span>
+        <div class="card-overlay">
+          <button class="card-rent-btn" onclick="openModal()">Reservar</button>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">Noel</div>
+        <div class="card-meta">
+          <span class="card-tag">Sofisticado · 25a</span>
+          <span class="card-stars">★★★★★</span>
+          <span class="card-price">R$ 450/h</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="profile-card" data-aos="fade-up" data-aos-delay="120">
+      <div class="card-image-wrap">
+        <div class="card-placeholder"><i class="bi bi-person-fill"></i></div>
+        <span class="badge-busy">Ocupado</span>
+        <div class="card-overlay">
+          <button class="card-rent-btn" onclick="openModal()">Lista de espera</button>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">Sora</div>
+        <div class="card-meta">
+          <span class="card-tag">Exclusivo · 22a</span>
+          <span class="card-stars">★★★★★</span>
+          <span class="card-price">R$ 500/h</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="services" id="servicos">
+  <div class="section-header" data-aos="fade-up">
+    <span class="section-tag">O que oferecemos</span>
+    <h2 class="section-title">Serviços <em>disponíveis</em></h2>
+  </div>
+
+  <div class="services-grid">
+    <div class="service-item" data-aos="fade-up" data-aos-delay="0">
+      <i class="bi bi-cup-hot service-icon"></i>
+      <div class="service-name">Acompanhamento Social</div>
+      <p class="service-desc">Companhia refinada para eventos, jantares, reuniões e encontros casuais com total discrição.</p>
+    </div>
+    <div class="service-item" data-aos="fade-up" data-aos-delay="80">
+      <i class="bi bi-controller service-icon"></i>
+      <div class="service-name">Sessão de Jogos</div>
+      <p class="service-desc">Parceiro ideal para maratonas de games, cosplay interativo e entretenimento em geral.</p>
+    </div>
+    <div class="service-item" data-aos="fade-up" data-aos-delay="160">
+      <i class="bi bi-camera service-icon"></i>
+      <div class="service-name">Ensaio Fotográfico</div>
+      <p class="service-desc">Modelos disponíveis para produções artísticas, conteúdo digital e projetos criativos.</p>
+    </div>
+    <div class="service-item" data-aos="fade-up" data-aos-delay="240">
+      <i class="bi bi-house-heart service-icon"></i>
+      <div class="service-name">Companhia em Casa</div>
+      <p class="service-desc">Visitas residenciais para quem busca companhia confortável e descontraída no próprio lar.</p>
+    </div>
+  </div>
+</section>
+
+<section class="pricing" id="planos">
+  <div class="section-header" data-aos="fade-up">
+    <span class="section-tag">Investimento</span>
+    <h2 class="section-title">Planos <em>e valores</em></h2>
+  </div>
+
+  <div class="pricing-grid">
+    <div class="pricing-card" data-aos="fade-up" data-aos-delay="0">
+      <p class="pricing-plan">Básico</p>
+      <div class="pricing-amount"><sup>R$</sup>199</div>
+      <p class="pricing-period">por hora</p>
+      <ul class="pricing-features">
+        <li><i class="bi bi-check"></i> 1h de companhia</li>
+        <li><i class="bi bi-check"></i> Perfil padrão</li>
+        <li><i class="bi bi-check"></i> Agendamento em 24h</li>
+        <li><i class="bi bi-check"></i> Suporte por chat</li>
+      </ul>
+      <button class="btn-outline" onclick="openModal()">Contratar</button>
+    </div>
+
+    <div class="pricing-card featured" data-aos="fade-up" data-aos-delay="100">
+      <span class="pricing-featured-tag">Mais popular</span>
+      <p class="pricing-plan">Premium</p>
+      <div class="pricing-amount"><sup>R$</sup>380</div>
+      <p class="pricing-period">por hora</p>
+      <ul class="pricing-features">
+        <li><i class="bi bi-check"></i> 3h de companhia</li>
+        <li><i class="bi bi-check"></i> Perfil exclusivo</li>
+        <li><i class="bi bi-check"></i> Agendamento prioritário</li>
+        <li><i class="bi bi-check"></i> Suporte 24h</li>
+        <li><i class="bi bi-check"></i> Experiência personalizada</li>
+      </ul>
+      <button class="btn-primary" onclick="openModal()">Contratar</button>
+    </div>
+
+    <div class="pricing-card" data-aos="fade-up" data-aos-delay="200">
+      <p class="pricing-plan">VIP</p>
+      <div class="pricing-amount"><sup>R$</sup>890</div>
+      <p class="pricing-period">por sessão</p>
+      <ul class="pricing-features">
+        <li><i class="bi bi-check"></i> Dia completo</li>
+        <li><i class="bi bi-check"></i> Perfil top rated</li>
+        <li><i class="bi bi-check"></i> Agendamento imediato</li>
+        <li><i class="bi bi-check"></i> Concierge dedicado</li>
+        <li><i class="bi bi-check"></i> Tudo personalizado</li>
+      </ul>
+      <button class="btn-outline" onclick="openModal()">Contratar</button>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials" id="depoimentos">
+  <div class="section-header" data-aos="fade-up">
+    <span class="section-tag">Depoimentos</span>
+    <h2 class="section-title">O que dizem <em>nossos clientes</em></h2>
+  </div>
+
+  <div class="testimonials-grid">
+    <div class="testimonial-card" data-aos="fade-up" data-aos-delay="0">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"Experiência absolutamente incrível. Profissionalismo e discrição além do esperado. Com certeza voltarei."</p>
+      <span class="testimonial-author">— Cliente VIP · São Paulo</span>
+    </div>
+    <div class="testimonial-card" data-aos="fade-up" data-aos-delay="80">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"O Rin foi perfeito para o evento que precisava. Educado, charmoso e extremamente atencioso."</p>
+      <span class="testimonial-author">— Cliente Premium · Rio de Janeiro</span>
+    </div>
+    <div class="testimonial-card" data-aos="fade-up" data-aos-delay="160">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"Plataforma muito fácil de usar, atendimento rápido e o resultado superou todas as expectativas."</p>
+      <span class="testimonial-author">— Cliente Básico · Curitiba</span>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <h2 class="cta-title" data-aos="fade-up">Pronto para uma<br><em>experiência única?</em></h2>
+  <p class="cta-sub" data-aos="fade-up" data-aos-delay="100">Faça sua reserva agora e garanta a companhia ideal para qualquer momento.</p>
+  <div class="cta-buttons" data-aos="fade-up" data-aos-delay="200">
+    <button class="cta-btn-main" onclick="openModal()">Reservar agora</button>
+    <button class="cta-btn-sec" onclick="openModal()">Ver catálogo completo</button>
+  </div>
+</section>
+
+<div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()"><i class="bi bi-x-lg"></i></button>
+    <span class="modal-tag">Reserva</span>
+    <h3 class="modal-title">Agende sua sessão</h3>
+    <p class="modal-sub">Preencha os dados abaixo e nossa equipe entrará em contato em até 30 minutos.</p>
+    <form onsubmit="handleSubmit(event)">
+      <div class="form-group">
+        <label class="form-label">Seu nome</label>
+        <input class="form-input" type="text" placeholder="Nome completo" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label">WhatsApp</label>
+        <input class="form-input" type="tel" placeholder="+55 (11) 99999-9999" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Perfil desejado</label>
+        <select class="form-input">
+          <option value="">Selecione um perfil</option>
+          <option>Aoi — R$ 320/h</option>
+          <option>Rin — R$ 380/h</option>
+          <option>Kei — R$ 290/h (lista de espera)</option>
+          <option>Haru — R$ 260/h</option>
+          <option>Noel — R$ 450/h</option>
+          <option>Sora — R$ 500/h (lista de espera)</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Tipo de serviço</label>
+        <select class="form-input">
+          <option>Acompanhamento Social</option>
+          <option>Sessão de Jogos</option>
+          <option>Ensaio Fotográfico</option>
+          <option>Companhia em Casa</option>
+        </select>
+      </div>
+      <button class="form-submit" type="submit">Confirmar reserva</button>
+    </form>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init({ once: true, easing: 'ease-out-cubic', offset: 60 });
+
+  function openModal() {
+    document.getElementById('modalOverlay').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    document.getElementById('modalOverlay').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function closeModalOutside(e) {
+    if (e.target === document.getElementById('modalOverlay')) closeModal();
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    closeModal();
+    alert('Reserva recebida! Nossa equipe entrará em contato em breve.');
+  }
+
+  document.addEventListener('contextmenu', e => e.preventDefault());
+  document.addEventListener('dragstart', e => e.preventDefault());
+
+  document.addEventListener('keydown', e => {
+    const blocked = [
+      e.key === 'F12',
+      e.ctrlKey && ['u','s','a','c','p','i'].includes(e.key.toLowerCase()),
+      e.ctrlKey && e.shiftKey && ['i','j','c','k'].includes(e.key.toLowerCase()),
+      e.ctrlKey && e.altKey && e.key.toLowerCase() === 'i',
+      e.metaKey && e.altKey && e.key.toLowerCase() === 'i',
+    ];
+    if (blocked.some(Boolean)) e.preventDefault();
+  });
+
+  (function() {
+    const t = setInterval(() => {
+      const d = new Date();
+      debugger;
+    }, 1000);
+  })();
+</script>
+</body>
+</html>
