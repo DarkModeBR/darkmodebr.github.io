@@ -1086,7 +1086,7 @@
         document.getElementById('dc-online-val').textContent = formatCount(data.approximate_presence_count || 0);
       }).catch(() => {});
 
-    fetch('https://discord.com/api/v9/invites/HgYRUTE9aF?with_counts=true')
+    fetch('https://discord.com/api/v9/invites/V5jHM6EEtD?with_counts=true')
       .then(res => res.json())
       .then(data => {
         const g = data.guild || {};
