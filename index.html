@@ -694,14 +694,8 @@
     cursor: zoom-in;
   }
 
-  #lightbox.open {
-    opacity: 1;
-    visibility: visible;
-  }
-
-  #lightbox.zoomed {
-    cursor: none;
-  }
+  #lightbox.open { opacity: 1; visibility: visible; }
+  #lightbox.zoomed { cursor: none; }
 
   .lb-backdrop {
     position: absolute;
@@ -722,9 +716,7 @@
     transform-origin: center center;
   }
 
-  #lightbox.open:not(.zoomed) .lb-img-wrap {
-    pointer-events: auto;
-  }
+  #lightbox.open:not(.zoomed) .lb-img-wrap { pointer-events: auto; }
 
   #lb-img {
     max-width: 88vw;
@@ -761,10 +753,7 @@
     backdrop-filter: blur(10px);
   }
 
-  .lb-close:hover {
-    background: rgba(255,255,255,0.2);
-    transform: scale(1.1);
-  }
+  .lb-close:hover { background: rgba(255,255,255,0.2); transform: scale(1.1); }
 
   .lb-zoom-cursor {
     position: fixed;
@@ -801,79 +790,82 @@
     white-space: nowrap;
   }
 
-  .midia-item.has-image {
-    cursor: pointer;
-  }
+  .midia-item.has-image { cursor: pointer; }
 
-  /* ===== LINKS TAB ===== */
+  /* =============================================
+     LINKS TAB — VISUAL UPGRADE
+     ============================================= */
+
   .links-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
   }
 
+  /* ── Category ── */
   .links-category {
-    border: 1px solid rgba(255,255,255,0.07);
-    border-radius: 16px;
+    border-radius: 18px;
     overflow: hidden;
-    background: rgba(255,255,255,0.02);
+    background: rgba(124, 106, 255, 0.06);
+    border: 1px solid rgba(124, 106, 255, 0.2);
+    transition: border-color 0.2s ease;
+  }
+
+  .links-category.open {
+    border-color: rgba(124, 106, 255, 0.35);
   }
 
   .links-category-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 12px 16px;
+    padding: 14px 16px;
     cursor: pointer;
     user-select: none;
-    transition: background 0.2s ease;
     gap: 10px;
+    transition: background 0.2s ease;
+    border-radius: 18px;
+  }
+
+  .links-category.open .links-category-header {
+    border-radius: 18px 18px 0 0;
+    background: rgba(124, 106, 255, 0.1);
   }
 
   .links-category-header:hover {
-    background: rgba(124,106,255,0.08);
+    background: rgba(124, 106, 255, 0.12);
   }
 
   .links-category-header-left {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
   }
 
   .links-category-icon {
-    width: 20px;
-    height: 20px;
-    border-radius: 6px;
-    background: rgba(124,106,255,0.18);
-    border: 1px solid rgba(124,106,255,0.25);
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    background: rgba(124, 106, 255, 0.25);
+    border: 1px solid rgba(124, 106, 255, 0.4);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.7rem;
-    color: #a78bfa;
+    font-size: 0.8rem;
+    color: #c4b5fd;
     flex-shrink: 0;
   }
 
   .links-category-title {
-    color: rgba(220,220,240,0.9);
-    font-size: 0.75rem;
+    color: #e2e0ff;
+    font-size: 0.82rem;
     font-weight: 600;
     letter-spacing: 0.03em;
   }
 
-  .links-category-count {
-    color: rgba(167,139,250,0.6);
-    font-size: 0.6rem;
-    font-weight: 400;
-    background: rgba(124,106,255,0.1);
-    border: 1px solid rgba(124,106,255,0.15);
-    border-radius: 20px;
-    padding: 2px 8px;
-  }
-
   .links-category-chevron {
-    color: rgba(180,180,200,0.4);
-    font-size: 0.75rem;
+    color: rgba(196, 181, 253, 0.5);
+    font-size: 0.8rem;
     transition: transform 0.25s ease, color 0.2s ease;
     flex-shrink: 0;
   }
@@ -885,29 +877,35 @@
 
   .links-category-body {
     display: none;
-    padding: 0 10px 10px;
+    padding: 8px 10px 10px;
     flex-direction: column;
     gap: 6px;
+    border-top: 1px solid rgba(124, 106, 255, 0.15);
   }
 
   .links-category.open .links-category-body {
     display: flex;
   }
 
-  /* Subfolder */
+  /* ── Subfolder ── */
   .links-folder {
-    border: 1px solid rgba(255,255,255,0.05);
-    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 13px;
     overflow: hidden;
-    background: rgba(255,255,255,0.02);
-    margin-top: 4px;
+    background: rgba(255, 255, 255, 0.03);
+    transition: border-color 0.2s ease;
+  }
+
+  .links-folder.open {
+    border-color: rgba(124, 106, 255, 0.22);
+    background: rgba(124, 106, 255, 0.04);
   }
 
   .links-folder-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 9px 12px;
+    padding: 10px 13px;
     cursor: pointer;
     user-select: none;
     transition: background 0.2s ease;
@@ -915,66 +913,67 @@
   }
 
   .links-folder-header:hover {
-    background: rgba(255,255,255,0.04);
+    background: rgba(255, 255, 255, 0.05);
   }
 
   .links-folder-header-left {
     display: flex;
     align-items: center;
-    gap: 7px;
+    gap: 8px;
   }
 
   .links-folder-icon {
-    color: rgba(124,106,255,0.6);
-    font-size: 0.75rem;
+    color: rgba(167, 139, 250, 0.7);
+    font-size: 0.85rem;
+  }
+
+  .links-folder.open .links-folder-icon {
+    color: #a78bfa;
   }
 
   .links-folder-title {
-    color: rgba(200,200,220,0.75);
-    font-size: 0.7rem;
+    color: rgba(220, 215, 255, 0.85);
+    font-size: 0.75rem;
     font-weight: 500;
     letter-spacing: 0.02em;
   }
 
-  .links-folder-count {
-    color: rgba(167,139,250,0.45);
-    font-size: 0.58rem;
-  }
-
   .links-folder-chevron {
-    color: rgba(180,180,200,0.3);
-    font-size: 0.65rem;
-    transition: transform 0.2s ease;
+    color: rgba(180, 180, 200, 0.35);
+    font-size: 0.7rem;
+    transition: transform 0.2s ease, color 0.2s ease;
     flex-shrink: 0;
   }
 
   .links-folder.open .links-folder-chevron {
     transform: rotate(180deg);
+    color: rgba(167, 139, 250, 0.6);
   }
 
   .links-folder-body {
     display: none;
-    padding: 0 8px 8px;
+    padding: 4px 8px 8px;
     flex-direction: column;
     gap: 5px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
   }
 
   .links-folder.open .links-folder-body {
     display: flex;
   }
 
-  /* Link Card */
+  /* ── Link Card ── */
   .link-card {
     display: flex;
     align-items: center;
-    gap: 11px;
-    padding: 10px 12px;
-    border-radius: 11px;
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(255,255,255,0.05);
+    gap: 12px;
+    padding: 11px 13px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.07);
     text-decoration: none;
     cursor: pointer;
-    transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+    transition: background 0.2s ease, border-color 0.25s ease, transform 0.15s ease, box-shadow 0.2s ease;
     position: relative;
     overflow: hidden;
   }
@@ -983,27 +982,30 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(90deg, rgba(124,106,255,0.06) 0%, transparent 60%);
+    background: linear-gradient(100deg, rgba(124, 106, 255, 0.1) 0%, transparent 55%);
     opacity: 0;
-    transition: opacity 0.2s ease;
+    transition: opacity 0.25s ease;
+    border-radius: 12px;
   }
 
   .link-card:hover {
-    background: rgba(124,106,255,0.09);
-    border-color: rgba(124,106,255,0.25);
-    transform: translateX(2px);
+    background: rgba(124, 106, 255, 0.12);
+    border-color: rgba(124, 106, 255, 0.35);
+    transform: translateX(3px);
+    box-shadow: 0 2px 16px rgba(124, 106, 255, 0.12);
   }
 
   .link-card:hover::before {
     opacity: 1;
   }
 
+  /* ── Logo wrap ── */
   .link-logo-wrap {
-    width: 32px;
-    height: 32px;
-    border-radius: 8px;
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.08);
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     overflow: hidden;
     flex-shrink: 0;
     display: flex;
@@ -1016,29 +1018,33 @@
     width: 100%;
     height: 100%;
     object-fit: contain;
-    border-radius: 8px;
     display: block;
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.35s ease;
+    padding: 3px;
   }
 
-  .link-logo.loaded { opacity: 1; }
+  .link-logo.loaded {
+    opacity: 1;
+  }
 
   .link-logo-skeleton {
     position: absolute;
     inset: 0;
-    background: linear-gradient(90deg,
-      rgba(255,255,255,0.05) 0%,
-      rgba(255,255,255,0.1) 50%,
-      rgba(255,255,255,0.05) 100%);
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.04) 0%,
+      rgba(255, 255, 255, 0.09) 50%,
+      rgba(255, 255, 255, 0.04) 100%
+    );
     background-size: 200% 100%;
-    animation: shimmer 1.4s infinite;
-    border-radius: 8px;
+    animation: shimmer 1.5s infinite;
+    border-radius: 10px;
   }
 
   .link-logo-fallback {
-    color: rgba(167,139,250,0.7);
-    font-size: 0.95rem;
+    color: rgba(167, 139, 250, 0.6);
+    font-size: 1rem;
     display: none;
     align-items: center;
     justify-content: center;
@@ -1053,102 +1059,89 @@
   .link-logo-wrap.error .link-logo-fallback { display: flex; }
 
   @keyframes shimmer {
-    0% { background-position: 200% 0; }
+    0%   { background-position: 200% 0; }
     100% { background-position: -200% 0; }
   }
 
+  /* ── Link info ── */
   .link-info {
     flex: 1;
     min-width: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
   }
 
   .link-title {
-    color: rgba(220,220,240,0.9);
-    font-size: 0.75rem;
+    color: #e8e6ff;
+    font-size: 0.8rem;
     font-weight: 500;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .link-url {
-    color: rgba(167,139,250,0.55);
-    font-size: 0.6rem;
-    font-weight: 300;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     letter-spacing: 0.01em;
   }
 
+  /* ── Arrow ── */
   .link-arrow {
-    color: rgba(167,139,250,0.35);
-    font-size: 0.7rem;
+    color: rgba(167, 139, 250, 0.3);
+    font-size: 0.75rem;
     flex-shrink: 0;
     transition: color 0.2s ease, transform 0.2s ease;
   }
 
   .link-card:hover .link-arrow {
     color: #a78bfa;
-    transform: translateX(2px);
+    transform: translate(2px, -2px);
   }
 
-  /* Flat links (directly in category, no subfolder) */
+  /* ── Direct list (flat links in category) ── */
   .links-direct-list {
     display: flex;
     flex-direction: column;
     gap: 5px;
-    margin-top: 4px;
   }
 
-  /* Loading state */
+  /* ── Loading ── */
   .links-loading {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 10px;
-    padding: 32px 0;
-    color: rgba(180,180,200,0.4);
+    padding: 36px 0;
+    color: rgba(180, 180, 200, 0.45);
     font-size: 0.68rem;
     letter-spacing: 0.05em;
   }
 
   .links-loading-spinner {
-    width: 20px;
-    height: 20px;
-    border: 2px solid rgba(124,106,255,0.15);
-    border-top-color: rgba(124,106,255,0.7);
+    width: 22px;
+    height: 22px;
+    border: 2px solid rgba(124, 106, 255, 0.15);
+    border-top-color: rgba(124, 106, 255, 0.75);
     border-radius: 50%;
     animation: spin 0.8s linear infinite;
   }
 
-  @keyframes spin {
-    to { transform: rotate(360deg); }
-  }
+  @keyframes spin { to { transform: rotate(360deg); } }
 
   .links-error {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 8px;
-    padding: 28px 0;
-    color: rgba(255,100,100,0.6);
+    padding: 32px 0;
+    color: rgba(255, 100, 100, 0.6);
     font-size: 0.68rem;
     text-align: center;
   }
 
-  .links-error i { font-size: 1.4rem; opacity: 0.5; }
+  .links-error i { font-size: 1.5rem; opacity: 0.5; }
 
   @media (max-width: 600px) {
-    .links-category-header { padding: 10px 12px; }
-    .link-card { padding: 9px 10px; gap: 9px; }
-    .link-logo-wrap { width: 28px; height: 28px; }
-    .link-title { font-size: 0.7rem; }
-    .link-url { font-size: 0.58rem; }
+    .links-category-header { padding: 12px 13px; }
+    .links-category-title { font-size: 0.76rem; }
+    .link-card { padding: 10px 11px; gap: 10px; }
+    .link-logo-wrap { width: 32px; height: 32px; }
+    .link-title { font-size: 0.75rem; }
   }
 </style>
 </head>
@@ -1162,7 +1155,6 @@
   <div class="bg-layer"></div>
   <div class="bg-blur"></div>
 
-  
   <div id="music-player">
     <div class="mp-disc-wrap">
       <div class="mp-disc" id="mp-disc">
@@ -1180,7 +1172,6 @@
   <audio id="audio" preload="auto"></audio>
 
   <div class="page-content">
-    
     <div class="card">
       <div class="avatar-wrap">
         <img id="user-avatar" src="" alt="Avatar">
@@ -1199,7 +1190,6 @@
 
       <div class="divider"></div>
 
-      
       <div class="discord-card" id="dc-card">
         <div class="discord-left">
           <div class="discord-icon-wrap">
@@ -1224,7 +1214,6 @@
         <a class="discord-join-btn" href="https://discord.gg/platformdestroyer" target="_blank" rel="noopener">Entrar</a>
       </div>
 
-      
       <div class="discord-card" id="dc-card-2">
         <div class="discord-left">
           <div class="discord-icon-wrap">
@@ -1249,7 +1238,6 @@
         <a class="discord-join-btn" href="https://discord.gg/V5jHM6EEtD" target="_blank" rel="noopener">Entrar</a>
       </div>
 
-      
       <nav class="category-nav">
         <button class="cat-btn active" data-tab="sobre">Sobre mim</button>
         <button class="cat-btn" data-tab="exp">Experiências</button>
@@ -1257,7 +1245,6 @@
         <button class="cat-btn" data-tab="links">Links</button>
       </nav>
 
-      
       <div class="content-panel active" id="panel-sobre">
         <p class="panel-title">Sobre mim</p>
         <p class="sobre-text">
@@ -1267,15 +1254,11 @@
         </p>
       </div>
 
-      
       <div class="content-panel" id="panel-exp">
         <p class="panel-title">Experiências</p>
         <div class="exp-list">
           <div class="exp-item">
-            <div class="exp-dot-col">
-              <div class="exp-dot"></div>
-              <div class="exp-line"></div>
-            </div>
+            <div class="exp-dot-col"><div class="exp-dot"></div><div class="exp-line"></div></div>
             <div class="exp-body">
               <p class="exp-company">Suporte a Sistemas de Saúde</p>
               <p class="exp-role">Empresa Atual · Tempo Integral</p>
@@ -1284,10 +1267,7 @@
             </div>
           </div>
           <div class="exp-item">
-            <div class="exp-dot-col">
-              <div class="exp-dot"></div>
-              <div class="exp-line"></div>
-            </div>
+            <div class="exp-dot-col"><div class="exp-dot"></div><div class="exp-line"></div></div>
             <div class="exp-body">
               <p class="exp-company">Platform Destroyer</p>
               <p class="exp-role">Desenvolvedor</p>
@@ -1296,9 +1276,7 @@
             </div>
           </div>
           <div class="exp-item">
-            <div class="exp-dot-col">
-              <div class="exp-dot"></div>
-            </div>
+            <div class="exp-dot-col"><div class="exp-dot"></div></div>
             <div class="exp-body">
               <p class="exp-company">Graduação em Análise e Desenvolvimento de Sistemas</p>
               <p class="exp-role">Universidade · Graduação</p>
@@ -1309,7 +1287,6 @@
         </div>
       </div>
 
-      
       <div class="content-panel" id="panel-midias">
         <p class="panel-title">Mídias</p>
         <div class="midias-grid">
@@ -1345,7 +1322,6 @@
   </div>
 </div>
 
-
 <div id="lightbox">
   <div class="lb-backdrop" id="lb-backdrop"></div>
   <div class="lb-img-wrap" id="lb-img-wrap">
@@ -1370,7 +1346,7 @@
 
   const catBtns = document.querySelectorAll('.cat-btn');
   const panels  = document.querySelectorAll('.content-panel');
-  
+
   catBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       catBtns.forEach(b => b.classList.remove('active'));
@@ -1415,7 +1391,7 @@
     }
   }
 
-  function playTrack() { audio.play().catch(()=>{}); mpIcon.className = 'bi bi-pause-fill'; mpDisc.classList.add('spinning'); }
+  function playTrack()  { audio.play().catch(()=>{}); mpIcon.className = 'bi bi-pause-fill'; mpDisc.classList.add('spinning'); }
   function pauseTrack() { audio.pause(); mpIcon.className = 'bi bi-play-fill'; mpDisc.classList.remove('spinning'); }
   function formatCount(n) { if (n>=1e6) return (n/1e6).toFixed(1).replace('.0','')+'M'; if (n>=1e3) return (n/1e3).toFixed(1).replace('.0','')+'K'; return n.toLocaleString('pt-BR'); }
 
@@ -1461,104 +1437,79 @@
     if (document.hidden) { if (!audio.paused) pauseTrack(); }
     else { if (!userPausedManually && audio.paused) playTrack(); }
   });
-  window.addEventListener('blur', () => { if (!audio.paused) pauseTrack(); });
+  window.addEventListener('blur',  () => { if (!audio.paused) pauseTrack(); });
   window.addEventListener('focus', () => { if (!userPausedManually && audio.paused) playTrack(); });
 
   splash.addEventListener('click', () => {
-      splash.classList.add('hidden');
-      site.classList.add('visible');
-      audio.volume = 0.08;
-      userPausedManually = false;
-      playTrack();
-      setTimeout(() => mpPlayer.classList.add('visible'), 800);
-      LinksModule.init();
+    splash.classList.add('hidden');
+    site.classList.add('visible');
+    audio.volume = 0.08;
+    userPausedManually = false;
+    playTrack();
+    setTimeout(() => mpPlayer.classList.add('visible'), 800);
+    LinksModule.init();
   });
 
   mpToggle.addEventListener('click', () => {
     if (audio.paused) { playTrack(); userPausedManually = false; }
     else { pauseTrack(); userPausedManually = true; }
   });
-  
+
   document.getElementById('mp-prev').addEventListener('click', () => {
     currentTrack = (currentTrack - 1 + playlist.length) % playlist.length;
     loadTrack(currentTrack);
     if (!userPausedManually) {
-      const playHandler = () => { audio.removeEventListener('canplay', playHandler); playTrack(); };
-      audio.addEventListener('canplay', playHandler);
+      const h = () => { audio.removeEventListener('canplay', h); playTrack(); };
+      audio.addEventListener('canplay', h);
     }
   });
-  
+
   document.getElementById('mp-next').addEventListener('click', () => {
     currentTrack = (currentTrack + 1) % playlist.length;
     loadTrack(currentTrack);
     if (!userPausedManually) {
-      const playHandler = () => { audio.removeEventListener('canplay', playHandler); playTrack(); };
-      audio.addEventListener('canplay', playHandler);
+      const h = () => { audio.removeEventListener('canplay', h); playTrack(); };
+      audio.addEventListener('canplay', h);
     }
   });
-  
+
   audio.addEventListener('ended', () => {
     currentTrack = (currentTrack + 1) % playlist.length;
     loadTrack(currentTrack);
-    const playHandler = () => { audio.removeEventListener('canplay', playHandler); playTrack(); };
-    audio.addEventListener('canplay', playHandler);
+    const h = () => { audio.removeEventListener('canplay', h); playTrack(); };
+    audio.addEventListener('canplay', h);
   });
 
-  const lightbox    = document.getElementById('lightbox');
-  const lbImg       = document.getElementById('lb-img');
-  const lbImgWrap   = document.getElementById('lb-img-wrap');
-  const lbBackdrop  = document.getElementById('lb-backdrop');
-  const lbClose     = document.getElementById('lb-close');
-  const lbHint      = document.getElementById('lb-hint');
-  const lbCursor    = document.getElementById('lb-zoom-cursor');
+  const lightbox   = document.getElementById('lightbox');
+  const lbImg      = document.getElementById('lb-img');
+  const lbImgWrap  = document.getElementById('lb-img-wrap');
+  const lbBackdrop = document.getElementById('lb-backdrop');
+  const lbClose    = document.getElementById('lb-close');
+  const lbHint     = document.getElementById('lb-hint');
+  const lbCursor   = document.getElementById('lb-zoom-cursor');
 
-  let lbZoomed   = false;
-  let lbScale    = 2.5;
-  let lbMouseX   = 0;
-  let lbMouseY   = 0;
-  let lbOriginX  = 50;
-  let lbOriginY  = 50;
-
-  const MIN_SCALE = 1.2;
-  const MAX_SCALE = 6;
+  let lbZoomed = false, lbScale = 2.5, lbMouseX = 0, lbMouseY = 0, lbOriginX = 50, lbOriginY = 50;
+  const MIN_SCALE = 1.2, MAX_SCALE = 6;
 
   function openLightbox(src) {
-    lbImg.src = src;
-    lbZoomed = false;
-    lbScale = 2.5;
+    lbImg.src = src; lbZoomed = false; lbScale = 2.5;
     lightbox.classList.remove('zoomed');
-    lbImgWrap.style.transform = '';
-    lbImgWrap.style.transformOrigin = '';
-    lightbox.classList.add('open');
-    lbHint.style.opacity = '1';
+    lbImgWrap.style.transform = ''; lbImgWrap.style.transformOrigin = '';
+    lightbox.classList.add('open'); lbHint.style.opacity = '1';
     document.body.style.overflow = 'hidden';
   }
-
   function closeLightbox() {
-    lightbox.classList.remove('open', 'zoomed');
-    lbZoomed = false;
-    lbImgWrap.style.transform = '';
-    lbImgWrap.style.transformOrigin = '';
-    lbImg.src = '';
-    document.body.style.overflow = '';
+    lightbox.classList.remove('open','zoomed'); lbZoomed = false;
+    lbImgWrap.style.transform = ''; lbImgWrap.style.transformOrigin = '';
+    lbImg.src = ''; document.body.style.overflow = '';
   }
-
-  function enterZoom() {
-    lbZoomed = true;
-    lightbox.classList.add('zoomed');
-    lbHint.style.opacity = '0';
-    applyZoom();
-  }
-
-  function exitZoom() {
-    lbZoomed = false;
-    lightbox.classList.remove('zoomed');
-    lbImgWrap.style.transform = '';
-    lbImgWrap.style.transformOrigin = '';
+  function enterZoom() { lbZoomed = true; lightbox.classList.add('zoomed'); lbHint.style.opacity = '0'; applyZoom(); }
+  function exitZoom()  {
+    lbZoomed = false; lightbox.classList.remove('zoomed');
+    lbImgWrap.style.transform = ''; lbImgWrap.style.transformOrigin = '';
     lbHint.style.opacity = '1';
     setTimeout(() => { lbHint.style.opacity = '0'; }, 2200);
   }
-
   function applyZoom() {
     if (!lbZoomed) return;
     lbImgWrap.style.transformOrigin = `${lbOriginX}% ${lbOriginY}%`;
@@ -1566,47 +1517,28 @@
   }
 
   lightbox.addEventListener('mousemove', e => {
-    lbMouseX = e.clientX;
-    lbMouseY = e.clientY;
-
-    lbCursor.style.left = lbMouseX + 'px';
-    lbCursor.style.top  = lbMouseY + 'px';
-
+    lbMouseX = e.clientX; lbMouseY = e.clientY;
+    lbCursor.style.left = lbMouseX + 'px'; lbCursor.style.top = lbMouseY + 'px';
     if (lbZoomed) {
       const rect = lbImg.getBoundingClientRect();
-      lbOriginX = ((e.clientX - rect.left) / rect.width)  * 100;
-      lbOriginY = ((e.clientY - rect.top)  / rect.height) * 100;
-      lbOriginX = Math.max(0, Math.min(100, lbOriginX));
-      lbOriginY = Math.max(0, Math.min(100, lbOriginY));
+      lbOriginX = Math.max(0, Math.min(100, ((e.clientX - rect.left) / rect.width)  * 100));
+      lbOriginY = Math.max(0, Math.min(100, ((e.clientY - rect.top)  / rect.height) * 100));
       applyZoom();
     }
   });
-
   lightbox.addEventListener('wheel', e => {
-    if (!lbZoomed) return;
-    e.preventDefault();
+    if (!lbZoomed) return; e.preventDefault();
     const delta = e.deltaY > 0 ? -0.25 : 0.25;
     lbScale = Math.max(MIN_SCALE, Math.min(MAX_SCALE, lbScale + delta));
     lbCursor.querySelector('i').className = delta > 0 ? 'bi bi-zoom-in' : 'bi bi-zoom-out';
     applyZoom();
   }, { passive: false });
-
   lightbox.addEventListener('click', e => {
     if (e.target === lbClose || lbClose.contains(e.target)) return;
     if (e.target === lbBackdrop) { closeLightbox(); return; }
-
-    if (!lbZoomed) {
-      enterZoom();
-    } else {
-      exitZoom();
-    }
+    lbZoomed ? exitZoom() : enterZoom();
   });
-
-  lbClose.addEventListener('click', e => {
-    e.stopPropagation();
-    closeLightbox();
-  });
-
+  lbClose.addEventListener('click', e => { e.stopPropagation(); closeLightbox(); });
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && lightbox.classList.contains('open')) closeLightbox();
   });
@@ -1618,7 +1550,6 @@
       item.addEventListener('click', () => openLightbox(img.src));
     });
   }
-
   const midiaObserver = new MutationObserver(bindMidiaItems);
   const midiaGrid = document.querySelector('.midias-grid');
   if (midiaGrid) midiaObserver.observe(midiaGrid, { childList: true, subtree: true });
@@ -1631,11 +1562,10 @@
     const LINKS_JSON_URL = 'https://raw.githubusercontent.com/DarkModeBR/darkmodebr.github.io/refs/heads/main/links.json';
     const MICROLINK_API  = 'https://api.microlink.io/?url=';
     const CACHE_PREFIX   = 'lnk_logo_';
-    const CACHE_TTL      = 7 * 24 * 60 * 60 * 1000; // 7 days
+    const CACHE_TTL      = 7 * 24 * 60 * 60 * 1000;
 
     let loaded = false;
 
-    /* ---------- Cache helpers ---------- */
     function cacheGet(url) {
       try {
         const raw = localStorage.getItem(CACHE_PREFIX + url);
@@ -1650,12 +1580,11 @@
       try { localStorage.setItem(CACHE_PREFIX + url, JSON.stringify({ ts: Date.now(), logo })); } catch {}
     }
 
-    /* ---------- Fetch logo via Microlink ---------- */
     async function fetchLogo(url) {
       const cached = cacheGet(url);
       if (cached !== null) return cached;
       try {
-        const res = await fetch(MICROLINK_API + encodeURIComponent(url), { signal: AbortSignal.timeout(6000) });
+        const res  = await fetch(MICROLINK_API + encodeURIComponent(url), { signal: AbortSignal.timeout(6000) });
         const json = await res.json();
         const logo = json?.data?.logo?.url || null;
         cacheSet(url, logo);
@@ -1666,7 +1595,6 @@
       }
     }
 
-    /* ---------- Build a single link card ---------- */
     function buildLinkCard(link, logoCache) {
       const a = document.createElement('a');
       a.className = 'link-card';
@@ -1695,8 +1623,6 @@
       const title = document.createElement('span');
       title.className = 'link-title';
       title.textContent = link.title;
-
-      // Só adiciona o título, sem URL embaixo
       info.append(title);
 
       const arrow = document.createElement('i');
@@ -1707,31 +1633,29 @@
       function applyLogo(logoUrl) {
         if (logoUrl) {
           img.src = logoUrl;
-          img.onload = () => { img.classList.add('loaded'); logoWrap.classList.add('loaded'); };
+          img.onload  = () => { img.classList.add('loaded'); logoWrap.classList.add('loaded'); };
           img.onerror = () => { img.style.display = 'none'; logoWrap.classList.add('error'); };
         } else {
           logoWrap.classList.add('error');
         }
       }
 
-      // Se o JSON já tem "icon", usa direto sem chamar a API
       if (link.icon) {
         applyLogo(link.icon);
       } else if (logoCache && link.url in logoCache) {
         applyLogo(logoCache[link.url]);
       } else {
-        const observer = new IntersectionObserver(entries => {
+        const obs = new IntersectionObserver(entries => {
           if (!entries[0].isIntersecting) return;
-          observer.disconnect();
+          obs.disconnect();
           fetchLogo(link.url).then(applyLogo);
         }, { rootMargin: '120px' });
-        observer.observe(a);
+        obs.observe(a);
       }
 
       return a;
     }
 
-    /* ---------- Build folder (subfolder) ---------- */
     function buildFolder(name, links, logoCache) {
       const folder = document.createElement('div');
       folder.className = 'links-folder';
@@ -1749,7 +1673,6 @@
       folderTitle.className = 'links-folder-title';
       folderTitle.textContent = name;
 
-      // SEM contador de links aqui
       left.append(folderIcon, folderTitle);
 
       const chevron = document.createElement('i');
@@ -1762,21 +1685,10 @@
       links.forEach(link => body.appendChild(buildLinkCard(link, logoCache)));
 
       header.addEventListener('click', () => folder.classList.toggle('open'));
-
       folder.append(header, body);
       return folder;
     }
 
-    /* ---------- Count total links recursively ---------- */
-    function countLinks(value) {
-      if (Array.isArray(value)) return value.length;
-      if (typeof value === 'object' && value !== null) {
-        return Object.values(value).reduce((sum, v) => sum + countLinks(v), 0);
-      }
-      return 0;
-    }
-
-    /* ---------- Build a top-level category ---------- */
     function buildCategory(name, value, logoCache) {
       const cat = document.createElement('div');
       cat.className = 'links-category';
@@ -1797,7 +1709,6 @@
       catTitle.className = 'links-category-title';
       catTitle.textContent = name;
 
-      // SEM contador aqui
       left.append(icon, catTitle);
 
       const chevron = document.createElement('i');
@@ -1829,22 +1740,18 @@
       return cat;
     }
 
-    /* ---------- Render the full links JSON ---------- */
     function render(data, logoCache) {
       const wrapper = document.getElementById('links-wrapper');
       wrapper.innerHTML = '';
-
       if (!data || Object.keys(data).length === 0) {
         wrapper.innerHTML = '<div class="links-error"><i class="bi bi-exclamation-circle"></i><span>Nenhum link encontrado.</span></div>';
         return;
       }
-
       Object.entries(data).forEach(([categoryName, value]) => {
         wrapper.appendChild(buildCategory(categoryName, value, logoCache));
       });
     }
 
-    /* ---------- Coleta todos os links do JSON recursivamente ---------- */
     function collectLinks(value, result = []) {
       if (Array.isArray(value)) {
         value.forEach(link => { if (!link.icon) result.push(link.url); });
@@ -1854,30 +1761,25 @@
       return result;
     }
 
-    /* ---------- Fetch + init ---------- */
     async function init() {
       if (loaded) return;
       loaded = true;
-
       try {
-        const res = await fetch(LINKS_JSON_URL);
+        const res  = await fetch(LINKS_JSON_URL);
         if (!res.ok) throw new Error('HTTP ' + res.status);
         const data = await res.json();
 
-        // Pré-carrega TODAS as logos em paralelo antes de renderizar
-        const allUrls = collectLinks(data);
+        const allUrls    = collectLinks(data);
         const logoEntries = await Promise.allSettled(
           allUrls.map(url => fetchLogo(url).then(logo => [url, logo]))
         );
-
-        // Monta um mapa { url -> logoUrl | null }
         const logoCache = {};
         logoEntries.forEach(r => {
           if (r.status === 'fulfilled') logoCache[r.value[0]] = r.value[1];
         });
 
         render(data, logoCache);
-      } catch (e) {
+      } catch {
         const wrapper = document.getElementById('links-wrapper');
         wrapper.innerHTML = '<div class="links-error"><i class="bi bi-wifi-off"></i><span>Erro ao carregar links.<br>Verifique o arquivo JSON.</span></div>';
       }
@@ -1886,13 +1788,11 @@
     return { init };
   })();
 
-  /* Load links lazily when the tab is clicked */
   document.querySelectorAll('.cat-btn').forEach(btn => {
     if (btn.dataset.tab === 'links') {
       btn.addEventListener('click', () => LinksModule.init(), { once: true });
     }
   });
-
 </script>
 </body>
 </html>
