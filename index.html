@@ -1459,12 +1459,13 @@
   window.addEventListener('focus', () => { if (!userPausedManually && audio.paused) playTrack(); });
 
   splash.addEventListener('click', () => {
-    splash.classList.add('hidden');
-    site.classList.add('visible');
-    audio.volume = 0.08;
-    userPausedManually = false;
-    playTrack();
-    setTimeout(() => mpPlayer.classList.add('visible'), 800);
+      splash.classList.add('hidden');
+      site.classList.add('visible');
+      audio.volume = 0.08;
+      userPausedManually = false;
+      playTrack();
+      setTimeout(() => mpPlayer.classList.add('visible'), 800);
+      LinksModule.init();
   });
 
   mpToggle.addEventListener('click', () => {
