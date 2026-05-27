@@ -1,37 +1,79 @@
 {
+    "Guias Úteis": [
+    {
+      "title": "Megathread Pirata",
+      "url": "https://pirataria.link/"
+    },
+    {
+      "title": "FreeMediaHeckYeah",
+      "url": "https://fmhy.net/"
+    },
+    {
+      "title": "Privacy Tools",
+      "url": "https://www.privacytools.io/"
+    },
+    {
+      "title": "Hattered",
+      "url": "https://mefrraz.github.io/hattered/index.html"
+    }
+  ],
   "Programação": {
-    "Frontend": [
+    "Utilitários": [
       {
-        "title": "Meu Site",
-        "url": "https://darkmodebr.github.io/"
+        "title": "Bootstrap Icons",
+        "url": "https://getbootstrap.com/"
       },
       {
-        "title": "MDN Web Docs",
-        "url": "https://developer.mozilla.org/"
+        "title": "Lucide Icons",
+        "url": "https://lucide.dev/"
+      },
+      {
+        "title": "jsDelivr CDN",
+        "url": "https://www.jsdelivr.com/"
       }
     ],
-    "Backend": [
+    "APIs": [
       {
-        "title": "Node.js",
-        "url": "https://nodejs.org/"
+        "title": "CORS Proxy",
+        "url": "https://corsproxy.io/"
       },
       {
-        "title": "FastAPI",
-        "url": "https://fastapi.tiangolo.com/"
+        "title": "CORS Fix",
+        "url": "https://corsfix.com/"
+      },
+      {
+        "title": "IPinfo",
+        "url": "https://ipinfo.io/"
+      },
+      {
+        "title": "APIC Agent",
+        "url": "https://www.apicagent.com/"
       }
     ],
     "Ferramentas": [
       {
-        "title": "GitHub",
-        "url": "https://github.com/"
+        "title": "JavaScript Obfuscation",
+        "url": "https://obfuscator.io/"
       },
       {
-        "title": "VS Code",
-        "url": "https://code.visualstudio.com/"
+        "title": "Imgur Image Upload",
+        "url": "https://imgur.com/upload"
+      },
+      {
+        "title": "Catbox",
+        "url": "https://catbox.moe/"
+      },
+      {
+        "title": "Hoppscotch",
+        "url": "https://hoppscotch.io/"
+      },
+      {
+        "title": "TinyPNG",
+        "url": "https://tinypng.com/"
       }
     ]
   },
-  "Segurança": {
+  "Privacidade": {
     "Referências": [
       {
         "title": "HackTricks",
@@ -49,7 +91,7 @@
       }
     ]
   },
-  "Úteis": [
+  "Úteiss": [
     {
       "title": "Regex101",
       "url": "https://regex101.com/"
