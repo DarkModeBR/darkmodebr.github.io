@@ -1661,7 +1661,7 @@
     }
 
     /* ---------- Build a single link card ---------- */
-    function buildLinkCard(link) {
+    function buildLinkCard(link, logoCache) {
       const a = document.createElement('a');
       a.className = 'link-card';
       a.href = link.url;
@@ -1677,7 +1677,6 @@
       const img = document.createElement('img');
       img.className = 'link-logo';
       img.alt = '';
-      img.loading = 'lazy';
 
       const fallback = document.createElement('i');
       fallback.className = 'bi bi-globe2 link-logo-fallback';
@@ -1702,27 +1701,39 @@
 
       a.append(logoWrap, info, arrow);
 
-      /* Lazy-load logo with IntersectionObserver */
-      const observer = new IntersectionObserver(entries => {
-        if (!entries[0].isIntersecting) return;
-        observer.disconnect();
-        fetchLogo(link.url).then(logoUrl => {
-          if (logoUrl) {
-            img.src = logoUrl;
-            img.onload = () => { img.classList.add('loaded'); logoWrap.classList.add('loaded'); };
-            img.onerror = () => { logoWrap.classList.add('error'); };
-          } else {
-            logoWrap.classList.add('error');
-          }
-        });
-      }, { rootMargin: '120px' });
+      // Se a logo já está no cache (pré-carregada no splash), aplica direto
+      const cachedLogo = logoCache?.[link.url];
+      if (cachedLogo !== undefined) {
+        if (cachedLogo) {
+          img.src = cachedLogo;
+          img.onload = () => { img.classList.add('loaded'); logoWrap.classList.add('loaded'); };
+          img.onerror = () => { logoWrap.classList.add('error'); };
+        } else {
+          logoWrap.classList.add('error');
+        }
+      } else {
+        // Fallback: observer para logos que não vieram do pré-carregamento
+        const observer = new IntersectionObserver(entries => {
+          if (!entries[0].isIntersecting) return;
+          observer.disconnect();
+          fetchLogo(link.url).then(logoUrl => {
+            if (logoUrl) {
+              img.src = logoUrl;
+              img.onload = () => { img.classList.add('loaded'); logoWrap.classList.add('loaded'); };
+              img.onerror = () => { logoWrap.classList.add('error'); };
+            } else {
+              logoWrap.classList.add('error');
+            }
+          });
+        }, { rootMargin: '120px' });
+        observer.observe(a);
+      }
 
-      observer.observe(a);
       return a;
     }
 
     /* ---------- Build folder (subfolder) ---------- */
-    function buildFolder(name, links) {
+    function buildFolder(name, links, logoCache) {
       const folder = document.createElement('div');
       folder.className = 'links-folder';
 
@@ -1752,7 +1763,7 @@
 
       const body = document.createElement('div');
       body.className = 'links-folder-body';
-      links.forEach(link => body.appendChild(buildLinkCard(link)));
+      links.forEach(link => body.appendChild(buildLinkCard(link, logoCache)));
 
       header.addEventListener('click', () => folder.classList.toggle('open'));
 
@@ -1770,7 +1781,7 @@
     }
 
     /* ---------- Build a top-level category ---------- */
-    function buildCategory(name, value) {
+    function buildCategory(name, value, logoCache) {
       const cat = document.createElement('div');
       cat.className = 'links-category';
 
@@ -1811,16 +1822,16 @@
       if (Array.isArray(value)) {
         const list = document.createElement('div');
         list.className = 'links-direct-list';
-        value.forEach(link => list.appendChild(buildLinkCard(link)));
+        value.forEach(link => list.appendChild(buildLinkCard(link, logoCache)));
         body.appendChild(list);
       } else if (typeof value === 'object' && value !== null) {
         Object.entries(value).forEach(([folderName, links]) => {
           if (Array.isArray(links)) {
-            body.appendChild(buildFolder(folderName, links));
+            body.appendChild(buildFolder(folderName, links, logoCache));
           } else {
             /* Nested deeper objects — treat as flat list under folder name */
             const allLinks = Object.values(links).flat();
-            body.appendChild(buildFolder(folderName, allLinks));
+            body.appendChild(buildFolder(folderName, allLinks, logoCache));
           }
         });
       }
@@ -1830,7 +1841,7 @@
     }
 
     /* ---------- Render the full links JSON ---------- */
-    function render(data) {
+    function render(data, logoCache) {
       const wrapper = document.getElementById('links-wrapper');
       wrapper.innerHTML = '';
 
@@ -1840,8 +1851,18 @@
       }
 
       Object.entries(data).forEach(([categoryName, value]) => {
-        wrapper.appendChild(buildCategory(categoryName, value));
+        wrapper.appendChild(buildCategory(categoryName, value, logoCache));
       });
+    }
+
+    /* ---------- Coleta todos os links do JSON recursivamente ---------- */
+    function collectLinks(value, result = []) {
+      if (Array.isArray(value)) {
+        value.forEach(link => result.push(link.url));
+      } else if (typeof value === 'object' && value !== null) {
+        Object.values(value).forEach(v => collectLinks(v, result));
+      }
+      return result;
     }
 
     /* ---------- Fetch + init ---------- */
@@ -1853,7 +1874,20 @@
         const res = await fetch(LINKS_JSON_URL);
         if (!res.ok) throw new Error('HTTP ' + res.status);
         const data = await res.json();
-        render(data);
+
+        // Pré-carrega TODAS as logos em paralelo antes de renderizar
+        const allUrls = collectLinks(data);
+        const logoEntries = await Promise.allSettled(
+          allUrls.map(url => fetchLogo(url).then(logo => [url, logo]))
+        );
+
+        // Monta um mapa { url -> logoUrl | null }
+        const logoCache = {};
+        logoEntries.forEach(r => {
+          if (r.status === 'fulfilled') logoCache[r.value[0]] = r.value[1];
+        });
+
+        render(data, logoCache);
       } catch (e) {
         const wrapper = document.getElementById('links-wrapper');
         wrapper.innerHTML = '<div class="links-error"><i class="bi bi-wifi-off"></i><span>Erro ao carregar links.<br>Verifique o arquivo JSON.</span></div>';
