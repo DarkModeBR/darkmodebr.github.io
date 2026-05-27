@@ -1,1 +1,66 @@
-{}
+{
+  "Programação": {
+    "Frontend": [
+      {
+        "title": "Meu Site",
+        "url": "https://darkmodebr.github.io/"
+      },
+      {
+        "title": "MDN Web Docs",
+        "url": "https://developer.mozilla.org/"
+      }
+    ],
+    "Backend": [
+      {
+        "title": "Node.js",
+        "url": "https://nodejs.org/"
+      },
+      {
+        "title": "FastAPI",
+        "url": "https://fastapi.tiangolo.com/"
+      }
+    ],
+    "Ferramentas": [
+      {
+        "title": "GitHub",
+        "url": "https://github.com/"
+      },
+      {
+        "title": "VS Code",
+        "url": "https://code.visualstudio.com/"
+      }
+    ]
+  },
+  "Segurança": {
+    "Referências": [
+      {
+        "title": "HackTricks",
+        "url": "https://book.hacktricks.xyz/"
+      },
+      {
+        "title": "OWASP",
+        "url": "https://owasp.org/"
+      }
+    ],
+    "Ferramentas": [
+      {
+        "title": "Shodan",
+        "url": "https://www.shodan.io/"
+      }
+    ]
+  },
+  "Úteis": [
+    {
+      "title": "Regex101",
+      "url": "https://regex101.com/"
+    },
+    {
+      "title": "JSON Formatter",
+      "url": "https://jsonformatter.curiousconcept.com/"
+    },
+    {
+      "title": "Can I Use",
+      "url": "https://caniuse.com/"
+    }
+  ]
+}
