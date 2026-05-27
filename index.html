@@ -804,6 +804,346 @@
   .midia-item.has-image {
     cursor: pointer;
   }
+
+  /* ===== LINKS TAB ===== */
+  .links-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .links-category {
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 16px;
+    overflow: hidden;
+    background: rgba(255,255,255,0.02);
+  }
+
+  .links-category-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s ease;
+    gap: 10px;
+  }
+
+  .links-category-header:hover {
+    background: rgba(124,106,255,0.08);
+  }
+
+  .links-category-header-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .links-category-icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 6px;
+    background: rgba(124,106,255,0.18);
+    border: 1px solid rgba(124,106,255,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    color: #a78bfa;
+    flex-shrink: 0;
+  }
+
+  .links-category-title {
+    color: rgba(220,220,240,0.9);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+  }
+
+  .links-category-count {
+    color: rgba(167,139,250,0.6);
+    font-size: 0.6rem;
+    font-weight: 400;
+    background: rgba(124,106,255,0.1);
+    border: 1px solid rgba(124,106,255,0.15);
+    border-radius: 20px;
+    padding: 2px 8px;
+  }
+
+  .links-category-chevron {
+    color: rgba(180,180,200,0.4);
+    font-size: 0.75rem;
+    transition: transform 0.25s ease, color 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  .links-category.open .links-category-chevron {
+    transform: rotate(180deg);
+    color: #a78bfa;
+  }
+
+  .links-category-body {
+    display: none;
+    padding: 0 10px 10px;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .links-category.open .links-category-body {
+    display: flex;
+  }
+
+  /* Subfolder */
+  .links-folder {
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 12px;
+    overflow: hidden;
+    background: rgba(255,255,255,0.02);
+    margin-top: 4px;
+  }
+
+  .links-folder-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 9px 12px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s ease;
+    gap: 8px;
+  }
+
+  .links-folder-header:hover {
+    background: rgba(255,255,255,0.04);
+  }
+
+  .links-folder-header-left {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+
+  .links-folder-icon {
+    color: rgba(124,106,255,0.6);
+    font-size: 0.75rem;
+  }
+
+  .links-folder-title {
+    color: rgba(200,200,220,0.75);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+
+  .links-folder-count {
+    color: rgba(167,139,250,0.45);
+    font-size: 0.58rem;
+  }
+
+  .links-folder-chevron {
+    color: rgba(180,180,200,0.3);
+    font-size: 0.65rem;
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  .links-folder.open .links-folder-chevron {
+    transform: rotate(180deg);
+  }
+
+  .links-folder-body {
+    display: none;
+    padding: 0 8px 8px;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .links-folder.open .links-folder-body {
+    display: flex;
+  }
+
+  /* Link Card */
+  .link-card {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    padding: 10px 12px;
+    border-radius: 11px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.05);
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .link-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(124,106,255,0.06) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .link-card:hover {
+    background: rgba(124,106,255,0.09);
+    border-color: rgba(124,106,255,0.25);
+    transform: translateX(2px);
+  }
+
+  .link-card:hover::before {
+    opacity: 1;
+  }
+
+  .link-logo-wrap {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.08);
+    overflow: hidden;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .link-logo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .link-logo.loaded { opacity: 1; }
+
+  .link-logo-skeleton {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg,
+      rgba(255,255,255,0.05) 0%,
+      rgba(255,255,255,0.1) 50%,
+      rgba(255,255,255,0.05) 100%);
+    background-size: 200% 100%;
+    animation: shimmer 1.4s infinite;
+    border-radius: 8px;
+  }
+
+  .link-logo-fallback {
+    color: rgba(167,139,250,0.7);
+    font-size: 0.9rem;
+    display: none;
+  }
+
+  .link-logo-wrap.loaded .link-logo-skeleton { display: none; }
+  .link-logo-wrap.error .link-logo-skeleton { display: none; }
+  .link-logo-wrap.error .link-logo-fallback { display: flex; }
+
+  @keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+  .link-info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .link-title {
+    color: rgba(220,220,240,0.9);
+    font-size: 0.75rem;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .link-url {
+    color: rgba(167,139,250,0.55);
+    font-size: 0.6rem;
+    font-weight: 300;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    letter-spacing: 0.01em;
+  }
+
+  .link-arrow {
+    color: rgba(167,139,250,0.35);
+    font-size: 0.7rem;
+    flex-shrink: 0;
+    transition: color 0.2s ease, transform 0.2s ease;
+  }
+
+  .link-card:hover .link-arrow {
+    color: #a78bfa;
+    transform: translateX(2px);
+  }
+
+  /* Flat links (directly in category, no subfolder) */
+  .links-direct-list {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 4px;
+  }
+
+  /* Loading state */
+  .links-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 32px 0;
+    color: rgba(180,180,200,0.4);
+    font-size: 0.68rem;
+    letter-spacing: 0.05em;
+  }
+
+  .links-loading-spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(124,106,255,0.15);
+    border-top-color: rgba(124,106,255,0.7);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  .links-error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 28px 0;
+    color: rgba(255,100,100,0.6);
+    font-size: 0.68rem;
+    text-align: center;
+  }
+
+  .links-error i { font-size: 1.4rem; opacity: 0.5; }
+
+  @media (max-width: 600px) {
+    .links-category-header { padding: 10px 12px; }
+    .link-card { padding: 9px 10px; gap: 9px; }
+    .link-logo-wrap { width: 28px; height: 28px; }
+    .link-title { font-size: 0.7rem; }
+    .link-url { font-size: 0.58rem; }
+  }
 </style>
 </head>
 <body>
@@ -908,6 +1248,7 @@
         <button class="cat-btn active" data-tab="sobre">Sobre mim</button>
         <button class="cat-btn" data-tab="exp">Experiências</button>
         <button class="cat-btn" data-tab="midias">Mídias</button>
+        <button class="cat-btn" data-tab="links">Links</button>
       </nav>
 
       
@@ -981,6 +1322,17 @@
           <div class="midia-item has-image"><img src="https://i.imgur.com/gyuMaH2.png" alt=""></div>
           <div class="midia-item has-image"><img src="https://i.imgur.com/sxndml0.png" alt=""></div>
           <div class="midia-item has-image"><img src="https://i.imgur.com/x170gsh.png" alt=""></div>
+        </div>
+      </div>
+
+      <!-- LINKS PANEL -->
+      <div class="content-panel" id="panel-links">
+        <p class="panel-title">Links</p>
+        <div id="links-wrapper" class="links-wrapper">
+          <div class="links-loading" id="links-loading">
+            <div class="links-loading-spinner"></div>
+            <span>carregando links...</span>
+          </div>
         </div>
       </div>
     </div>
@@ -1264,6 +1616,258 @@
   const midiaGrid = document.querySelector('.midias-grid');
   if (midiaGrid) midiaObserver.observe(midiaGrid, { childList: true, subtree: true });
   bindMidiaItems();
+
+  /* ===================================================
+     LINKS MODULE
+     =================================================== */
+  const LinksModule = (() => {
+    const LINKS_JSON_URL = 'https://pastebin.com/raw/W2yAiH1K';
+    const MICROLINK_API  = 'https://api.microlink.io/?url=';
+    const CACHE_PREFIX   = 'lnk_logo_';
+    const CACHE_TTL      = 7 * 24 * 60 * 60 * 1000; // 7 days
+
+    let loaded = false;
+
+    /* ---------- Cache helpers ---------- */
+    function cacheGet(url) {
+      try {
+        const raw = localStorage.getItem(CACHE_PREFIX + url);
+        if (!raw) return null;
+        const { ts, logo } = JSON.parse(raw);
+        if (Date.now() - ts > CACHE_TTL) { localStorage.removeItem(CACHE_PREFIX + url); return null; }
+        return logo;
+      } catch { return null; }
+    }
+
+    function cacheSet(url, logo) {
+      try { localStorage.setItem(CACHE_PREFIX + url, JSON.stringify({ ts: Date.now(), logo })); } catch {}
+    }
+
+    /* ---------- Fetch logo via Microlink ---------- */
+    async function fetchLogo(url) {
+      const cached = cacheGet(url);
+      if (cached !== null) return cached;
+      try {
+        const res = await fetch(MICROLINK_API + encodeURIComponent(url), { signal: AbortSignal.timeout(6000) });
+        const json = await res.json();
+        const logo = json?.data?.logo?.url || null;
+        cacheSet(url, logo);
+        return logo;
+      } catch {
+        cacheSet(url, null);
+        return null;
+      }
+    }
+
+    /* ---------- Build a single link card ---------- */
+    function buildLinkCard(link) {
+      const a = document.createElement('a');
+      a.className = 'link-card';
+      a.href = link.url;
+      a.target = '_blank';
+      a.rel = 'noopener noreferrer';
+
+      const logoWrap = document.createElement('div');
+      logoWrap.className = 'link-logo-wrap';
+
+      const skeleton = document.createElement('div');
+      skeleton.className = 'link-logo-skeleton';
+
+      const img = document.createElement('img');
+      img.className = 'link-logo';
+      img.alt = '';
+      img.loading = 'lazy';
+
+      const fallback = document.createElement('i');
+      fallback.className = 'bi bi-globe2 link-logo-fallback';
+
+      logoWrap.append(skeleton, img, fallback);
+
+      const info = document.createElement('div');
+      info.className = 'link-info';
+
+      const title = document.createElement('span');
+      title.className = 'link-title';
+      title.textContent = link.title;
+
+      const urlSpan = document.createElement('span');
+      urlSpan.className = 'link-url';
+      try { urlSpan.textContent = new URL(link.url).hostname; } catch { urlSpan.textContent = link.url; }
+
+      info.append(title, urlSpan);
+
+      const arrow = document.createElement('i');
+      arrow.className = 'bi bi-arrow-up-right link-arrow';
+
+      a.append(logoWrap, info, arrow);
+
+      /* Lazy-load logo with IntersectionObserver */
+      const observer = new IntersectionObserver(entries => {
+        if (!entries[0].isIntersecting) return;
+        observer.disconnect();
+        fetchLogo(link.url).then(logoUrl => {
+          if (logoUrl) {
+            img.src = logoUrl;
+            img.onload = () => { img.classList.add('loaded'); logoWrap.classList.add('loaded'); };
+            img.onerror = () => { logoWrap.classList.add('error'); };
+          } else {
+            logoWrap.classList.add('error');
+          }
+        });
+      }, { rootMargin: '120px' });
+
+      observer.observe(a);
+      return a;
+    }
+
+    /* ---------- Build folder (subfolder) ---------- */
+    function buildFolder(name, links) {
+      const folder = document.createElement('div');
+      folder.className = 'links-folder';
+
+      const header = document.createElement('div');
+      header.className = 'links-folder-header';
+
+      const left = document.createElement('div');
+      left.className = 'links-folder-header-left';
+
+      const folderIcon = document.createElement('i');
+      folderIcon.className = 'bi bi-folder2 links-folder-icon';
+
+      const folderTitle = document.createElement('span');
+      folderTitle.className = 'links-folder-title';
+      folderTitle.textContent = name;
+
+      const count = document.createElement('span');
+      count.className = 'links-folder-count';
+      count.textContent = links.length;
+
+      left.append(folderIcon, folderTitle, count);
+
+      const chevron = document.createElement('i');
+      chevron.className = 'bi bi-chevron-down links-folder-chevron';
+
+      header.append(left, chevron);
+
+      const body = document.createElement('div');
+      body.className = 'links-folder-body';
+      links.forEach(link => body.appendChild(buildLinkCard(link)));
+
+      header.addEventListener('click', () => folder.classList.toggle('open'));
+
+      folder.append(header, body);
+      return folder;
+    }
+
+    /* ---------- Count total links recursively ---------- */
+    function countLinks(value) {
+      if (Array.isArray(value)) return value.length;
+      if (typeof value === 'object' && value !== null) {
+        return Object.values(value).reduce((sum, v) => sum + countLinks(v), 0);
+      }
+      return 0;
+    }
+
+    /* ---------- Build a top-level category ---------- */
+    function buildCategory(name, value) {
+      const cat = document.createElement('div');
+      cat.className = 'links-category';
+
+      const header = document.createElement('div');
+      header.className = 'links-category-header';
+
+      const left = document.createElement('div');
+      left.className = 'links-category-header-left';
+
+      const icon = document.createElement('div');
+      icon.className = 'links-category-icon';
+      const iconEl = document.createElement('i');
+      iconEl.className = 'bi bi-bookmark-fill';
+      icon.appendChild(iconEl);
+
+      const catTitle = document.createElement('span');
+      catTitle.className = 'links-category-title';
+      catTitle.textContent = name;
+
+      const count = document.createElement('span');
+      count.className = 'links-category-count';
+      count.textContent = countLinks(value);
+
+      left.append(icon, catTitle, count);
+
+      const chevron = document.createElement('i');
+      chevron.className = 'bi bi-chevron-down links-category-chevron';
+
+      header.append(left, chevron);
+      header.addEventListener('click', () => cat.classList.toggle('open'));
+
+      const body = document.createElement('div');
+      body.className = 'links-category-body';
+
+      /* value can be:
+         - array of links (flat)
+         - object where keys are subfolder names and values are arrays of links */
+      if (Array.isArray(value)) {
+        const list = document.createElement('div');
+        list.className = 'links-direct-list';
+        value.forEach(link => list.appendChild(buildLinkCard(link)));
+        body.appendChild(list);
+      } else if (typeof value === 'object' && value !== null) {
+        Object.entries(value).forEach(([folderName, links]) => {
+          if (Array.isArray(links)) {
+            body.appendChild(buildFolder(folderName, links));
+          } else {
+            /* Nested deeper objects — treat as flat list under folder name */
+            const allLinks = Object.values(links).flat();
+            body.appendChild(buildFolder(folderName, allLinks));
+          }
+        });
+      }
+
+      cat.append(header, body);
+      return cat;
+    }
+
+    /* ---------- Render the full links JSON ---------- */
+    function render(data) {
+      const wrapper = document.getElementById('links-wrapper');
+      wrapper.innerHTML = '';
+
+      if (!data || Object.keys(data).length === 0) {
+        wrapper.innerHTML = '<div class="links-error"><i class="bi bi-exclamation-circle"></i><span>Nenhum link encontrado.</span></div>';
+        return;
+      }
+
+      Object.entries(data).forEach(([categoryName, value]) => {
+        wrapper.appendChild(buildCategory(categoryName, value));
+      });
+    }
+
+    /* ---------- Fetch + init ---------- */
+    async function init() {
+      if (loaded) return;
+      loaded = true;
+
+      try {
+        const res = await fetch(LINKS_JSON_URL);
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const data = await res.json();
+        render(data);
+      } catch (e) {
+        const wrapper = document.getElementById('links-wrapper');
+        wrapper.innerHTML = '<div class="links-error"><i class="bi bi-wifi-off"></i><span>Erro ao carregar links.<br>Verifique o arquivo JSON.</span></div>';
+      }
+    }
+
+    return { init };
+  })();
+
+  /* Load links lazily when the tab is clicked */
+  document.querySelectorAll('.cat-btn').forEach(btn => {
+    if (btn.dataset.tab === 'links') {
+      btn.addEventListener('click', () => LinksModule.init(), { once: true });
+    }
+  });
 
 </script>
 </body>
