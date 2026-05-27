@@ -1,5 +1,5 @@
 {
-    "Guias Úteis": [
+  "Guias Úteis": [
     {
       "title": "Megathread Pirata",
       "url": "https://pirataria.link/"
@@ -17,6 +17,7 @@
       "url": "https://mefrraz.github.io/hattered/index.html"
     }
   ],
+
   "Programação": {
     "Curso programação": [
       {
@@ -36,6 +37,7 @@
         "url": "https://github.com/arthurspk/guiadecybersecurity"
       }
     ],
+
     "Utilitários": [
       {
         "title": "Bootstrap Icons",
@@ -50,6 +52,7 @@
         "url": "https://www.jsdelivr.com/"
       }
     ],
+
     "APIs": [
       {
         "title": "CORS Proxy",
@@ -68,6 +71,7 @@
         "url": "https://www.apicagent.com/"
       }
     ],
+
     "Ferramentas": [
       {
         "title": "JavaScript Obfuscation",
@@ -91,6 +95,7 @@
       }
     ]
   },
+
   "Privacidade": {
     "Extensões": [
       {
@@ -130,12 +135,14 @@
         "url": "https://violentmonkey.github.io/"
       }
     ],
+
     "Userscripts": [
       {
         "title": "Bypass All Shortlinks Debloated",
         "url": "https://github.com/gongchandang49/bypass-all-shortlinks-debloated"
       }
     ],
+
     "Websites": [
       {
         "title": "Temp-Mail",
@@ -147,6 +154,7 @@
       }
     ]
   },
+
   "Zona Cinzenta": {
     "Inteligência Artificial": [
       {
@@ -154,7 +162,7 @@
         "url": "https://skynetchat.net/"
       },
       {
-        "title": "Venice AI ",
+        "title": "Venice AI",
         "url": "https://venice.ai/chat/agent"
       },
       {
@@ -162,6 +170,7 @@
         "url": "https://hackerai.co/"
       }
     ],
+
     "OSINT": [
       {
         "title": "Grabify IP Logger",
@@ -180,6 +189,7 @@
         "url": "https://www.dehashed.com/"
       }
     ],
+
     "Engenharia reversa": [
       {
         "title": "uncover it",
@@ -198,6 +208,7 @@
         "url": "https://webcrack.netlify.app/"
       }
     ],
+
     "Bypass": [
       {
         "title": "Bypass City",
@@ -208,6 +219,7 @@
         "url": "https://bypass.vip/"
       }
     ],
+
     "GitHub Tools": [
       {
         "title": "Ultimate RAT Collection",
