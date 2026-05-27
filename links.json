@@ -18,6 +18,24 @@
     }
   ],
   "Programação": {
+    "Curso programação": [
+      {
+        "title": "Curso em Vídeo",
+        "url": "https://www.cursoemvideo.com/"
+      },
+      {
+        "title": "Fundação Bradesco",
+        "url": "https://www.ev.org.br/"
+      },
+      {
+        "title": "DIO",
+        "url": "https://www.dio.me/"
+      },
+      {
+        "title": "Guia de Cyber Security",
+        "url": "https://github.com/arthurspk/guiadecybersecurity"
+      }
+    ],
     "Utilitários": [
       {
         "title": "Bootstrap Icons",
@@ -74,35 +92,139 @@
     ]
   },
   "Privacidade": {
-    "Referências": [
+    "Extensões": [
       {
-        "title": "HackTricks",
-        "url": "https://book.hacktricks.xyz/"
+        "title": "uBlock Origin Lite",
+        "url": "https://ublockorigin.com/"
       },
       {
-        "title": "OWASP",
-        "url": "https://owasp.org/"
+        "title": "Decentraleyes",
+        "url": "https://decentraleyes.org/"
+      },
+      {
+        "title": "ClearURLs",
+        "url": "https://docs.clearurls.xyz/"
+      },
+      {
+        "title": "TempmailBee",
+        "url": "https://tempmailbee.com/"
+      },
+      {
+        "title": "Urban VPN",
+        "url": "https://www.urban-vpn.com/free-products/free-browser-extension/"
+      },
+      {
+        "title": "Buster: Captcha Solver",
+        "url": "https://github.com/dessant/buster"
+      },
+      {
+        "title": "Simple Translate",
+        "url": "https://simple-translate.sienori.com/"
+      },
+      {
+        "title": "Bypass Paywalls Clean",
+        "url": "https://gitflic.ru/project/magnolia1234/bpc_uploads"
+      },
+      {
+        "title": "Violentmonkey",
+        "url": "https://violentmonkey.github.io/"
       }
     ],
-    "Ferramentas": [
+    "Userscripts": [
       {
-        "title": "Shodan",
-        "url": "https://www.shodan.io/"
+        "title": "Bypass All Shortlinks Debloated",
+        "url": "https://github.com/gongchandang49/bypass-all-shortlinks-debloated"
+      }
+    ],
+    "Websites": [
+      {
+        "title": "Temp-Mail",
+        "url": "https://temp-mail.org/"
+      },
+      {
+        "title": "Tua mãe, aquela ursa",
+        "url": "https://tuamaeaquelaursa.com/"
       }
     ]
   },
-  "Úteiss": [
-    {
-      "title": "Regex101",
-      "url": "https://regex101.com/"
-    },
-    {
-      "title": "JSON Formatter",
-      "url": "https://jsonformatter.curiousconcept.com/"
-    },
-    {
-      "title": "Can I Use",
-      "url": "https://caniuse.com/"
-    }
-  ]
+  "Zona Cinzenta": {
+    "Inteligência Artificial": [
+      {
+        "title": "SKYNETchat",
+        "url": "https://skynetchat.net/"
+      },
+      {
+        "title": "Venice AI ",
+        "url": "https://venice.ai/chat/agent"
+      },
+      {
+        "title": "HackerAI",
+        "url": "https://hackerai.co/"
+      }
+    ],
+    "OSINT": [
+      {
+        "title": "Grabify IP Logger",
+        "url": "https://grabify.link/"
+      },
+      {
+        "title": "TakedownSpy",
+        "url": "https://spy.trumcate.com/"
+      },
+      {
+        "title": "IntelligenceX",
+        "url": "https://intelx.io/"
+      },
+      {
+        "title": "DeHashed",
+        "url": "https://www.dehashed.com/"
+      }
+    ],
+    "Engenharia reversa": [
+      {
+        "title": "uncover it",
+        "url": "https://www.uncoverit.org/"
+      },
+      {
+        "title": "VirusTotal",
+        "url": "https://www.virustotal.com/gui/home/upload"
+      },
+      {
+        "title": "TriageTM",
+        "url": "https://tria.ge/"
+      },
+      {
+        "title": "WebCrack",
+        "url": "https://webcrack.netlify.app/"
+      }
+    ],
+    "Bypass": [
+      {
+        "title": "Bypass City",
+        "url": "https://bypass.city/"
+      },
+      {
+        "title": "Bypass VIP",
+        "url": "https://bypass.vip/"
+      }
+    ],
+    "GitHub Tools": [
+      {
+        "title": "Ultimate RAT Collection",
+        "url": "https://github.com/Cryakl/Ultimate-RAT-Collection"
+      },
+      {
+        "title": "Proxy Scraper & Checker",
+        "url": "https://github.com/monosans/proxy-scraper-checker"
+      },
+      {
+        "title": "FinalRecon",
+        "url": "https://github.com/thewhiteh4t/FinalRecon"
+      },
+      {
+        "title": "Quasar",
+        "url": "https://github.com/quasar/Quasar"
+      }
+    ]
+  }
 }
