@@ -14,7 +14,8 @@
     },
     {
       "title": "FreeMediaHeckYeah",
-      "url": "https://fmhy.net/"
+      "url": "https://fmhy.net/",
+      "icon": "https://i.imgur.com/cx8prVo.png"
     }
   ],
 
@@ -274,14 +275,16 @@
     "Inteligência Artificial": [
       {
         "title": "SKYNETchat",
-        "url": "https://skynetchat.net/"
+        "url": "https://skynetchat.net/",
+        "icon": "https://i.imgur.com/xMS3r4m.png"
       }
     ],
 
     "OSINT": [
       {
         "title": "Grabify IP Logger",
-        "url": "https://grabify.link/"
+        "url": "https://grabify.link/",
+        "icon": "https://i.imgur.com/OMz3E2K.png"
       },
       {
         "title": "IntelligenceX",
@@ -292,11 +295,13 @@
     "Engenharia reversa": [
       {
         "title": "VirusTotal",
-        "url": "https://www.virustotal.com/gui/home/upload"
+        "url": "https://www.virustotal.com/gui/home/upload",
+        "icon": "https://i.imgur.com/8u2HWLS.png"
       },
       {
         "title": "Uncover it",
-        "url": "https://www.uncoverit.org/"
+        "url": "https://www.uncoverit.org/",
+        "icon": "https://i.imgur.com/5sZoqE7.png"
       },
       {
         "title": "TriageTM",
@@ -315,7 +320,8 @@
       },
       {
         "title": "Bypass VIP",
-        "url": "https://bypass.vip/"
+        "url": "https://bypass.vip/",
+        "icon": "https://i.imgur.com/jSSDgs6.png"
       }
     ],
 
