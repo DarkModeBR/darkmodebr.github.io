@@ -1,59 +1,67 @@
 {
-  "Guias Úteis": [
+  "Websites Úteis": [
     {
-      "title": "Megathread Pirata",
+      "title": "PairDrop",
+      "url": "https://pairdrop.net/"
+    },
+    {
+      "title": "Privacy Tools & Software",
+      "url": "https://www.privacytools.io/"
+    },
+    {
+      "title": "Pirataria Megathread",
       "url": "https://pirataria.link/"
     },
     {
       "title": "FreeMediaHeckYeah",
       "url": "https://fmhy.net/"
-    },
-    {
-      "title": "Privacy Tools",
-      "url": "https://www.privacytools.io/"
-    },
-    {
-      "title": "Hattered",
-      "url": "https://mefrraz.github.io/hattered/index.html"
     }
   ],
 
   "Programação": {
-    "Curso programação": [
-      {
-        "title": "Curso em Vídeo",
-        "url": "https://www.cursoemvideo.com/"
-      },
-      {
-        "title": "Fundação Bradesco",
-        "url": "https://www.ev.org.br/"
-      },
-      {
-        "title": "DIO",
-        "url": "https://www.dio.me/"
-      },
-      {
-        "title": "Guia de Cyber Security",
-        "url": "https://github.com/arthurspk/guiadecybersecurity"
-      }
-    ],
-
     "Utilitários": [
+      {
+        "title": "Hoppscotch",
+        "url": "https://hoppscotch.io/"
+      },
+      {
+        "title": "JavaScript Obfuscator",
+        "url": "https://obfuscator.io/"
+      },
       {
         "title": "Bootstrap Icons",
         "url": "https://getbootstrap.com/"
       },
       {
-        "title": "Lucide Icons",
-        "url": "https://lucide.dev/"
-      },
-      {
         "title": "jsDelivr CDN",
         "url": "https://www.jsdelivr.com/"
+      },
+      {
+        "title": "TinyPNG",
+        "url": "https://tinypng.com/"
+      }
+    ],
+
+    "Scraper/Proxy": [
+      {
+        "title": "ScraperAPI",
+        "url": "https://www.scraperapi.com/"
+      },
+      {
+        "title": "Webshare",
+        "url": "https://www.webshare.io/"
+      },
+      {
+        "title": "Oxylabs",
+        "url": "https://oxylabs.io/"
       }
     ],
 
     "APIs": [
+      {
+        "title": "Public APIs",
+        "url": "https://github.com/public-apis/public-apis"
+      },
       {
         "title": "CORS Proxy",
         "url": "https://corsproxy.io/"
@@ -67,36 +75,66 @@
         "url": "https://ipinfo.io/"
       },
       {
-        "title": "APIC Agent",
-        "url": "https://www.apicagent.com/"
+        "title": "IPLocate",
+        "url": "https://www.iplocate.io/"
       }
     ],
 
-    "Ferramentas": [
-      {
-        "title": "JavaScript Obfuscation",
-        "url": "https://obfuscator.io/"
-      },
+    "Cloud & Share": [
       {
         "title": "Imgur Image Upload",
         "url": "https://imgur.com/upload"
+      },
+      {
+        "title": "ToffeeShare",
+        "url": "https://toffeeshare.com/"
       },
       {
         "title": "Catbox",
         "url": "https://catbox.moe/"
       },
       {
-        "title": "Hoppscotch",
-        "url": "https://hoppscotch.io/"
+        "title": "Send",
+        "url": "https://send.vis.ee/"
       },
       {
-        "title": "TinyPNG",
-        "url": "https://tinypng.com/"
+        "title": "0x0.st",
+        "url": "https://0x0.st/"
       }
     ]
   },
 
   "Privacidade": {
+    "Windows": [
+      {
+        "title": "CTT Windows Utility",
+        "url": "https://github.com/christitustech/winutil#readme"
+      },
+      {
+        "title": "Remove MS Edge",
+        "url": "https://github.com/ShadowWhisperer/Remove-MS-Edge#readme"
+      },
+      {
+        "title": "Remove Windows AI",
+        "url": "https://github.com/zoicware/RemoveWindowsAI#readme"
+      }
+    ],
+
+    "Navegadores": [
+      {
+        "title": "Brave",
+        "url": "https://brave.com/"
+      },
+      {
+        "title": "Firefox",
+        "url": "https://www.firefox.com/"
+      },
+      {
+        "title": "LibreWolf",
+        "url": "https://librewolf.net/"
+      }
+    ],
+
     "Extensões": [
       {
         "title": "uBlock Origin Lite",
@@ -115,42 +153,117 @@
         "url": "https://tempmailbee.com/"
       },
       {
-        "title": "Urban VPN",
-        "url": "https://www.urban-vpn.com/free-products/free-browser-extension/"
-      },
-      {
         "title": "Buster: Captcha Solver",
-        "url": "https://github.com/dessant/buster"
-      },
-      {
-        "title": "Simple Translate",
-        "url": "https://simple-translate.sienori.com/"
+        "url": "https://github.com/dessant/buster#readme"
       },
       {
         "title": "Bypass Paywalls Clean",
-        "url": "https://gitflic.ru/project/magnolia1234/bpc_uploads"
-      },
-      {
-        "title": "Violentmonkey",
-        "url": "https://violentmonkey.github.io/"
+        "url": "https://gitflic.ru/project/magnolia1234/bpc_uploads#readme"
       }
     ],
 
     "Userscripts": [
       {
+        "title": "Violentmonkey",
+        "url": "https://violentmonkey.github.io/"
+      },
+      {
         "title": "Bypass All Shortlinks Debloated",
-        "url": "https://github.com/gongchandang49/bypass-all-shortlinks-debloated"
+        "url": "https://github.com/gongchandang49/bypass-all-shortlinks-debloated#readme"
+      }
+    ]
+  },
+
+  "Aleatórios": {
+    "Windows": [
+      {
+        "title": "Awesome Free Apps",
+        "url": "https://github.com/Axorax/awesome-free-apps#readme"
+      },
+      {
+        "title": "Awesome Windows",
+        "url": "https://github.com/0PandaDEV/awesome-windows#readme"
+      },
+      {
+        "title": "Autounattend.xml",
+        "url": "https://schneegans.de/windows/unattend-generator/"
       }
     ],
 
-    "Websites": [
+    "Android": [
       {
-        "title": "Temp-Mail",
-        "url": "https://temp-mail.org/"
+        "title": "Android Ultimate Collection & Guides",
+        "url": "https://xdaforums.com/t/android-ultimate-collection-guides.4513231/"
       },
       {
-        "title": "Tua mãe, aquela ursa",
-        "url": "https://tuamaeaquelaursa.com/"
+        "title": "OneUI Guide - Tweaks, Optimization & Privacy",
+        "url": "https://xdaforums.com/t/definitive-oneui-guide-tweaks-optimization-privacy.4685716/"
+      },
+      {
+        "title": "Samsung One UI Optimization Guide",
+        "url": "https://radishzz.cc/posts/d88c9984/"
+      },
+      {
+        "title": "Awesome Android Root",
+        "url": "https://github.com/awesome-android-root/awesome-android-root#readme"
+      },
+      {
+        "title": "Awesome Shizuku",
+        "url": "https://github.com/timschneeb/awesome-shizuku#readme"
+      },
+      {
+        "title": "YouTube ReVanced eXtended",
+        "url": "https://github.com/NoName-exe/revanced-extended#readme"
+      },
+      {
+        "title": "ColorBlendr",
+        "url": "https://github.com/Mahmud0808/ColorBlendr#readme"
+      },
+      {
+        "title": "Lawnchair",
+        "url": "https://github.com/LawnchairLauncher/lawnchair#readme"
+      },
+      {
+        "title": "Instafel",
+        "url": "https://instafel.app/"
+      },
+      {
+        "title": "Canta",
+        "url": "https://samolego.github.io/Canta/"
+      }
+    ],
+
+    "Discord": [
+      {
+        "title": "Avatar & Banners",
+        "url": "https://pfps.gg/"
+      },
+      {
+        "title": "Embed Generator",
+        "url": "https://message.style/"
+      },
+      {
+        "title": "Icons Generator",
+        "url": "https://discotools.xyz/icons-editor"
+      },
+      {
+        "title": "Discord Avatar Maker",
+        "url": "https://discord-avatar-maker.app/"
+      }
+    ],
+
+    "Trapaças": [
+      {
+        "title": "Cyde.xyz ( Minecraft )",
+        "url": "https://cyde.xyz/"
+      },
+      {
+        "title": "Voxlis.net ( Roblox )",
+        "url": "https://voxlis.net/roblox.html"
+      },
+      {
+        "title": "Voxlis.net ( CS2 )",
+        "url": "https://voxlis.net/cs2.html"
       }
     ]
   },
@@ -160,14 +273,6 @@
       {
         "title": "SKYNETchat",
         "url": "https://skynetchat.net/"
-      },
-      {
-        "title": "Venice AI",
-        "url": "https://venice.ai/chat/agent"
-      },
-      {
-        "title": "HackerAI",
-        "url": "https://hackerai.co/"
       }
     ],
 
@@ -177,27 +282,19 @@
         "url": "https://grabify.link/"
       },
       {
-        "title": "TakedownSpy",
-        "url": "https://spy.trumcate.com/"
-      },
-      {
         "title": "IntelligenceX",
         "url": "https://intelx.io/"
-      },
-      {
-        "title": "DeHashed",
-        "url": "https://www.dehashed.com/"
       }
     ],
 
     "Engenharia reversa": [
       {
-        "title": "uncover it",
-        "url": "https://www.uncoverit.org/"
-      },
-      {
         "title": "VirusTotal",
         "url": "https://www.virustotal.com/gui/home/upload"
+      },
+      {
+        "title": "Uncover it",
+        "url": "https://www.uncoverit.org/"
       },
       {
         "title": "TriageTM",
@@ -223,19 +320,19 @@
     "GitHub Tools": [
       {
         "title": "Ultimate RAT Collection",
-        "url": "https://github.com/Cryakl/Ultimate-RAT-Collection"
+        "url": "https://github.com/Cryakl/Ultimate-RAT-Collection#readme"
       },
       {
         "title": "Proxy Scraper & Checker",
-        "url": "https://github.com/monosans/proxy-scraper-checker"
+        "url": "https://github.com/monosans/proxy-scraper-checker#readme"
       },
       {
         "title": "FinalRecon",
-        "url": "https://github.com/thewhiteh4t/FinalRecon"
+        "url": "https://github.com/thewhiteh4t/FinalRecon#readme"
       },
       {
         "title": "Quasar",
-        "url": "https://github.com/quasar/Quasar"
+        "url": "https://github.com/quasar/Quasar#readme"
       }
     ]
   }
