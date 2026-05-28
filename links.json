@@ -138,7 +138,8 @@
     "Extensões": [
       {
         "title": "uBlock Origin Lite",
-        "url": "https://ublockorigin.com/"
+        "url": "https://ublockorigin.com/",
+        "icon": "https://i.imgur.com/ujqG4HG.png"
       },
       {
         "title": "Decentraleyes",
@@ -256,6 +257,7 @@
       {
         "title": "Cyde.xyz ( Minecraft )",
         "url": "https://cyde.xyz/"
+        "icon": "https://i.imgur.com/obIT2Fc.png"
       },
       {
         "title": "Voxlis.net ( Roblox )",
