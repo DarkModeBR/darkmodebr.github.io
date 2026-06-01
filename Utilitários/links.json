@@ -1,0 +1,347 @@
+{
+  "Websites Úteis": [
+    {
+      "title": "PairDrop",
+      "url": "https://pairdrop.net/"
+    },
+    {
+      "title": "Privacy Tools & Software",
+      "url": "https://www.privacytools.io/"
+    },
+    {
+      "title": "Pirataria Megathread",
+      "url": "https://pirataria.link/"
+    },
+    {
+      "title": "FreeMediaHeckYeah",
+      "url": "https://fmhy.net/",
+      "icon": "https://i.imgur.com/cx8prVo.png"
+    }
+  ],
+
+  "Programação": {
+    "Utilitários": [
+      {
+        "title": "Hoppscotch",
+        "url": "https://hoppscotch.io/"
+      },
+      {
+        "title": "JavaScript Obfuscator",
+        "url": "https://obfuscator.io/"
+      },
+      {
+        "title": "Bootstrap Icons",
+        "url": "https://getbootstrap.com/"
+      },
+      {
+        "title": "jsDelivr CDN",
+        "url": "https://www.jsdelivr.com/"
+      },
+      {
+        "title": "TinyPNG",
+        "url": "https://tinypng.com/"
+      }
+    ],
+
+    "Scraper/Proxy": [
+      {
+        "title": "ScraperAPI",
+        "url": "https://www.scraperapi.com/"
+      },
+      {
+        "title": "Webshare",
+        "url": "https://www.webshare.io/"
+      },
+      {
+        "title": "Oxylabs",
+        "url": "https://oxylabs.io/"
+      }
+    ],
+
+    "APIs": [
+      {
+        "title": "Public APIs",
+        "url": "https://github.com/public-apis/public-apis"
+      },
+      {
+        "title": "CORS Proxy",
+        "url": "https://corsproxy.io/"
+      },
+      {
+        "title": "CORS Fix",
+        "url": "https://corsfix.com/"
+      },
+      {
+        "title": "IPinfo",
+        "url": "https://ipinfo.io/"
+      },
+      {
+        "title": "IPLocate",
+        "url": "https://www.iplocate.io/"
+      }
+    ],
+
+    "Cloud & Share": [
+      {
+        "title": "Imgur Image Upload",
+        "url": "https://imgur.com/upload"
+      },
+      {
+        "title": "ToffeeShare",
+        "url": "https://toffeeshare.com/"
+      },
+      {
+        "title": "Catbox",
+        "url": "https://catbox.moe/"
+      },
+      {
+        "title": "Send",
+        "url": "https://send.vis.ee/"
+      },
+      {
+        "title": "0x0.st",
+        "url": "https://0x0.st/"
+      }
+    ]
+  },
+
+  "Privacidade": {
+    "Windows": [
+      {
+        "title": "CTT Windows Utility",
+        "url": "https://github.com/christitustech/winutil#readme"
+      },
+      {
+        "title": "Remove MS Edge",
+        "url": "https://github.com/ShadowWhisperer/Remove-MS-Edge#readme"
+      },
+      {
+        "title": "Remove Windows AI",
+        "url": "https://github.com/zoicware/RemoveWindowsAI#readme"
+      }
+    ],
+
+    "Navegadores": [
+      {
+        "title": "Brave",
+        "url": "https://brave.com/"
+      },
+      {
+        "title": "Firefox",
+        "url": "https://www.firefox.com/"
+      },
+      {
+        "title": "LibreWolf",
+        "url": "https://librewolf.net/"
+      }
+    ],
+
+    "Extensões": [
+      {
+        "title": "uBlock Origin Lite",
+        "url": "https://ublockorigin.com/",
+        "icon": "https://i.imgur.com/ujqG4HG.png"
+      },
+      {
+        "title": "Decentraleyes",
+        "url": "https://decentraleyes.org/"
+      },
+      {
+        "title": "ClearURLs",
+        "url": "https://docs.clearurls.xyz/"
+      },
+      {
+        "title": "TempmailBee",
+        "url": "https://tempmailbee.com/"
+      },
+      {
+        "title": "Buster: Captcha Solver",
+        "url": "https://github.com/dessant/buster#readme"
+      },
+      {
+        "title": "Bypass Paywalls Clean",
+        "url": "https://gitflic.ru/project/magnolia1234/bpc_uploads#readme"
+      }
+    ],
+
+    "Userscripts": [
+      {
+        "title": "Violentmonkey",
+        "url": "https://violentmonkey.github.io/"
+      },
+      {
+        "title": "Bypass All Shortlinks Debloated",
+        "url": "https://github.com/gongchandang49/bypass-all-shortlinks-debloated#readme"
+      }
+    ]
+  },
+
+  "Aleatórios": {
+    "Windows": [
+      {
+        "title": "Awesome Free Apps",
+        "url": "https://github.com/Axorax/awesome-free-apps#readme"
+      },
+      {
+        "title": "Awesome Windows",
+        "url": "https://github.com/0PandaDEV/awesome-windows#readme"
+      },
+      {
+        "title": "Autounattend.xml",
+        "url": "https://schneegans.de/windows/unattend-generator/"
+      }
+    ],
+
+    "Android": [
+      {
+        "title": "Android Ultimate Collection & Guides",
+        "url": "https://xdaforums.com/t/android-ultimate-collection-guides.4513231/"
+      },
+      {
+        "title": "OneUI Guide - Tweaks, Optimization & Privacy",
+        "url": "https://xdaforums.com/t/definitive-oneui-guide-tweaks-optimization-privacy.4685716/"
+      },
+      {
+        "title": "Samsung One UI Optimization Guide",
+        "url": "https://radishzz.cc/posts/d88c9984/"
+      },
+      {
+        "title": "Awesome Android Root",
+        "url": "https://github.com/awesome-android-root/awesome-android-root#readme"
+      },
+      {
+        "title": "Awesome Shizuku",
+        "url": "https://github.com/timschneeb/awesome-shizuku#readme"
+      },
+      {
+        "title": "YouTube ReVanced eXtended",
+        "url": "https://github.com/NoName-exe/revanced-extended#readme"
+      },
+      {
+        "title": "ColorBlendr",
+        "url": "https://github.com/Mahmud0808/ColorBlendr#readme"
+      },
+      {
+        "title": "Lawnchair",
+        "url": "https://github.com/LawnchairLauncher/lawnchair#readme"
+      },
+      {
+        "title": "Instafel",
+        "url": "https://instafel.app/"
+      },
+      {
+        "title": "Canta",
+        "url": "https://samolego.github.io/Canta/"
+      }
+    ],
+
+    "Discord": [
+      {
+        "title": "Avatar & Banners",
+        "url": "https://pfps.gg/"
+      },
+      {
+        "title": "Embed Generator",
+        "url": "https://message.style/"
+      },
+      {
+        "title": "Icons Generator",
+        "url": "https://discotools.xyz/icons-editor"
+      },
+      {
+        "title": "Discord Avatar Maker",
+        "url": "https://discord-avatar-maker.app/"
+      }
+    ],
+
+    "Trapaças": [
+      {
+        "title": "Cyde.xyz ( Minecraft )",
+        "url": "https://cyde.xyz/",
+        "icon": "https://i.imgur.com/obIT2Fc.png"
+      },
+      {
+        "title": "Voxlis.net ( Roblox )",
+        "url": "https://voxlis.net/roblox.html"
+      },
+      {
+        "title": "Voxlis.net ( CS2 )",
+        "url": "https://voxlis.net/cs2.html"
+      }
+    ]
+  },
+
+  "Zona Cinzenta": {
+    "Inteligência Artificial": [
+      {
+        "title": "SKYNETchat",
+        "url": "https://skynetchat.net/",
+        "icon": "https://i.imgur.com/xMS3r4m.png"
+      }
+    ],
+
+    "OSINT": [
+      {
+        "title": "Grabify IP Logger",
+        "url": "https://grabify.link/",
+        "icon": "https://i.imgur.com/OMz3E2K.png"
+      },
+      {
+        "title": "IntelligenceX",
+        "url": "https://intelx.io/"
+      }
+    ],
+
+    "Engenharia reversa": [
+      {
+        "title": "VirusTotal",
+        "url": "https://www.virustotal.com/gui/home/upload",
+        "icon": "https://i.imgur.com/8u2HWLS.png"
+      },
+      {
+        "title": "Uncover it",
+        "url": "https://www.uncoverit.org/",
+        "icon": "https://i.imgur.com/5sZoqE7.png"
+      },
+      {
+        "title": "TriageTM",
+        "url": "https://tria.ge/"
+      },
+      {
+        "title": "WebCrack",
+        "url": "https://webcrack.netlify.app/"
+      }
+    ],
+
+    "Bypass": [
+      {
+        "title": "Bypass City",
+        "url": "https://bypass.city/"
+      },
+      {
+        "title": "Bypass VIP",
+        "url": "https://bypass.vip/",
+        "icon": "https://i.imgur.com/jSSDgs6.png"
+      }
+    ],
+
+    "GitHub Tools": [
+      {
+        "title": "Ultimate RAT Collection",
+        "url": "https://github.com/Cryakl/Ultimate-RAT-Collection#readme"
+      },
+      {
+        "title": "Proxy Scraper & Checker",
+        "url": "https://github.com/monosans/proxy-scraper-checker#readme"
+      },
+      {
+        "title": "FinalRecon",
+        "url": "https://github.com/thewhiteh4t/FinalRecon#readme"
+      },
+      {
+        "title": "Quasar",
+        "url": "https://github.com/quasar/Quasar#readme"
+      }
+    ]
+  }
+}
