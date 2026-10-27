@@ -1,0 +1,831 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Bookmarklet Maker</title>
+<meta name="description" content="Transforme qualquer script JavaScript em um bookmarklet pronto para a barra de favoritos, com opções de compactar, minificar, obfuscar e verificar erros.">
+<!-- Ícones: carregados sem bloquear a página (media=print vira all ao carregar), para que um CDN lento não deixe a tela em branco. -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.2/font/bootstrap-icons.min.css" integrity="sha384-nWN3KqaaVcbEsCjLSV+2jMjh62Iny/+mN3srM8TZeM8N6aj7eDl5wwYggjAJ4/sJ" crossorigin="anonymous" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.2/font/bootstrap-icons.min.css" integrity="sha384-nWN3KqaaVcbEsCjLSV+2jMjh62Iny/+mN3srM8TZeM8N6aj7eDl5wwYggjAJ4/sJ" crossorigin="anonymous"></noscript>
+<style>
+  :root {
+    --bg: #f6f3ec;
+    --surface: #fffdf8;
+    --surface-2: #f8f4ea;
+    --ink: #1d1b16;
+    --muted: #6b665a;
+    --line: #ddd6c6;
+    --line-strong: #c4baa3;
+    --accent: #c2410c;
+    --accent-ink: #ffffff;
+    --accent-soft: rgba(194, 65, 12, 0.08);
+    --ok: #15803d;
+    --err: #b91c1c;
+    --warn: #a16207;
+    --code-bg: #f0ebdf;
+    --scroll-thumb: #cdbf9f;
+    --topbar-h: 68px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14130f;
+      --surface: #1c1a15;
+      --surface-2: #23211a;
+      --ink: #efeadd;
+      --muted: #a29b88;
+      --line: #3a362b;
+      --line-strong: #5a5442;
+      --accent: #fb923c;
+      --accent-ink: #1d1b16;
+      --accent-soft: rgba(251, 146, 60, 0.12);
+      --ok: #4ade80;
+      --err: #f87171;
+      --warn: #facc15;
+      --code-bg: #121109;
+      --scroll-thumb: #4d4838;
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: calc(var(--topbar-h) + 16px);   /* o topo fixo não cobre o campo que recebe foco */
+  }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  body:has(dialog[open]) { overflow: hidden; }
+  [hidden] { display: none !important; }
+  .bi { line-height: 1; flex: none; }
+
+  /* ===== Barras de rolagem (vertical e horizontal) ===== */
+  @supports selector(::-webkit-scrollbar) {
+    ::-webkit-scrollbar { width: 12px; height: 12px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb {
+      background: var(--scroll-thumb);
+      background-clip: content-box;
+      border: 3px solid transparent;
+      border-radius: 999px;
+    }
+    ::-webkit-scrollbar-thumb:hover { background: var(--accent); background-clip: content-box; }
+    ::-webkit-scrollbar-corner { background: transparent; }
+  }
+  @supports not selector(::-webkit-scrollbar) {
+    * { scrollbar-width: thin; scrollbar-color: var(--scroll-thumb) transparent; }
+  }
+
+  /* ===== Estrutura: tela inteira ===== */
+  .app { min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; }
+
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: var(--topbar-h);
+    padding: 10px clamp(16px, 3vw, 40px);
+    background: color-mix(in srgb, var(--surface) 90%, transparent);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
+  .brand > .bi { font-size: 1.9rem; color: var(--accent); }
+  .brand h1 { margin: 0; font-size: 1.35rem; letter-spacing: -0.02em; line-height: 1.2; }
+  .brand h1 span { color: var(--accent); }
+
+  .layout {
+    flex: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+    gap: 20px;
+    padding: 20px clamp(16px, 3vw, 40px) 28px;
+  }
+  .col { display: grid; gap: 20px; min-width: 0; }
+  @media (min-width: 960px) {
+    .layout { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); }
+    .col-resultado {
+      position: sticky;
+      top: calc(var(--topbar-h) + 16px);
+      max-height: calc(100vh - var(--topbar-h) - 32px);
+      overflow-y: auto;
+      padding-right: 2px;
+    }
+  }
+
+  .card {
+    min-width: 0;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 20px;
+    display: grid;
+    gap: 12px;
+  }
+  .card > h2 { margin: 0; font-size: 1.05rem; display: flex; align-items: center; gap: 8px; }
+  .card > h2 .bi { color: var(--accent); }
+
+  /* ===== Texto e campos ===== */
+  label, legend { font-weight: 600; font-size: 0.92rem; }
+  .dica { margin: 0; color: var(--muted); font-size: 0.85rem; }
+  input[type="text"], textarea, select {
+    width: 100%;
+    font: inherit;
+    color: var(--ink);
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 10px 12px;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  input[type="text"]:hover, textarea:hover, select:hover { border-color: var(--line-strong); }
+  input[type="text"]:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-soft);
+  }
+  textarea {
+    display: block;
+    resize: none;                 /* sem alça: o campo cresce sozinho */
+    overflow: auto;
+    font-family: ui-monospace, "Cascadia Code", "SF Mono", Menlo, Consolas, monospace;
+    font-size: 0.88rem;
+    line-height: 1.45;
+    tab-size: 2;
+  }
+  #script { min-height: 9rem; max-height: 70vh; white-space: pre; }
+  #saida { min-height: 4.5rem; max-height: 60vh; background: var(--code-bg); overflow-wrap: anywhere; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  .status { margin: 0; font-size: 0.92rem; color: var(--muted); min-height: 1.4em; overflow-wrap: anywhere; }
+  .status.ok { color: var(--ok); }
+  .status.erro { color: var(--err); }
+
+  select {
+    appearance: none;
+    -webkit-appearance: none;
+    padding-right: 36px;
+    cursor: pointer;
+    background-image:
+      linear-gradient(45deg, transparent 50%, var(--muted) 50%),
+      linear-gradient(135deg, var(--muted) 50%, transparent 50%);
+    background-position: calc(100% - 19px) 52%, calc(100% - 13px) 52%;
+    background-size: 6px 6px;
+    background-repeat: no-repeat;
+  }
+
+  /* ===== Opções: cartões com radio/checkbox próprios ===== */
+  fieldset { border: 0; margin: 0; padding: 0; min-width: 0; display: grid; gap: 8px; }
+  legend { padding: 0; margin-bottom: 8px; }
+  .opts { display: grid; gap: 8px; }
+
+  .opt {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 14px;
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    font-weight: 400;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .opt:hover { border-color: var(--accent); }
+  .opt:has(input:checked) { border-color: var(--accent); background: var(--accent-soft); }
+  .opt:has(input:focus-visible) { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .opt-body { display: grid; gap: 2px; min-width: 0; }
+  .opt-head { display: flex; align-items: center; gap: 8px; font-weight: 700; }
+  .opt-head .bi { color: var(--accent); font-size: 1.1rem; }
+  .opt small { color: var(--muted); font-size: 0.85rem; line-height: 1.45; }
+
+  .opt input[type="radio"], .opt input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    flex: none;
+    display: grid;
+    place-content: center;
+    width: 22px;
+    height: 22px;
+    margin: 1px 0 0;
+    padding: 0;
+    background: var(--surface);
+    border: 2px solid var(--line-strong);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .opt input[type="checkbox"] { border-radius: 7px; }
+  .opt input:checked { background: var(--accent); border-color: var(--accent); }
+  .opt input[type="radio"]::after {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent-ink);
+    transform: scale(0);
+    transition: transform 0.15s;
+  }
+  .opt input[type="radio"]:checked::after { transform: scale(1); }
+  .opt input[type="checkbox"]::after {
+    content: "";
+    width: 6px;
+    height: 11px;
+    margin-top: -2px;
+    border: solid var(--accent-ink);
+    border-width: 0 2.5px 2.5px 0;
+    transform: rotate(45deg) scale(0);
+    transition: transform 0.15s;
+  }
+  .opt input[type="checkbox"]:checked::after { transform: rotate(45deg) scale(1); }
+
+  .obf-box { display: grid; gap: 10px; }
+  .obf-opcoes { display: grid; gap: 10px; }
+  .nivel-row { display: grid; grid-template-columns: auto minmax(0, 220px); align-items: center; gap: 10px; padding-left: 4px; }
+  .nivel-row label { font-weight: 600; }
+
+  /* ===== Botões ===== */
+  .btn, .icon-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font: inherit;
+    font-weight: 600;
+    color: var(--ink);
+    background: var(--surface-2);
+    border: 1px solid var(--line-strong);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s, transform 0.05s;
+  }
+  .btn { padding: 9px 16px; }
+  .btn:hover, .icon-btn:hover { border-color: var(--accent); background: var(--accent-soft); }
+  .btn:active, .icon-btn:active { transform: translateY(1px); }
+  .btn-primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  .btn-primary:hover { background: var(--accent); filter: brightness(1.08); }
+  .icon-btn { width: 42px; height: 42px; padding: 0; font-size: 1.25rem; flex: none; }
+  .topbar .icon-btn { margin-left: auto; }
+
+  /* ===== Resultado ===== */
+  .vazio {
+    display: grid;
+    justify-items: center;
+    gap: 8px;
+    padding: 28px 12px;
+    color: var(--muted);
+    text-align: center;
+    border: 1px dashed var(--line-strong);
+    border-radius: 12px;
+  }
+  .vazio .bi { font-size: 2rem; color: var(--accent); }
+  #resultado:not([hidden]) ~ .vazio { display: none; }
+  #resultado { display: grid; gap: 12px; min-width: 0; }
+
+  .arrastar { display: grid; gap: 6px; justify-items: start; }
+  #link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    max-width: 100%;
+    padding: 12px 20px;
+    border-radius: 12px;
+    background: var(--accent);
+    color: var(--accent-ink);
+    font-weight: 700;
+    text-decoration: none;
+    cursor: grab;
+    overflow-wrap: anywhere;
+    box-shadow: 0 3px 0 rgba(0, 0, 0, 0.25);
+    transition: filter 0.15s;
+  }
+  #link::before { content: "\f19e"; font-family: "bootstrap-icons"; font-weight: 400; line-height: 1; }
+  #link:hover { filter: brightness(1.08); }
+  #link:active { cursor: grabbing; }
+  body.toque .arrastar { display: none; }
+
+  .acoes { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; }
+  #tamanhos { color: var(--muted); font-size: 0.85rem; overflow-wrap: anywhere; }
+  #avisos { display: grid; gap: 6px; }
+  #avisos p { margin: 0; font-size: 0.88rem; display: flex; align-items: flex-start; gap: 8px; overflow-wrap: anywhere; }
+  #avisos .alerta { color: var(--err); }
+  #avisos .info { color: var(--muted); }
+
+  /* ===== Painel de informações ===== */
+  dialog {
+    width: min(560px, calc(100vw - 32px));
+    max-height: min(86vh, 760px);
+    padding: 0;
+    color: var(--ink);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+    overflow: auto;
+  }
+  dialog::backdrop { background: rgba(10, 9, 6, 0.55); -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px); }
+  .dlg-inner { display: grid; gap: 14px; padding: 20px; }
+  .dlg-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .dlg-head h2 { margin: 0; font-size: 1.15rem; display: flex; align-items: center; gap: 8px; }
+  .dlg-head h2 .bi { color: var(--accent); }
+  .info-lista { margin: 0; display: grid; gap: 4px; }
+  .info-lista > div {
+    display: grid;
+    grid-template-columns: minmax(120px, 36%) minmax(0, 1fr);
+    gap: 4px 12px;
+    padding: 10px 0;
+    border-top: 1px solid var(--line);
+  }
+  .info-lista dt { color: var(--muted); font-size: 0.88rem; display: flex; align-items: flex-start; gap: 8px; }
+  .info-lista dt .bi { color: var(--accent); margin-top: 3px; }
+  .info-lista dd { margin: 0; overflow-wrap: anywhere; }
+  .info-lista a { color: var(--accent); font-weight: 600; text-underline-offset: 3px; }
+  .info-lista code { font: 0.95em ui-monospace, Consolas, monospace; background: var(--code-bg); padding: 1px 6px; border-radius: 6px; }
+
+  @media (max-width: 520px) {
+    :root { --topbar-h: 60px; }
+    .brand > .bi { font-size: 1.6rem; }
+    .brand h1 { font-size: 1.2rem; }
+    .card { padding: 14px; border-radius: 14px; }
+    .nivel-row { grid-template-columns: 1fr; }
+    .info-lista > div { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="brand">
+      <i class="bi bi-bookmark-star-fill" aria-hidden="true"></i>
+      <h1>Bookmarklet <span>Maker</span></h1>
+    </div>
+    <button type="button" id="btn-info" class="icon-btn" aria-label="Informações sobre o projeto" title="Informações" aria-haspopup="dialog">
+      <i class="bi bi-info-circle" aria-hidden="true"></i>
+    </button>
+  </header>
+
+  <main class="layout">
+    <div class="col">
+      <section class="card" id="card-entrada" aria-label="Entrada">
+        <h2><i class="bi bi-pencil-square" aria-hidden="true"></i> Entrada</h2>
+        <label for="titulo">Título do bookmarklet</label>
+        <input type="text" id="titulo" placeholder="Ex.: Meu script" autocomplete="off">
+
+        <label for="script">Script (JavaScript)</label>
+        <textarea id="script" rows="6" wrap="off" spellcheck="false" autocapitalize="off" autocomplete="off" placeholder="Cole aqui o seu código JavaScript…"></textarea>
+        <p id="status" class="status" role="status" aria-live="polite">Cole um script para começar.</p>
+      </section>
+
+      <section class="card" id="card-opcoes" aria-label="Opções">
+        <h2><i class="bi bi-sliders2" aria-hidden="true"></i> Opções</h2>
+
+        <fieldset>
+          <legend>Processamento</legend>
+          <div class="opts">
+            <label class="opt">
+              <input type="radio" name="modo" value="nenhum" checked>
+              <span class="opt-body">
+                <span class="opt-head"><i class="bi bi-file-earmark-code" aria-hidden="true"></i> Nenhum</span>
+                <small>Usa o seu código exatamente como foi colado, com comentários e quebras de linha. Como funciona: o script é apenas embrulhado em uma função e codificado para caber em um link.</small>
+              </span>
+            </label>
+            <label class="opt">
+              <input type="radio" name="modo" value="compactar">
+              <span class="opt-body">
+                <span class="opt-head"><i class="bi bi-arrows-collapse" aria-hidden="true"></i> Compactar</span>
+                <small>Remove comentários, espaços e quebras de linha e junta tudo em uma única linha, sem renomear nada. Como funciona: o Terser reescreve o código sem otimizar nem trocar nomes, então o comportamento fica idêntico.</small>
+              </span>
+            </label>
+            <label class="opt">
+              <input type="radio" name="modo" value="minificar">
+              <span class="opt-body">
+                <span class="opt-head"><i class="bi bi-lightning-charge" aria-hidden="true"></i> Minificar</span>
+                <small>Deixa o código o menor possível: além de compactar, simplifica expressões e troca nomes de variáveis locais por letras curtas. Como funciona: o Terser com compress e mangle ativados.</small>
+              </span>
+            </label>
+          </div>
+        </fieldset>
+
+        <div class="obf-box">
+          <label class="opt">
+            <input type="checkbox" id="obfuscar">
+            <span class="opt-body">
+              <span class="opt-head"><i class="bi bi-shield-lock" aria-hidden="true"></i> Obfuscar</span>
+              <small>Deixa o código propositalmente ilegível para dificultar que alguém entenda a lógica. Como funciona: o javascript-obfuscator reescreve o código; pode ser combinado com qualquer opção acima e costuma aumentar o tamanho. Não é criptografia.</small>
+            </span>
+          </label>
+          <div id="obf-opcoes" class="obf-opcoes" hidden>
+            <div class="nivel-row">
+              <label for="nivel">Intensidade</label>
+              <select id="nivel">
+                <option value="low">Baixa</option>
+                <option value="medium" selected>Média</option>
+                <option value="high">Alta</option>
+              </select>
+            </div>
+            <p id="nivel-desc" class="dica"></p>
+          </div>
+        </div>
+
+      </section>
+
+    </div>
+
+    <aside class="col col-resultado">
+      <section class="card" id="card-resultado" aria-label="Resultado">
+        <h2><i class="bi bi-bookmark-star" aria-hidden="true"></i> Resultado</h2>
+
+        <div id="resultado" hidden>
+          <div class="arrastar" id="arrastar">
+            <a id="link" href="#" draggable="true">Bookmarklet</a>
+            <span class="dica">Arraste este botão para a barra de favoritos.</span>
+          </div>
+
+          <label for="saida">Código do bookmarklet</label>
+          <textarea id="saida" rows="3" readonly spellcheck="false"></textarea>
+          <div class="acoes">
+            <button type="button" id="copiar" class="btn btn-primary"><i class="bi bi-clipboard" aria-hidden="true"></i><span class="btn-t">Copiar</span></button>
+            <span id="tamanhos"></span>
+          </div>
+          <div id="avisos" aria-live="polite"></div>
+        </div>
+
+        <div class="vazio">
+          <i class="bi bi-bookmarks" aria-hidden="true"></i>
+          <strong>O seu bookmarklet aparece aqui</strong>
+          <span>Cole um script sem erros para gerar o botão de favorito e o código.</span>
+        </div>
+      </section>
+    </aside>
+  </main>
+
+</div>
+
+<dialog id="info" aria-labelledby="info-titulo">
+  <div class="dlg-inner">
+    <div class="dlg-head">
+      <h2 id="info-titulo"><i class="bi bi-info-circle-fill" aria-hidden="true"></i> Sobre o projeto</h2>
+      <button type="button" id="info-fechar" class="icon-btn" aria-label="Fechar"><i class="bi bi-x-lg" aria-hidden="true"></i></button>
+    </div>
+    <dl class="info-lista">
+      <div><dt><i class="bi bi-person-circle" aria-hidden="true"></i> Desenvolvedor</dt><dd>&lt;\DarkMode&gt;</dd></div>
+      <div><dt><i class="bi bi-github" aria-hidden="true"></i> GitHub</dt><dd><a href="https://github.com/DarkModeBR/BookMaker" target="_blank" rel="noopener noreferrer">github.com/DarkModeBR/BookMaker</a></dd></div>
+      <div><dt><i class="bi bi-tag" aria-hidden="true"></i> Versão</dt><dd>1.1.0 (27/10/2026)</dd></div>
+      <div><dt><i class="bi bi-award" aria-hidden="true"></i> Licença</dt><dd>MIT</dd></div>
+      <div><dt><i class="bi bi-robot" aria-hidden="true"></i> IA usada</dt><dd>Claude (Anthropic)</dd></div>
+      <div><dt><i class="bi bi-lightbulb" aria-hidden="true"></i> Inspiração</dt><dd>Projeto inspirado no Bookmarklet Maker de caiorss, que também serviu de exemplo e foi melhorado aqui: <a href="https://caiorss.github.io/bookmarklet-maker/" target="_blank" rel="noopener noreferrer">caiorss.github.io/bookmarklet-maker</a></dd></div>
+    </dl>
+  </div>
+</dialog>
+
+<script>
+/* ===== Utilidades ===== */
+function $(id) { return document.getElementById(id); }
+
+function debounce(fn, ms) {
+  var t;
+  return function () {
+    var args = arguments;
+    clearTimeout(t);
+    t = setTimeout(function () { fn.apply(null, args); }, ms);
+  };
+}
+
+function setStatus(texto, tipo) {
+  var el = $('status');
+  el.textContent = texto;
+  el.className = 'status' + (tipo ? ' ' + tipo : '');
+}
+
+// Faz o textarea acompanhar o conteúdo; o limite de altura vem do CSS (max-height).
+function autoGrow(el) {
+  el.style.height = 'auto';
+  el.style.height = (el.scrollHeight + el.offsetHeight - el.clientHeight) + 'px';
+}
+
+/* ===== Bibliotecas ===== */
+var LIBS = {
+  terser: {
+    nome: 'Terser',
+    global: 'Terser',
+    url: 'https://cdn.jsdelivr.net/npm/terser@5.51.2/dist/bundle.min.js',
+    integrity: 'sha384-seftTS2RE1ypWj9Z4DmVLRGTQw9NZmEhmTEsxFn/4cGfIAW/LXOLzNl6K45p+m98'
+  },
+  obfuscator: {
+    nome: 'javascript-obfuscator',
+    global: 'JavaScriptObfuscator',
+    url: 'https://cdn.jsdelivr.net/npm/javascript-obfuscator@5.9.0/dist/index.browser.js',
+    integrity: 'sha384-00ot/chqCDC01ikXWFkYiuZeIHSads1kVuBClBXheD70Dw6s1umBPAavLyCypJfL'
+  }
+};
+var LIB_TIMEOUT_MS = 10000;
+var libPromises = {};
+
+function loadLib(name) {
+  var lib = LIBS[name];
+  if (window[lib.global]) return Promise.resolve();
+  if (libPromises[name]) return libPromises[name];
+
+  setStatus('Carregando biblioteca ' + lib.nome + '…');
+  libPromises[name] = new Promise(function (resolve, reject) {
+    var falha = function () {
+      delete libPromises[name];
+      reject(new Error('Não foi possível carregar a biblioteca ' + lib.nome + '. Verifique sua conexão.'));
+    };
+    var s = document.createElement('script');
+    // Um CDN que nunca responde também conta como falha.
+    var timer = setTimeout(function () { s.remove(); falha(); }, LIB_TIMEOUT_MS);
+    s.src = lib.url;
+    s.integrity = lib.integrity;
+    s.crossOrigin = 'anonymous';
+    s.onload = function () { clearTimeout(timer); window[lib.global] ? resolve() : falha(); };
+    s.onerror = function () { clearTimeout(timer); s.remove(); falha(); };
+    document.head.appendChild(s);
+  });
+  return libPromises[name];
+}
+
+/* ===== Verificação ===== */
+var MSG_MODULOS = 'Bookmarklets não suportam import/export estáticos. Use import() dinâmico.';
+
+var AsyncFunction = Object.getPrototypeOf(async function () {}).constructor;
+
+// O motor do navegador decide se o código é válido (só constrói a função, nunca a executa).
+// O Terser só é carregado quando há erro, para informar linha e coluna.
+// Resultado: { ok, async?, line?, col?, message? } — async: true quando o código usa await no topo.
+function checkSyntax(code) {
+  return (async function () {
+    if (!code.trim()) return { ok: true };
+
+    var motivo;
+    try { new Function(code); return { ok: true }; } catch (e) { motivo = e.message; }
+    try { new AsyncFunction(code); return { ok: true, async: true }; } catch (e) { /* erro de verdade */ }
+
+    if (/Cannot use import statement|Unexpected token 'export'|import\.meta/.test(motivo)) {
+      return { ok: false, message: MSG_MODULOS };
+    }
+    try {
+      await loadLib('terser');
+      await Terser.minify(code, { parse: { bare_returns: true }, compress: false, mangle: false });
+    } catch (e) {
+      if (e && e.line) return { ok: false, line: e.line, col: e.col, message: e.message };
+    }
+    return { ok: false, message: motivo };
+  })();
+}
+
+function textoStatus(r) {
+  if (!r.ok) {
+    var onde = r.line ? 'Linha ' + r.line + ', coluna ' + r.col + ': ' : '';
+    return '✗ ' + onde + r.message;
+  }
+  return r.async
+    ? '✓ Sem erros (await no topo: o script roda como função assíncrona)'
+    : '✓ Sem erros';
+}
+
+/* ===== Transformação ===== */
+// opts: { modo: 'nenhum'|'compactar'|'minificar', obfuscar: boolean, nivel: 'low'|'medium'|'high', async?: boolean }
+// opts.async: o código usa await no topo e precisa rodar dentro de uma função assíncrona.
+async function transform(code, opts) {
+  var out = opts.async ? '(async function(){\n' + code + '\n})();' : code;
+  if (opts.modo !== 'nenhum') {
+    await loadLib('terser');
+    var cfg = { parse: { bare_returns: true }, format: { comments: false } };
+    if (opts.modo === 'compactar') {
+      cfg.compress = false;
+      cfg.mangle = false;
+    } else {
+      cfg.compress = {};
+      cfg.mangle = true;
+    }
+    var res = await Terser.minify(out, cfg);
+    out = res.code;
+  }
+  if (opts.obfuscar) {
+    await loadLib('obfuscator');
+    // O obfuscator rejeita "return" no topo; embrulhar antes mantém esse código válido.
+    var envolvido = '(function(){\n' + out + '\n})();';
+    var preset = OBFUSCATOR_PRESETS[opts.nivel];
+    out = JavaScriptObfuscator.obfuscate(envolvido, preset).getObfuscatedCode();
+    if (!codigoValido(out)) {
+      // O achatamento de fluxo pode quebrar sintaxe como "#x in obj"; tenta de novo sem ele.
+      out = JavaScriptObfuscator.obfuscate(envolvido, Object.assign({}, preset, { controlFlowFlattening: false })).getObfuscatedCode();
+      if (!codigoValido(out)) {
+        throw new Error('A obfuscação gerou um código inválido para este script. Tente a intensidade Baixa ou desative a obfuscação.');
+      }
+    }
+  }
+  return out;
+}
+
+function codigoValido(code) {
+  try { new Function(code); return true; } catch (e) { return false; }
+}
+
+// Opções que quebram bookmarklets ficam sempre desligadas.
+function presetObfuscador(preset) {
+  return {
+    optionsPreset: preset,
+    selfDefending: false,
+    debugProtection: false,
+    domainLock: [],
+    disableConsoleOutput: false,
+    log: false
+  };
+}
+var OBFUSCATOR_PRESETS = {
+  low: presetObfuscador('low-obfuscation'),
+  medium: presetObfuscador('medium-obfuscation'),
+  high: presetObfuscador('high-obfuscation')
+};
+
+/* ===== Bookmarklet ===== */
+// A quebra de linha antes de "})();" impede que um "//" no fim do script comente o fechamento.
+// O "void 0" final evita que um "return 'texto'" do script substitua a página (um javascript:
+// que resulta em string navega para ela).
+function buildBookmarklet(code) {
+  return 'javascript:' + encodeURIComponent('(function(){\n' + code + '\n})();void 0');
+}
+
+/* ===== Interface ===== */
+var LIMITE_URL = 100000;
+var genCounter = 0;
+var cache = { chave: null, out: null };   // último transform: evita reprocessar quando nada mudou
+
+var DESCRICAO_NIVEL = {
+  low: 'Baixa: troca os nomes de variáveis e funções por códigos sem sentido e move os textos para uma lista embaralhada. É a mais leve e rápida; o tamanho cresce pouco.',
+  medium: 'Média: faz o que a Baixa faz e ainda embaralha o fluxo do código, injeta código falso e codifica os textos. Equilíbrio entre proteção e tamanho.',
+  high: 'Alta: aplica as transformações no máximo, deixando o código bem maior e mais lento de gerar e de executar. Use só quando precisar esconder muito bem a lógica.'
+};
+
+function lerOpcoes() {
+  return {
+    modo: document.querySelector('input[name=modo]:checked').value,
+    obfuscar: $('obfuscar').checked,
+    nivel: $('nivel').value
+  };
+}
+
+function esconderResultado() {
+  $('resultado').hidden = true;
+  $('avisos').textContent = '';
+}
+
+function aviso(texto, tipo) {
+  var p = document.createElement('p');
+  var i = document.createElement('i');
+  i.className = 'bi ' + (tipo === 'alerta' ? 'bi-exclamation-triangle-fill' : 'bi-info-circle');
+  i.setAttribute('aria-hidden', 'true');
+  p.className = tipo;
+  p.appendChild(i);
+  p.appendChild(document.createTextNode(texto));
+  $('avisos').appendChild(p);
+}
+
+async function generate() {
+  var id = ++genCounter;
+  var code = $('script').value;
+  var opts = lerOpcoes();
+  autoGrow($('script'));
+
+  if (!code.trim()) {
+    esconderResultado();
+    setStatus('Cole um script para começar.');
+    return;
+  }
+
+  var chk = await checkSyntax(code);
+  if (id !== genCounter) return;
+  if (!chk.ok) {
+    esconderResultado();
+    setStatus(textoStatus(chk), 'erro');
+    return;
+  }
+  setStatus(textoStatus(chk), 'ok');
+  if (opts.obfuscar) setStatus('Obfuscando…');
+  opts.async = !!chk.async;
+
+  var out;
+  var chave = JSON.stringify([code, opts]);
+  try {
+    if (cache.chave === chave) {
+      out = cache.out;
+    } else {
+      out = await transform(code, opts);
+      cache = { chave: chave, out: out };
+    }
+  } catch (e) {
+    if (id !== genCounter) return;
+    esconderResultado();
+    setStatus('✗ ' + (e.message || e), 'erro');
+    return;
+  }
+  if (id !== genCounter) return;
+  setStatus(textoStatus(chk), 'ok');
+
+  var href = buildBookmarklet(out);
+  var titulo = $('titulo').value.trim() || 'Bookmarklet';
+  $('link').textContent = titulo;
+  $('link').href = href;
+  $('saida').value = href;
+  $('tamanhos').textContent = 'Script: ' + code.length + ' → ' + out.length +
+    ' caracteres · Bookmarklet: ' + href.length + ' caracteres';
+  $('avisos').textContent = '';
+  if (href.length > LIMITE_URL) {
+    aviso('O bookmarklet tem mais de ' + LIMITE_URL.toLocaleString('pt-BR') +
+      ' caracteres. Alguns navegadores podem recusar ou cortar favoritos tão grandes.', 'alerta');
+  }
+  $('resultado').hidden = false;
+  autoGrow($('saida'));
+}
+
+var gerar = debounce(generate, 300);
+$('script').addEventListener('input', function () { autoGrow($('script')); gerar(); });
+// O título só muda o rótulo do botão; não precisa reprocessar o script.
+$('titulo').addEventListener('input', function () {
+  if (!$('resultado').hidden) $('link').textContent = $('titulo').value.trim() || 'Bookmarklet';
+});
+// Intensidade (e a descrição) só aparecem com Obfuscar ativo.
+function atualizarObfuscar() { $('obf-opcoes').hidden = !$('obfuscar').checked; }
+$('obfuscar').addEventListener('change', function () {
+  atualizarObfuscar();
+  gerar();
+});
+$('nivel').addEventListener('change', function () {
+  $('nivel-desc').textContent = DESCRICAO_NIVEL[$('nivel').value];
+  gerar();
+});
+document.querySelectorAll('input[name=modo]').forEach(function (r) { r.addEventListener('change', gerar); });
+$('nivel-desc').textContent = DESCRICAO_NIVEL[$('nivel').value];
+atualizarObfuscar();   // o navegador pode restaurar a caixa marcada ao recarregar
+
+$('link').addEventListener('click', function (e) {
+  e.preventDefault();
+  $('avisos').textContent = '';
+  aviso('Arraste este botão para a barra de favoritos; clicar aqui não executa nada.', 'info');
+});
+
+/* ===== Copiar ===== */
+function feedbackBotao(btn, texto, icone) {
+  var t = btn.querySelector('.btn-t');
+  var i = btn.querySelector('.bi');
+  var textoOriginal = btn.dataset.texto || t.textContent;
+  var iconeOriginal = btn.dataset.icone || i.className;
+  btn.dataset.texto = textoOriginal;
+  btn.dataset.icone = iconeOriginal;
+  t.textContent = texto;
+  i.className = 'bi ' + icone;
+  clearTimeout(btn._timer);
+  btn._timer = setTimeout(function () {
+    t.textContent = textoOriginal;
+    i.className = iconeOriginal;
+  }, 1500);
+}
+
+$('copiar').addEventListener('click', async function () {
+  var copiou = true;
+  try {
+    await navigator.clipboard.writeText($('saida').value);
+  } catch (e) {
+    $('saida').select();
+    copiou = document.execCommand('copy');
+  }
+  if (copiou) feedbackBotao($('copiar'), 'Copiado!', 'bi-clipboard-check');
+  else feedbackBotao($('copiar'), 'Selecione e copie (Ctrl+C)', 'bi-exclamation-circle');
+});
+
+/* ===== Telas de toque ===== */
+// Em telas só de toque não existe arrastar para a barra de favoritos: o botão arrastável some e fica o Copiar.
+if (matchMedia('(pointer: coarse)').matches && !matchMedia('(any-pointer: fine)').matches) {
+  document.body.classList.add('toque');
+}
+
+/* ===== Painel de informações ===== */
+$('btn-info').addEventListener('click', function () {
+  var d = $('info');
+  if (typeof d.showModal === 'function') d.showModal(); else d.setAttribute('open', '');
+});
+$('info-fechar').addEventListener('click', function () { $('info').close(); });
+// Clique no fundo escurecido (o alvo é o próprio <dialog>) fecha o painel.
+$('info').addEventListener('click', function (e) { if (e.target === $('info')) $('info').close(); });
+
+/* ===== Inicialização ===== */
+autoGrow($('script'));
+window.addEventListener('resize', debounce(function () {
+  autoGrow($('script'));
+  if (!$('resultado').hidden) autoGrow($('saida'));
+}, 150));
+</script>
+</body>
+</html>
